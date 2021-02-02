@@ -2,11 +2,14 @@
 using System.Collections.Generic;
 using System.Text;
 using Altseed2;
+using FarmGame.UI.Parts;
 
 namespace FarmGame.Scene
 {
     public class Main : Node
     {
+        private Button farmButton = null;
+
         protected override void OnAdded()
         {
             //背景
@@ -17,32 +20,22 @@ namespace FarmGame.Scene
             background.ZOrder = 0;
             AddChildNode(background);
 
-            float scale = (CommonParameter.WindowWidth / 6.0f) / Texture.TextureButton.Size.X;
-            var buttonYPosition = CommonParameter.WindowHeight - Texture.TextureButton.Size.Y * scale;
+            float scale = (CommonParameter.WindowWidth / 6.0f) / Texture.FarmButton.Size.X;
+            var buttonYPosition = CommonParameter.WindowHeight - Texture.FarmButton.Size.Y * scale;
             float buttonXPosition = 0.0f;
-            var xInterval = Texture.TextureButton.Size.X * scale;
+            var xInterval = Texture.FarmButton.Size.X * scale;
 
             // 農場ボタン
-            var farmButton = new SpriteNode();
-            farmButton.Texture = Texture.TextureButton;
-            farmButton.ZOrder = 1;
-            farmButton.Position = new Vector2F(buttonXPosition, buttonYPosition);
-            farmButton.Scale = new Vector2F(scale, scale);
-            AddChildNode(farmButton);
-
-            var announce = new TextNode();
-            announce.Font = Font.LoadDynamicFontStrict("HachiMaruPop-Regular.ttf", 50);
-            announce.Text = "農場";
-            announce.Color = new Color(0, 0, 0);
-            announce.CenterPosition = announce.ContentSize / 2;
-            announce.Position = new Vector2F(farmButton.Position.X + announce.CenterPosition.X + 45, farmButton.Position.Y + announce.CenterPosition.Y - 5);
-            announce.ZOrder = 2;
-            AddChildNode(announce);
+            farmButton = new Button(Texture.FarmButton, Texture.FarmButtonHover, Texture.FarmButtonClick);
+            farmButton.SetZOrder(1);
+            farmButton.SetPosition(new Vector2F(buttonXPosition, buttonYPosition));
+            farmButton.SetScale(scale);
+            farmButton.SetNode(this);
 
             // 牧場ボタン
             buttonXPosition += xInterval;
             var ranchButton = new SpriteNode();
-            ranchButton.Texture = Texture.TextureButton;
+            ranchButton.Texture = Texture.RanchButton;
             ranchButton.ZOrder = 1;
             ranchButton.Position = new Vector2F(buttonXPosition, buttonYPosition);
             ranchButton.Scale = new Vector2F(scale, scale);
@@ -51,7 +44,7 @@ namespace FarmGame.Scene
             // 市場ボタン
             buttonXPosition += xInterval;
             var marketButton = new SpriteNode();
-            marketButton.Texture = Texture.TextureButton;
+            marketButton.Texture = Texture.MarketButton;
             marketButton.ZOrder = 1;
             marketButton.Position = new Vector2F(buttonXPosition, buttonYPosition);
             marketButton.Scale = new Vector2F(scale, scale);
@@ -60,7 +53,7 @@ namespace FarmGame.Scene
             // 工房ボタン
             buttonXPosition += xInterval;
             var studioButton = new SpriteNode();
-            studioButton.Texture = Texture.TextureButton;
+            studioButton.Texture = Texture.StudioButton;
             studioButton.ZOrder = 1;
             studioButton.Position = new Vector2F(buttonXPosition, buttonYPosition);
             studioButton.Scale = new Vector2F(scale, scale);
@@ -69,7 +62,7 @@ namespace FarmGame.Scene
             // お店ボタン
             buttonXPosition += xInterval;
             var shopButton = new SpriteNode();
-            shopButton.Texture = Texture.TextureButton;
+            shopButton.Texture = Texture.ShopButton;
             shopButton.ZOrder = 1;
             shopButton.Position = new Vector2F(buttonXPosition, buttonYPosition);
             shopButton.Scale = new Vector2F(scale, scale);
@@ -78,7 +71,7 @@ namespace FarmGame.Scene
             // 能力ボタン
             buttonXPosition += xInterval;
             var statusButton = new SpriteNode();
-            statusButton.Texture = Texture.TextureButton;
+            statusButton.Texture = Texture.StatusButton;
             statusButton.ZOrder = 1;
             statusButton.Position = new Vector2F(buttonXPosition, buttonYPosition);
             statusButton.Scale = new Vector2F(scale, scale);
@@ -87,7 +80,15 @@ namespace FarmGame.Scene
 
         protected override void OnUpdate()
         {
+            var position = Engine.Mouse.Position;
 
+            farmButton.Hover(position);
+
+            var mouseStatus = Engine.Mouse.GetMouseButtonState(MouseButton.ButtonLeft);
+            if (mouseStatus == ButtonState.Push || mouseStatus == ButtonState.Hold)
+            {
+                farmButton.Click(position);
+            }
         }
     }
 }
