@@ -11,10 +11,21 @@ namespace FarmGame
         private static Texture2D _farmButtonHover = null;
         private static Texture2D _farmButtonClick = null;
         private static Texture2D _ranchButton = null;
+        private static Texture2D _ranchButtonHover = null;
+        private static Texture2D _ranchButtonClick = null;
         private static Texture2D _marketButton = null;
+        private static Texture2D _marketButtonHover = null;
+        private static Texture2D _marketButtonClick = null;
         private static Texture2D _shopButton = null;
+        private static Texture2D _shopButtonHover = null;
+        private static Texture2D _shopButtonClick = null;
         private static Texture2D _studioButton = null;
+        private static Texture2D _studioButtonHover = null;
+        private static Texture2D _studioButtonClick = null;
         private static Texture2D _statusButton = null;
+        private static Texture2D _statusButtonHover = null;
+        private static Texture2D _statusButtonClick = null;
+
         public static Texture2D FarmButton
         {
             get
@@ -62,6 +73,31 @@ namespace FarmGame
                 return _ranchButton;
             }
         }
+
+        public static Texture2D RanchButtonHover
+        {
+            get
+            {
+                if (_ranchButtonHover == null)
+                {
+                    _ranchButtonHover = Texture2D.Load("ranch_button_hover.png");
+                }
+                return _ranchButtonHover;
+            }
+        }
+
+        public static Texture2D RanchButtonClick
+        {
+            get
+            {
+                if (_ranchButtonClick == null)
+                {
+                    _ranchButtonClick = Texture2D.Load("ranch_button_click.png");
+                }
+                return _ranchButtonClick;
+            }
+        }
+
         public static Texture2D MarketButton
         {
             get
@@ -73,6 +109,31 @@ namespace FarmGame
                 return _marketButton;
             }
         }
+
+        public static Texture2D MarketButtonHover
+        {
+            get
+            {
+                if (_marketButtonHover == null)
+                {
+                    _marketButtonHover = Texture2D.Load("market_button_hover.png");
+                }
+                return _marketButtonHover;
+            }
+        }
+
+        public static Texture2D MarketButtonClick
+        {
+            get
+            {
+                if (_marketButtonClick == null)
+                {
+                    _marketButtonClick = Texture2D.Load("market_button_click.png");
+                }
+                return _marketButtonClick;
+            }
+        }
+
         public static Texture2D ShopButton
         {
             get
@@ -84,6 +145,31 @@ namespace FarmGame
                 return _shopButton;
             }
         }
+
+        public static Texture2D ShopButtonHover
+        {
+            get
+            {
+                if (_shopButtonHover == null)
+                {
+                    _shopButtonHover = Texture2D.Load("shop_button_hover.png");
+                }
+                return _shopButtonHover;
+            }
+        }
+
+        public static Texture2D ShopButtonClick
+        {
+            get
+            {
+                if (_shopButtonClick == null)
+                {
+                    _shopButtonClick = Texture2D.Load("shop_button_click.png");
+                }
+                return _shopButtonClick;
+            }
+        }
+
         public static Texture2D StudioButton
         {
             get
@@ -95,6 +181,31 @@ namespace FarmGame
                 return _studioButton;
             }
         }
+
+        public static Texture2D StudioButtonHover
+        {
+            get
+            {
+                if (_studioButtonHover == null)
+                {
+                    _studioButtonHover = Texture2D.Load("studio_button_hover.png");
+                }
+                return _studioButtonHover;
+            }
+        }
+
+        public static Texture2D StudioButtonClick
+        {
+            get
+            {
+                if (_studioButtonClick == null)
+                {
+                    _studioButtonClick = Texture2D.Load("studio_button_click.png");
+                }
+                return _studioButtonClick;
+            }
+        }
+
         public static Texture2D StatusButton
         {
             get
@@ -104,6 +215,30 @@ namespace FarmGame
                     _statusButton = Texture2D.Load("status_button.png");
                 }
                 return _statusButton;
+            }
+        }
+
+        public static Texture2D StatusButtonHover
+        {
+            get
+            {
+                if (_statusButtonHover == null)
+                {
+                    _statusButtonHover = Texture2D.Load("status_button_hover.png");
+                }
+                return _statusButtonHover;
+            }
+        }
+
+        public static Texture2D StatusButtonClick
+        {
+            get
+            {
+                if (_statusButtonClick == null)
+                {
+                    _statusButtonClick = Texture2D.Load("status_button_click.png");
+                }
+                return _statusButtonClick;
             }
         }
     }

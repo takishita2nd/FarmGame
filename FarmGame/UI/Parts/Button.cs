@@ -59,15 +59,17 @@ namespace FarmGame.UI.Parts
             }
         }
 
-        public void Click(Vector2F pos)
+        public bool Click(Vector2F pos)
         {
             if(isOnMouse(pos))
             {
                 _node.Texture = _textureClick;
+                return true;
             }
             else
             {
                 _node.Texture = _texture;
+                return false;
             }
         }
 
