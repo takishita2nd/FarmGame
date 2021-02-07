@@ -11,7 +11,7 @@ namespace FarmGame
         {
             Engine.Initialize("農場ゲーム(仮)", CommonParameter.WindowWidth, CommonParameter.WindowHeight);
 
-            Engine.AddNode(new Main());
+            Engine.AddNode(new MainScene());
 
             while (Engine.DoEvents())
             {

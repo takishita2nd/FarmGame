@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 using Altseed2;
+using FarmGame.Scene;
 using FarmGame.UI.Parts;
 
 namespace FarmGame.UI
@@ -14,9 +15,12 @@ namespace FarmGame.UI
         private Button studioButton = null;
         private Button shopButton = null;
         private Button statusButton = null;
+        private Node node = null;
 
         public CommonMenu(Node parentNode)
         {
+            node = parentNode;
+
             float scale = (CommonParameter.WindowWidth / 6.0f) / Texture.FarmButton.Size.X;
             var buttonYPosition = CommonParameter.WindowHeight - Texture.FarmButton.Size.Y * scale;
             float buttonXPosition = 0.0f;
@@ -80,16 +84,44 @@ namespace FarmGame.UI
             statusButton.Hover(position);
         }
 
-        public bool Click(Vector2F position)
+        public void Click(Vector2F position)
         {
-            var ret = farmButton.Click(position);
-            ret |= ranchButton.Click(position);
-            ret |= marketButton.Click(position);
-            ret |= studioButton.Click(position);
-            ret |= shopButton.Click(position);
-            ret |= statusButton.Click(position);
-
-            return ret;
+            if(farmButton.Click(position))
+            {
+                Engine.RemoveNode(node);
+                node = new FarmScene();
+                Engine.AddNode(node);
+            }
+            if (ranchButton.Click(position))
+            {
+                Engine.RemoveNode(node);
+                node = new RanchScene();
+                Engine.AddNode(node);
+            }
+            if (marketButton.Click(position))
+            {
+                Engine.RemoveNode(node);
+                node = new MarketScene();
+                Engine.AddNode(node);
+            }
+            if (studioButton.Click(position))
+            {
+                Engine.RemoveNode(node);
+                node = new StudioScene();
+                Engine.AddNode(node);
+            }
+            if (shopButton.Click(position))
+            {
+                Engine.RemoveNode(node);
+                node = new ShopScene();
+                Engine.AddNode(node);
+            }
+            if (statusButton.Click(position))
+            {
+                Engine.RemoveNode(node);
+                node = new MainScene();
+                Engine.AddNode(node);
+            }
         }
     }
 }
