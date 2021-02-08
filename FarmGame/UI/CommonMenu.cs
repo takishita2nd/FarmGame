@@ -16,13 +16,14 @@ namespace FarmGame.UI
         private Button shopButton = null;
         private Button statusButton = null;
         private Node node = null;
+        private float buttonYPosition;
 
         public CommonMenu(Node parentNode)
         {
             node = parentNode;
 
             float scale = (CommonParameter.WindowWidth / 6.0f) / Texture.FarmButton.Size.X;
-            var buttonYPosition = CommonParameter.WindowHeight - Texture.FarmButton.Size.Y * scale;
+            buttonYPosition = CommonParameter.WindowHeight - Texture.FarmButton.Size.Y * scale;
             float buttonXPosition = 0.0f;
             var xInterval = Texture.FarmButton.Size.X * scale;
 
@@ -72,6 +73,11 @@ namespace FarmGame.UI
             statusButton.SetPosition(new Vector2F(buttonXPosition, buttonYPosition));
             statusButton.SetScale(scale);
             statusButton.SetNode(parentNode);
+        }
+
+        public float GetYPosition()
+        {
+            return buttonYPosition;
         }
 
         public void OnMouse(Vector2F position)
