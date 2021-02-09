@@ -125,7 +125,7 @@ namespace FarmGame.UI
             if (statusButton.Click(position))
             {
                 Engine.RemoveNode(node);
-                node = new MainScene();
+                node = new StatusScene();
                 Engine.AddNode(node);
             }
         }

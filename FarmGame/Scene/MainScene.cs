@@ -21,7 +21,7 @@ namespace FarmGame.Scene
             AddChildNode(background);
 
             var sign = new SpriteNode();
-            sign.Texture = Texture2D.Load("sign.png");
+            sign.Texture = Texture2D.Load("homesign.png");
             sign.Position = new Vector2F(0, 0);
             sign.ZOrder = 1;
             AddChildNode(sign);
@@ -47,13 +47,13 @@ namespace FarmGame.Scene
             menu = new CommonMenu(this);
 
             var home = new SpriteNode();
-            home.Texture = Texture2D.Load("home.png");
+            home.Texture = Texture2D.Load("homebutton.png");
             home.Position = new Vector2F(CommonParameter.WindowWidth - home.Texture.Size.X, menu.GetYPosition() - home.Texture.Size.Y);
             home.ZOrder = 1;
             AddChildNode(home);
 
             var next = new SpriteNode();
-            next.Texture = Texture2D.Load("home.png");
+            next.Texture = Texture2D.Load("nextbutton.png");
             next.Position = new Vector2F(CommonParameter.WindowWidth - home.Texture.Size.X, menu.GetYPosition() - home.Texture.Size.Y - next.Texture.Size.Y);
             next.ZOrder = 1;
             AddChildNode(next);
