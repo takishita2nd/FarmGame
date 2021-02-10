@@ -26,37 +26,17 @@ namespace FarmGame.Scene
             sign.ZOrder = 1;
             AddChildNode(sign);
 
-            var statusHp = new SpriteNode();
-            statusHp.Texture = Texture2D.Load("parameter.png");
-            statusHp.Position = new Vector2F(sign.Texture.Size.X, 0);
-            statusHp.ZOrder = 1;
-            AddChildNode(statusHp);
+            PowerPanel powerPanel = new PowerPanel();
+            powerPanel.SetPosition(new Vector2F(sign.Texture.Size.X, 0));
+            powerPanel.SetNode(this);
+            powerPanel.UpdateValue();
 
-            var statusMoney = new SpriteNode();
-            statusMoney.Texture = Texture2D.Load("parameter.png");
-            statusMoney.Position = new Vector2F(sign.Texture.Size.X, statusHp.Texture.Size.Y);
-            statusMoney.ZOrder = 1;
-            AddChildNode(statusMoney);
-
-            var weather = new SpriteNode();
-            weather.Texture = Texture2D.Load("parameter.png");
-            weather.Position = new Vector2F(sign.Texture.Size.X, statusHp.Texture.Size.Y + statusMoney.Texture.Size.Y);
-            weather.ZOrder = 1;
-            AddChildNode(weather);
+            MoneyPanel moneyPanel = new MoneyPanel();
+            moneyPanel.SetPosition(new Vector2F(sign.Texture.Size.X, powerPanel.GetHeight()));
+            moneyPanel.SetNode(this);
+            moneyPanel.SetValue(100);
 
             menu = new CommonMenu(this);
-
-            var home = new SpriteNode();
-            home.Texture = Texture2D.Load("homebutton.png");
-            home.Position = new Vector2F(CommonParameter.WindowWidth - home.Texture.Size.X, menu.GetYPosition() - home.Texture.Size.Y);
-            home.ZOrder = 1;
-            AddChildNode(home);
-
-            var next = new SpriteNode();
-            next.Texture = Texture2D.Load("nextbutton.png");
-            next.Position = new Vector2F(CommonParameter.WindowWidth - home.Texture.Size.X, menu.GetYPosition() - home.Texture.Size.Y - next.Texture.Size.Y);
-            next.ZOrder = 1;
-            AddChildNode(next);
         }
 
         protected override void OnUpdate()

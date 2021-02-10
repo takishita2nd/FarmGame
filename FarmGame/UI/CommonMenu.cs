@@ -15,6 +15,8 @@ namespace FarmGame.UI
         private Button studioButton = null;
         private Button shopButton = null;
         private Button statusButton = null;
+        private Button homeButton = null;
+        private Button nextButton = null;
         private Node node = null;
         private float buttonYPosition;
 
@@ -73,6 +75,19 @@ namespace FarmGame.UI
             statusButton.SetPosition(new Vector2F(buttonXPosition, buttonYPosition));
             statusButton.SetScale(scale);
             statusButton.SetNode(parentNode);
+
+            //ホームボタン
+            homeButton = new Button(Texture.HomeButton, Texture.HomeButton, Texture.HomeButton);
+            homeButton.SetZOrder(1);
+            homeButton.SetPosition(new Vector2F(CommonParameter.WindowWidth - Texture.HomeButton.Size.X, buttonYPosition - Texture.HomeButton.Size.Y));
+            homeButton.SetNode(parentNode);
+
+            //次へボタン
+            nextButton = new Button(Texture.NextButton, Texture.NextButton, Texture.NextButton);
+            nextButton.SetZOrder(1);
+            nextButton.SetPosition(new Vector2F(CommonParameter.WindowWidth - Texture.HomeButton.Size.X, buttonYPosition - Texture.HomeButton.Size.Y - Texture.NextButton.Size.Y));
+            nextButton.SetNode(parentNode);
+
         }
 
         public float GetYPosition()
@@ -126,6 +141,12 @@ namespace FarmGame.UI
             {
                 Engine.RemoveNode(node);
                 node = new StatusScene();
+                Engine.AddNode(node);
+            }
+            if (homeButton.Click(position))
+            {
+                Engine.RemoveNode(node);
+                node = new MainScene();
                 Engine.AddNode(node);
             }
         }

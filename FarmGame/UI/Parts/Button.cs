@@ -22,6 +22,8 @@ namespace FarmGame.UI.Parts
             _textureHover = textureHover;
             _textureClick = textureClick;
             _node.Texture = _texture;
+            _width = _texture.Size.X;
+            _height = _texture.Size.Y;
         }
 
         public void SetPosition(Vector2F position)

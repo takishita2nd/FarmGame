@@ -1,0 +1,21 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Text;
+
+namespace FarmGame.Model
+{
+    class PlayerData
+    {
+        public int AgricultureLevel { get; set; }
+        public int DairyLevel { get; set; }
+        public int ProcessingLevel { get; set; }
+        public int ManagementLevel { get; set; }
+        public int AgricultureExperience { get; set; }
+        public int DairyExperience { get; set; }
+        public int ProcessingExperience { get; set; }
+        public int ManagementExperience { get; set; }
+        public int Money { get; set; }
+        public int Power { get; set; }
+        public int MaxPower { get; set; }
+    }
+}
