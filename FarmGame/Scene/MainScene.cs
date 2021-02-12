@@ -36,6 +36,11 @@ namespace FarmGame.Scene
             moneyPanel.SetNode(this);
             moneyPanel.SetValue(100);
 
+            WeatherPanel weatherPanel = new WeatherPanel();
+            weatherPanel.SetPosition(new Vector2F(sign.Texture.Size.X, powerPanel.GetHeight() + moneyPanel.GetHeight()));
+            weatherPanel.SetNode(this);
+            weatherPanel.UpdateValue();
+
             menu = new CommonMenu(this);
         }
 

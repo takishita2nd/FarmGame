@@ -1,5 +1,6 @@
 ﻿using Altseed2;
 using FarmGame.UI;
+using FarmGame.UI.Parts;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -24,6 +25,21 @@ namespace FarmGame.Scene
             sign.Position = new Vector2F(0, 0);
             sign.ZOrder = 1;
             AddChildNode(sign);
+
+            PowerPanel powerPanel = new PowerPanel();
+            powerPanel.SetPosition(new Vector2F(sign.Texture.Size.X, 0));
+            powerPanel.SetNode(this);
+            powerPanel.UpdateValue();
+
+            MoneyPanel moneyPanel = new MoneyPanel();
+            moneyPanel.SetPosition(new Vector2F(sign.Texture.Size.X, powerPanel.GetHeight()));
+            moneyPanel.SetNode(this);
+            moneyPanel.SetValue(100);
+
+            WeatherPanel weatherPanel = new WeatherPanel();
+            weatherPanel.SetPosition(new Vector2F(sign.Texture.Size.X, powerPanel.GetHeight() + moneyPanel.GetHeight()));
+            weatherPanel.SetNode(this);
+            weatherPanel.UpdateValue();
 
             menu = new CommonMenu(this);
 

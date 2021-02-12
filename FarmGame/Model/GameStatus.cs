@@ -10,10 +10,16 @@ namespace FarmGame.Model
         {
             Sunny,
             Cloudy,
-            rain,
+            Rain,
         }
 
         public WeatherParameter Weather { get; set; }
         public int Turn { get; set; }
+
+        public GameStatus()
+        {
+            Turn = 1;
+            Weather = WeatherParameter.Sunny;
+        }
     }
 }

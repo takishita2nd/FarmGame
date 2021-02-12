@@ -17,5 +17,20 @@ namespace FarmGame.Model
         public int Money { get; set; }
         public int Power { get; set; }
         public int MaxPower { get; set; }
+
+        public PlayerData()
+        {
+            AgricultureLevel = 1;
+            DairyLevel = 1;
+            ProcessingLevel = 1;
+            ManagementLevel = 1;
+            AgricultureExperience = 0;
+            DairyExperience = 0;
+            ProcessingExperience = 0;
+            ManagementExperience = 0;
+            Money = 100;
+            MaxPower = 10;
+            Power = MaxPower;
+        }
     }
 }
