@@ -27,6 +27,7 @@ namespace FarmGame
         private static Texture2D _statusButtonClick = null;
         private static Texture2D _homebutton = null;
         private static Texture2D _nextbutton = null;
+        private static Texture2D _farmTexture1 = null;
 
         public static Texture2D FarmButton
         {
@@ -263,6 +264,17 @@ namespace FarmGame
                     _nextbutton = Texture2D.Load("nextbutton.png");
                 }
                 return _nextbutton;
+            }
+        }
+        public static Texture2D FarmTexture1
+        {
+            get
+            {
+                if (_farmTexture1 == null)
+                {
+                    _farmTexture1 = Texture2D.Load("farm01.png");
+                }
+                return _farmTexture1;
             }
         }
     }

@@ -14,12 +14,12 @@ namespace FarmGame.UI.Parts
         {
             _node = new SpriteNode();
             _node.Texture = Texture2D.Load("parameter.png");
-            _node.ZOrder = 1;
+            _node.ZOrder = CommonParameter.ZOrder.Panel;
 
             _text = new TextNode();
             _text.Font = Font.LoadDynamicFontStrict("HachiMaruPop-Regular.ttf", 40);
             _text.Color = new Color(0, 0, 0);
-            _text.ZOrder = 2;
+            _text.ZOrder = CommonParameter.ZOrder.Text;
         }
 
         public void SetPosition(Vector2F pos)

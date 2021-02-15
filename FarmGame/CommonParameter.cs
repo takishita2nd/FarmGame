@@ -8,5 +8,15 @@ namespace FarmGame
     {
         public const int WindowWidth = 960;
         public const int WindowHeight = 640;
+
+        public static class ZOrder
+        {
+            public const int BackGround = 1;
+            public const int Menu = 5;
+            public const int Sign = 5;
+            public const int Panel = 5;
+            public const int Text = 8;
+            public const int Farm = 10;
+        }
     }
 }

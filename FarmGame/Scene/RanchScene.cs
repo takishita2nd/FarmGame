@@ -17,13 +17,13 @@ namespace FarmGame.Scene
             var background = new SpriteNode();
             background.Texture = Texture2D.Load("bg_ranch.jpg");
             background.Position = new Vector2F(0, 0);
-            background.ZOrder = 0;
+            background.ZOrder = CommonParameter.ZOrder.BackGround;
             AddChildNode(background);
 
             var sign = new SpriteNode();
             sign.Texture = Texture2D.Load("ranchsign.png");
             sign.Position = new Vector2F(0, 0);
-            sign.ZOrder = 1;
+            sign.ZOrder = CommonParameter.ZOrder.Sign;
             AddChildNode(sign);
 
             PowerPanel powerPanel = new PowerPanel();

@@ -7,7 +7,7 @@ namespace FarmGame.UI.Parts
 {
     class PowerPanel : Parameter
     {
-        public PowerPanel()
+        public PowerPanel() : base()
         {
             
         }
