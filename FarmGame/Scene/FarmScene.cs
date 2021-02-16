@@ -46,6 +46,12 @@ namespace FarmGame.Scene
             FarmIcon icon = new FarmIcon();
             icon.SetPosition(new Vector2F(50, 150));
             icon.SetNode(this);
+
+            PlantWindow window = new PlantWindow();
+            window.SetPosition(new Vector2F(50 + 64, 150 + 16));
+            window.SetNode(this);
+
+
         }
 
         protected override void OnUpdate()
