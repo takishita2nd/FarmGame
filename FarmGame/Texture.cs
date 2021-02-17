@@ -25,6 +25,18 @@ namespace FarmGame
         private static Texture2D _statusButton = null;
         private static Texture2D _statusButtonHover = null;
         private static Texture2D _statusButtonClick = null;
+        private static Texture2D _careButton = null;
+        private static Texture2D _careButtonHover = null;
+        private static Texture2D _careButtonClick = null;
+        private static Texture2D _allcareButton = null;
+        private static Texture2D _allcareButtonHover = null;
+        private static Texture2D _allcareButtonClick = null;
+        private static Texture2D _waterButton = null;
+        private static Texture2D _waterButtonHover = null;
+        private static Texture2D _waterButtonClick = null;
+        private static Texture2D _allwaterButton = null;
+        private static Texture2D _allwaterButtonHover = null;
+        private static Texture2D _allwaterButtonClick = null;
         private static Texture2D _homebutton = null;
         private static Texture2D _nextbutton = null;
         private static Texture2D _farmTexture1 = null;
@@ -245,6 +257,141 @@ namespace FarmGame
                 return _statusButtonClick;
             }
         }
+        public static Texture2D CareButton
+        {
+            get
+            {
+                if (_careButton == null)
+                {
+                    _careButton = Texture2D.Load("care_button.png");
+                }
+                return _careButton;
+            }
+        }
+        public static Texture2D CareButtonHover
+        {
+            get
+            {
+                if (_careButtonHover == null)
+                {
+                    _careButtonHover = Texture2D.Load("care_button_hover.png");
+                }
+                return _careButtonHover;
+            }
+        }
+        public static Texture2D CareButtonClick
+        {
+            get
+            {
+                if (_careButtonClick == null)
+                {
+                    _careButtonClick = Texture2D.Load("care_button_click.png");
+                }
+                return _careButtonClick;
+            }
+        }
+
+        public static Texture2D WaterButton
+        {
+            get
+            {
+                if (_waterButton == null)
+                {
+                    _waterButton = Texture2D.Load("water_button.png");
+                }
+                return _waterButton;
+            }
+        }
+        public static Texture2D WaterButtonHover
+        {
+            get
+            {
+                if (_waterButtonHover == null)
+                {
+                    _waterButtonHover = Texture2D.Load("water_button_hover.png");
+                }
+                return _waterButtonHover;
+            }
+        }
+        public static Texture2D WaterButtonClick
+        {
+            get
+            {
+                if (_waterButtonClick == null)
+                {
+                    _waterButtonClick = Texture2D.Load("water_button_click.png");
+                }
+                return _waterButtonClick;
+            }
+        }
+        public static Texture2D AllCareButton
+        {
+            get
+            {
+                if (_allcareButton == null)
+                {
+                    _allcareButton = Texture2D.Load("allcare_button.png");
+                }
+                return _allcareButton;
+            }
+        }
+        public static Texture2D AllCareButtonHover
+        {
+            get
+            {
+                if (_allcareButtonHover == null)
+                {
+                    _allcareButtonHover = Texture2D.Load("allcare_button_hover.png");
+                }
+                return _allcareButtonHover;
+            }
+        }
+        public static Texture2D AllCareButtonClick
+        {
+            get
+            {
+                if (_allcareButtonClick == null)
+                {
+                    _allcareButtonClick = Texture2D.Load("allcare_button_click.png");
+                }
+                return _allcareButtonClick;
+            }
+        }
+
+        public static Texture2D AllWaterButton
+        {
+            get
+            {
+                if (_allwaterButton == null)
+                {
+                    _allwaterButton = Texture2D.Load("allwater_button.png");
+                }
+                return _allwaterButton;
+            }
+        }
+        public static Texture2D AllWaterButtonHover
+        {
+            get
+            {
+                if (_allwaterButtonHover == null)
+                {
+                    _allwaterButtonHover = Texture2D.Load("water_button_hover.png");
+                }
+                return _allwaterButtonHover;
+            }
+        }
+        public static Texture2D AllWaterButtonClick
+        {
+            get
+            {
+                if (_allwaterButtonClick == null)
+                {
+                    _allwaterButtonClick = Texture2D.Load("water_button_click.png");
+                }
+                return _allwaterButtonClick;
+            }
+        }
+
         public static Texture2D HomeButton
         {
             get

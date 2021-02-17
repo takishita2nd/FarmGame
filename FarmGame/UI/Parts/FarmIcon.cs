@@ -20,7 +20,7 @@ namespace FarmGame.UI.Parts
         {
             _node = new SpriteNode();
             setClip(Type.Empty, 0);
-            _node.Scale = new Vector2F(2, 2);
+            _node.Scale = new Vector2F(2.5f, 2.5f);
             _node.ZOrder = CommonParameter.ZOrder.Farm;
         }
 

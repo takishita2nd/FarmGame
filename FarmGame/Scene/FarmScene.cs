@@ -44,13 +44,24 @@ namespace FarmGame.Scene
             menu = new CommonMenu(this);
 
             FarmIcon icon = new FarmIcon();
-            icon.SetPosition(new Vector2F(50, 150));
+            icon.SetPosition(new Vector2F(50, 160));
             icon.SetNode(this);
 
             PlantWindow window = new PlantWindow();
-            window.SetPosition(new Vector2F(50 + 64, 150 + 16));
+            window.SetPosition(new Vector2F(50 + 64 + 10, 160 + 16));
             window.SetNode(this);
 
+            Button careButton = new Button(Texture.CareButton, Texture.CareButtonHover, Texture.CareButtonClick);
+            careButton.SetPosition(new Vector2F(50 + 64 + 10 + 250, 160 + 16));
+            careButton.SetScale(0.6f);
+            careButton.SetZOrder(CommonParameter.ZOrder.Farm);
+            careButton.SetNode(this);
+
+            Button waterButton = new Button(Texture.WaterButton, Texture.WaterButtonHover, Texture.WaterButtonClick);
+            waterButton.SetPosition(new Vector2F(50 + 64 + 10 + 250 + 160, 160 + 16));
+            waterButton.SetScale(0.6f);
+            waterButton.SetZOrder(CommonParameter.ZOrder.Farm);
+            waterButton.SetNode(this);
 
         }
 

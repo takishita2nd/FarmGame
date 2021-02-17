@@ -13,7 +13,7 @@ namespace FarmGame.UI.Parts
         {
             _node = new SpriteNode();
             _node.Texture = Texture.FarmWindow;
-            var scale = Texture.FarmWindow.Size.Y / (Texture.FarmTexture1.Size.Y / 8.0f);
+            var scale = Texture.FarmWindow.Size.Y * 1.5f / (Texture.FarmTexture1.Size.Y / 8.0f);
             _node.Scale = new Vector2F(scale, scale);
             _node.ZOrder = CommonParameter.ZOrder.Farm;
         }
