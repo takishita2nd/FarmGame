@@ -18,5 +18,7 @@ namespace FarmGame
             public const int Text = 8;
             public const int Farm = 10;
         }
+
+        public const int  FarmPageMaxColumn = 5;
     }
 }

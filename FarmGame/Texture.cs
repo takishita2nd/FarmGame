@@ -37,6 +37,12 @@ namespace FarmGame
         private static Texture2D _allwaterButton = null;
         private static Texture2D _allwaterButtonHover = null;
         private static Texture2D _allwaterButtonClick = null;
+        private static Texture2D _prevPageButton = null;
+        private static Texture2D _prevPageButtonHover = null;
+        private static Texture2D _prevPageButtonClick = null;
+        private static Texture2D _nextPageButton = null;
+        private static Texture2D _nextPageButtonHover = null;
+        private static Texture2D _nextPageButtonClick = null;
         private static Texture2D _homebutton = null;
         private static Texture2D _nextbutton = null;
         private static Texture2D _farmTexture1 = null;
@@ -391,6 +397,73 @@ namespace FarmGame
                 return _allwaterButtonClick;
             }
         }
+        public static Texture2D PrevPageButton
+        {
+            get
+            {
+                if (_prevPageButton == null)
+                {
+                    _prevPageButton = Texture2D.Load("prev_page.png");
+                }
+                return _prevPageButton;
+            }
+        }
+        public static Texture2D PrevPageButtonHover
+        {
+            get
+            {
+                if (_prevPageButtonHover == null)
+                {
+                    _prevPageButtonHover = Texture2D.Load("prev_page_hover.png");
+                }
+                return _prevPageButtonHover;
+            }
+        }
+        public static Texture2D PrevPageButtonClick
+        {
+            get
+            {
+                if (_prevPageButtonClick == null)
+                {
+                    _prevPageButtonClick = Texture2D.Load("prev_page_click.png");
+                }
+                return _prevPageButtonClick;
+            }
+        }
+        public static Texture2D NextPageButton
+        {
+            get
+            {
+                if (_nextPageButton == null)
+                {
+                    _nextPageButton = Texture2D.Load("next_page.png");
+                }
+                return _nextPageButton;
+            }
+        }
+        public static Texture2D NextPageButtonHover
+        {
+            get
+            {
+                if (_nextPageButtonHover == null)
+                {
+                    _nextPageButtonHover = Texture2D.Load("next_page_hover.png");
+                }
+                return _nextPageButtonHover;
+            }
+        }
+        public static Texture2D NextPageButtonClick
+        {
+            get
+            {
+                if (_nextPageButtonClick == null)
+                {
+                    _nextPageButtonClick = Texture2D.Load("wnext_page_click.png");
+                }
+                return _nextPageButtonClick;
+            }
+        }
+
 
         public static Texture2D HomeButton
         {

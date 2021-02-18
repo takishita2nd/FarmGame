@@ -44,7 +44,7 @@ namespace FarmGame.Scene
 
             menu = new CommonMenu(this);
 
-            farm = new Farm(3);
+            farm = new Farm(CommonParameter.FarmPageMaxColumn);
             farm.SetNode(this);
         }
 
