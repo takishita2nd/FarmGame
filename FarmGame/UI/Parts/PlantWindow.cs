@@ -28,5 +28,10 @@ namespace FarmGame.UI.Parts
             parentNode.AddChildNode(_node);
         }
 
+        public void RemoveNode(Node parentNode)
+        {
+            parentNode.RemoveChildNode(_node);
+        }
+
     }
 }

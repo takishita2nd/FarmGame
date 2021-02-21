@@ -44,7 +44,7 @@ namespace FarmGame.Scene
 
             menu = new CommonMenu(this);
 
-            farm = new Farm(CommonParameter.FarmPageMaxColumn);
+            farm = new Farm();
             farm.SetNode(this);
         }
 
@@ -53,11 +53,13 @@ namespace FarmGame.Scene
             var position = Engine.Mouse.Position;
 
             menu.OnMouse(position);
+            farm.OnMouse(position);
 
             var mouseStatus = Engine.Mouse.GetMouseButtonState(MouseButton.ButtonLeft);
-            if (mouseStatus == ButtonState.Push || mouseStatus == ButtonState.Hold)
+            if (mouseStatus == ButtonState.Push)
             {
                 menu.Click(position);
+                farm.OnClick(position);
             }
         }
     }

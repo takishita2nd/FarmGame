@@ -17,6 +17,7 @@ namespace FarmGame.Model
         public int Money { get; set; }
         public int Power { get; set; }
         public int MaxPower { get; set; }
+        public List<Farm> farms { get; set; }
 
         public PlayerData()
         {
@@ -31,6 +32,14 @@ namespace FarmGame.Model
             Money = 100;
             MaxPower = 10;
             Power = MaxPower;
+            farms = new List<Farm>();
+            farms.Add(new Farm());
+            farms.Add(new Farm());
+            farms.Add(new Farm());
+            farms.Add(new Farm());
+            farms.Add(new Farm());
+            farms.Add(new Farm());
+            farms.Add(new Farm());
         }
     }
 }

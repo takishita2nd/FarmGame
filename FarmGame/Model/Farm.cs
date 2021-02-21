@@ -6,11 +6,6 @@ namespace FarmGame.Model
 {
     class Farm
     {
-        List<FarmField> farmFields;
-    }
-
-    class FarmField
-    {
         //植えているかどうか
         public bool valid { get; set; }
         //種ID

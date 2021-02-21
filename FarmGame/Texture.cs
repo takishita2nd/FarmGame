@@ -7,6 +7,7 @@ namespace FarmGame
 {
     public static class Texture
     {
+        private static Texture2D _window = null;
         private static Texture2D _farmButton = null;
         private static Texture2D _farmButtonHover = null;
         private static Texture2D _farmButtonClick = null;
@@ -47,6 +48,18 @@ namespace FarmGame
         private static Texture2D _nextbutton = null;
         private static Texture2D _farmTexture1 = null;
         private static Texture2D _farmWindow = null;
+
+        public static Texture2D Window
+        {
+            get
+            {
+                if (_window == null)
+                {
+                    _window = Texture2D.Load("284244.png");
+                }
+                return _window;
+            }
+        }
 
         public static Texture2D FarmButton
         {
@@ -381,7 +394,7 @@ namespace FarmGame
             {
                 if (_allwaterButtonHover == null)
                 {
-                    _allwaterButtonHover = Texture2D.Load("water_button_hover.png");
+                    _allwaterButtonHover = Texture2D.Load("allwater_button_hover.png");
                 }
                 return _allwaterButtonHover;
             }
@@ -392,7 +405,7 @@ namespace FarmGame
             {
                 if (_allwaterButtonClick == null)
                 {
-                    _allwaterButtonClick = Texture2D.Load("water_button_click.png");
+                    _allwaterButtonClick = Texture2D.Load("allwater_button_click.png");
                 }
                 return _allwaterButtonClick;
             }

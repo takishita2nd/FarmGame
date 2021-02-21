@@ -7,6 +7,7 @@ namespace FarmGame.UI.Parts
 {
     class Button
     {
+        private bool _valid = false;
         private SpriteNode _node = null;
         private Texture2D _texture = null;
         private Texture2D _textureHover = null;
@@ -46,31 +47,47 @@ namespace FarmGame.UI.Parts
 
         public void SetNode(Node node)
         {
+            _valid = true;
             node.AddChildNode(_node);
+        }
+
+        public void RemoveNode(Node parentNode)
+        {
+            parentNode.RemoveChildNode(_node);
         }
 
         public void Hover(Vector2F pos)
         {
-            if(isOnMouse(pos))
+            if (_valid == true)
             {
-                _node.Texture = _textureHover;
-            }
-            else
-            {
-                _node.Texture = _texture;
+                if (isOnMouse(pos))
+                {
+                    _node.Texture = _textureHover;
+                }
+                else
+                {
+                    _node.Texture = _texture;
+                }
             }
         }
 
         public bool Click(Vector2F pos)
         {
-            if(isOnMouse(pos))
+            if(_valid == true)
             {
-                _node.Texture = _textureClick;
-                return true;
+                if (isOnMouse(pos))
+                {
+                    _node.Texture = _textureClick;
+                    return true;
+                }
+                else
+                {
+                    _node.Texture = _texture;
+                    return false;
+                }
             }
             else
             {
-                _node.Texture = _texture;
                 return false;
             }
         }
