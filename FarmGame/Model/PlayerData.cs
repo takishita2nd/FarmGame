@@ -18,6 +18,7 @@ namespace FarmGame.Model
         public int Power { get; set; }
         public int MaxPower { get; set; }
         public List<Farm> farms { get; set; }
+        public int[] Seed { get; set; }
 
         public PlayerData()
         {
@@ -40,6 +41,8 @@ namespace FarmGame.Model
             farms.Add(new Farm());
             farms.Add(new Farm());
             farms.Add(new Farm());
+            Seed = new int[1];
+            Seed[0] = 3;
         }
     }
 }
