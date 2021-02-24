@@ -45,6 +45,8 @@ namespace FarmGame.UI
 
         private const int columnInterval = 60;
 
+        SeedWindow seedWindow = null;
+
         public Farm()
         {
             page = 0;
@@ -128,6 +130,18 @@ namespace FarmGame.UI
         public void OnClick(Vector2F position)
         {
             int maxPage = GameData.PlayerData.farms.Count / CommonParameter.FarmPageMaxColumn;
+            foreach(var farmColumn in farmColunms)
+            {
+                if(farmColumn.Icom.IsClick(position))
+                {
+                    seedWindow = new SeedWindow(_parentNode, farmColumn);
+                    seedWindow.SetPosition(new Vector2F(0, 170));
+                    seedWindow.SetScale(new Vector2F(1.0f, 1.5f));
+                    seedWindow.Show();
+
+                }
+            }
+
             if (_nextPageButton.Click(position))
             {
                 page++;

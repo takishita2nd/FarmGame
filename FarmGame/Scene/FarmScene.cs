@@ -11,6 +11,7 @@ namespace FarmGame.Scene
     {
         CommonMenu menu = null;
         Farm farm = null;
+        SeedWindow seedWindow = null;
 
         protected override void OnAdded()
         {
@@ -47,20 +48,13 @@ namespace FarmGame.Scene
             farm = new Farm();
             farm.SetNode(this);
 
-            var window = new SpriteNode();
-            window.Texture = Texture2D.Load("284244.png");
-            window.Src = new RectF(0, 680, 900, 220);
-            window.Scale = new Vector2F(1.0f, 1.5f);
-            window.Position = new Vector2F(0, 170);
-            window.ZOrder = CommonParameter.ZOrder.Dialog;
-            AddChildNode(window);
 
-            var seed = new SpriteNode();
-            seed.Texture = Texture2D.Load("100x25_bl.png");
-            seed.Scale = new Vector2F(2.0f, 2.0f);
-            seed.Position = new Vector2F(30, 190);
-            seed.ZOrder = CommonParameter.ZOrder.Seed;
-            AddChildNode(seed);
+            //var seed = new SpriteNode();
+            //seed.Texture = Texture2D.Load("100x25_bl.png");
+            //seed.Scale = new Vector2F(2.0f, 2.0f);
+            //seed.Position = new Vector2F(30, 190);
+            //seed.ZOrder = CommonParameter.ZOrder.Seed;
+            //AddChildNode(seed);
 
         }
 

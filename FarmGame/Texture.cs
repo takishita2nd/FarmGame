@@ -48,6 +48,7 @@ namespace FarmGame
         private static Texture2D _nextbutton = null;
         private static Texture2D _farmTexture1 = null;
         private static Texture2D _farmWindow = null;
+        private static Texture2D _seedWindow = null;
 
         public static Texture2D Window
         {
@@ -520,6 +521,17 @@ namespace FarmGame
                     _farmWindow = Texture2D.Load("150x35_or.png");
                 }
                 return _farmWindow;
+            }
+        }
+        public static Texture2D SeedWindow
+        {
+            get
+            {
+                if (_seedWindow == null)
+                {
+                    _seedWindow = Texture2D.Load("284244.png");
+                }
+                return _seedWindow;
             }
         }
 
