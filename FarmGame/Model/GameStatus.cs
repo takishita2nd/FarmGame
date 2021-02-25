@@ -21,8 +21,8 @@ namespace FarmGame.Model
             Turn = 1;
             Weather = WeatherParameter.Sunny;
             Plants = new List<Plant>();
-            var plant = new Plant() { id = 0, name = "小麦", cost = 10, money = 10 };
-            Plants.Add(plant);
+            Plants.Add(new Plant() { id = 0, name = "小麦", cost = 10, money = 10 });
+            Plants.Add(new Plant() { id = 1, name = "トウモロコシ", cost = 12, money = 15 });
         }
     }
 }

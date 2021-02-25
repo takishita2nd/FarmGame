@@ -40,7 +40,7 @@ namespace FarmGame.UI
             {
                 if(GameData.PlayerData.Seed.Length > seed.id)
                 {
-                    SeedButton seedButton = new SeedButton(Texture.SeedButton, Texture.SeedButtonPush);
+                    SeedButton seedButton = new SeedButton(Texture.SeedButton, Texture.SeedButtonPush, seed.name, GameData.PlayerData.Seed[seed.id]);
                     seedButtons.Add(seedButton);
                 }
             }
@@ -96,19 +96,40 @@ namespace FarmGame.UI
             {
                 Hide();
             }
-            foreach(var seedButton in seedButtons)
+            SeedButton pushedSeedButton = null;
+            foreach (var seedButton in seedButtons)
             {
-                if (seedButton.Click(position))
+                if(seedButton.IsClick(position))
                 {
-                    if(seedButton.GetButtonStatus())
+                    pushedSeedButton = seedButton;
+                    break;
+                }
+            }
+            foreach (var seedButton in seedButtons)
+            {
+                if(pushedSeedButton != null){
+                    if(seedButton.Equals(pushedSeedButton))
                     {
-                        _okButton.SetNode(_parentNode);
+                        pushedSeedButton.Click(position);
                     }
                     else
                     {
-                        _okButton.RemoveNode(_parentNode);
+                        seedButton.SetUnpush();
                     }
                 }
+            }
+            bool showOK = false;
+            foreach (var seedButton in seedButtons)
+            {
+                showOK |= seedButton.GetButtonStatus();
+            }
+            if (showOK)
+            {
+                _okButton.SetNode(_parentNode);
+            }
+            else
+            {
+                _okButton.RemoveNode(_parentNode);
             }
         }
     }

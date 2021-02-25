@@ -566,7 +566,7 @@ namespace FarmGame
             {
                 if (_seedButton == null)
                 {
-                    _seedButton = Texture2D.Load("150x35_bl.png");
+                    _seedButton = Texture2D.Load("300x35_bl.png");
                 }
                 return _seedButton;
             }
@@ -577,7 +577,7 @@ namespace FarmGame
             {
                 if (_seedButtonPush == null)
                 {
-                    _seedButtonPush = Texture2D.Load("150x35_gr.png");
+                    _seedButtonPush = Texture2D.Load("300x35_gr.png");
                 }
                 return _seedButtonPush;
             }
