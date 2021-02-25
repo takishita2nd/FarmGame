@@ -45,15 +45,19 @@ namespace FarmGame.UI.Parts
             _node.ZOrder = zOrder;
         }
 
-        public void SetNode(Node node)
+        public void SetNode(Node parentNode)
         {
             _valid = true;
-            node.AddChildNode(_node);
+            parentNode.AddChildNode(_node);
         }
 
         public void RemoveNode(Node parentNode)
         {
-            parentNode.RemoveChildNode(_node);
+            if(_valid)
+            {
+                _valid = false;
+                parentNode.RemoveChildNode(_node);
+            }
         }
 
         public void Hover(Vector2F pos)

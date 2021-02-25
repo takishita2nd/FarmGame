@@ -116,7 +116,13 @@ namespace FarmGame.UI
 
         public void OnMouse(Vector2F position)
         {
-            foreach(var column in farmColunms)
+            if (seedWindow != null && seedWindow.IsShow())
+            {
+                seedWindow.OnMouse(position);
+                return;
+            }
+
+            foreach (var column in farmColunms)
             {
                 column.CareButton.Hover(position);
                 column.WaterButton.Hover(position);
@@ -129,14 +135,18 @@ namespace FarmGame.UI
 
         public void OnClick(Vector2F position)
         {
+            if (seedWindow != null && seedWindow.IsShow())
+            {
+                seedWindow.OnClick(position);
+                return;
+            }
+
             int maxPage = GameData.PlayerData.farms.Count / CommonParameter.FarmPageMaxColumn;
             foreach(var farmColumn in farmColunms)
             {
                 if(farmColumn.Icom.IsClick(position))
                 {
                     seedWindow = new SeedWindow(_parentNode, farmColumn);
-                    seedWindow.SetPosition(new Vector2F(0, 170));
-                    seedWindow.SetScale(new Vector2F(1.0f, 1.5f));
                     seedWindow.Show();
 
                 }

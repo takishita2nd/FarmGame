@@ -8,6 +8,13 @@ namespace FarmGame
     public static class Texture
     {
         private static Texture2D _window = null;
+
+        private static Texture2D _okButton = null;
+        private static Texture2D _okButtonHover = null;
+        private static Texture2D _okButtonClick = null;
+        private static Texture2D _cancelButton = null;
+        private static Texture2D _cancelButtonHover = null;
+        private static Texture2D _cancelButtonClick = null;
         private static Texture2D _farmButton = null;
         private static Texture2D _farmButtonHover = null;
         private static Texture2D _farmButtonClick = null;
@@ -44,9 +51,14 @@ namespace FarmGame
         private static Texture2D _nextPageButton = null;
         private static Texture2D _nextPageButtonHover = null;
         private static Texture2D _nextPageButtonClick = null;
+
+        private static Texture2D _seedButton = null;
+        private static Texture2D _seedButtonPush = null;
+
         private static Texture2D _homebutton = null;
         private static Texture2D _nextbutton = null;
         private static Texture2D _farmTexture1 = null;
+
         private static Texture2D _farmWindow = null;
         private static Texture2D _seedWindow = null;
 
@@ -59,6 +71,76 @@ namespace FarmGame
                     _window = Texture2D.Load("284244.png");
                 }
                 return _window;
+            }
+        }
+        public static Texture2D OKButton
+        {
+            get
+            {
+                if (_okButton == null)
+                {
+                    _okButton = Texture2D.Load("ok.png");
+                }
+                return _okButton;
+            }
+        }
+
+        public static Texture2D OKButtonHover
+        {
+            get
+            {
+                if (_okButtonHover == null)
+                {
+                    _okButtonHover = Texture2D.Load("ok_hover.png");
+                }
+                return _okButtonHover;
+            }
+        }
+
+        public static Texture2D OKButtonClick
+        {
+            get
+            {
+                if (_okButtonClick == null)
+                {
+                    _okButtonClick = Texture2D.Load("ok_click.png");
+                }
+                return _okButtonClick;
+            }
+        }
+        public static Texture2D CancelButton
+        {
+            get
+            {
+                if (_cancelButton == null)
+                {
+                    _cancelButton = Texture2D.Load("cancel.png");
+                }
+                return _cancelButton;
+            }
+        }
+
+        public static Texture2D CancelButtonHover
+        {
+            get
+            {
+                if (_cancelButtonHover == null)
+                {
+                    _cancelButtonHover = Texture2D.Load("cancel_hover.png");
+                }
+                return _cancelButtonHover;
+            }
+        }
+
+        public static Texture2D CancelButtonClick
+        {
+            get
+            {
+                if (_cancelButtonClick == null)
+                {
+                    _cancelButtonClick = Texture2D.Load("cancel_click.png");
+                }
+                return _cancelButtonClick;
             }
         }
 
@@ -475,6 +557,29 @@ namespace FarmGame
                     _nextPageButtonClick = Texture2D.Load("wnext_page_click.png");
                 }
                 return _nextPageButtonClick;
+            }
+        }
+
+        public static Texture2D SeedButton
+        {
+            get
+            {
+                if (_seedButton == null)
+                {
+                    _seedButton = Texture2D.Load("150x35_bl.png");
+                }
+                return _seedButton;
+            }
+        }
+        public static Texture2D SeedButtonPush
+        {
+            get
+            {
+                if (_seedButtonPush == null)
+                {
+                    _seedButtonPush = Texture2D.Load("150x35_gr.png");
+                }
+                return _seedButtonPush;
             }
         }
 
