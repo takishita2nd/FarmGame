@@ -7,7 +7,6 @@ namespace FarmGame.UI.Parts
 {
     class Button : ButtonBase
     {
-        private bool _valid = false;
         private Texture2D _texture = null;
         private Texture2D _textureHover = null;
         private Texture2D _textureClick = null;
