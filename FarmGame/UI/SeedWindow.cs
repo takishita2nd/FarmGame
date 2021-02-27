@@ -25,22 +25,22 @@ namespace FarmGame.UI
             _node.Src = new RectF(0, 680, 900, 220);
             _node.Position = new Vector2F(0, 170);
             _node.Scale = new Vector2F(1.0f, 1.5f);
-            _node.ZOrder = CommonParameter.ZOrder.Dialog;
+            _node.ZOrder = Parameter.ZOrder.Dialog;
 
             _okButton = new Button(Texture.OKButton, Texture.OKButtonHover, Texture.OKButtonClick);
             _okButton.SetPosition(new Vector2F(230, 410));
             _okButton.SetScale(buttonScale);
-            _okButton.SetZOrder(CommonParameter.ZOrder.Seed);
+            _okButton.SetZOrder(Parameter.ZOrder.Seed);
             _cancelButton = new Button(Texture.CancelButton, Texture.CancelButtonHover, Texture.CancelButtonClick);
             _cancelButton.SetPosition(new Vector2F(430, 410));
             _cancelButton.SetScale(buttonScale);
-            _cancelButton.SetZOrder(CommonParameter.ZOrder.Seed);
+            _cancelButton.SetZOrder(Parameter.ZOrder.Seed);
 
             foreach(var seed in GameData.GameStatus.Plants)
             {
                 if(GameData.PlayerData.Seed.Length > seed.id)
                 {
-                    SeedButton seedButton = new SeedButton(Texture.SeedButton, Texture.SeedButtonPush, seed.name, GameData.PlayerData.Seed[seed.id]);
+                    SeedButton seedButton = new SeedButton(Texture.SeedButton, Texture.SeedButtonPush, seed.name, GameData.PlayerData.Seed[seed.id], seed.id);
                     seedButtons.Add(seedButton);
                 }
             }
@@ -90,6 +90,13 @@ namespace FarmGame.UI
         {
             if (_okButton.Click(position))
             {
+                foreach(var seedButton in seedButtons)
+                {
+                    if (seedButton.GetButtonStatus())
+                    {
+                        _farmColunm.SetSeed(seedButton.GetSeedId());
+                    }
+                }
                 Hide();
             }
             if(_cancelButton.Click(position))

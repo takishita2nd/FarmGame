@@ -9,7 +9,7 @@ namespace FarmGame
         [STAThread]
         static void Main(string[] args)
         {
-            Engine.Initialize("農場ゲーム(仮)", CommonParameter.WindowWidth, CommonParameter.WindowHeight);
+            Engine.Initialize("農場ゲーム(仮)", Parameter.WindowWidth, Parameter.WindowHeight);
 
             Engine.AddNode(new MainScene());
 

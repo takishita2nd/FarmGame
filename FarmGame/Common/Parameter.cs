@@ -4,7 +4,7 @@ using System.Text;
 
 namespace FarmGame
 {
-    public static class CommonParameter
+    public static class Parameter
     {
         public const int WindowWidth = 960;
         public const int WindowHeight = 640;

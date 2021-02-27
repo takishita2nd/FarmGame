@@ -11,21 +11,23 @@ namespace FarmGame.UI.Parts
         private TextNode _text = null;
         private Texture2D _texture = null;
         private Texture2D _texturePush = null;
+        private int _seedId;
 
-        public SeedButton(Texture2D texture, Texture2D texturePush, string name, int num) : base()
+        public SeedButton(Texture2D texture, Texture2D texturePush, string name, int num, int id) : base()
         {
             _texture = texture;
             _texturePush = texturePush;
             _node.Texture = texture;
-            _node.ZOrder = CommonParameter.ZOrder.Seed;
+            _node.ZOrder = FarmGame.Parameter.ZOrder.Seed;
 
             _text = new TextNode();
             _text.Font = Font.LoadDynamicFontStrict("HachiMaruPop-Regular.ttf", 40);
             _text.Color = new Color(0, 0, 0);
-            _text.ZOrder = CommonParameter.ZOrder.Seed;
+            _text.ZOrder = FarmGame.Parameter.ZOrder.Seed;
             _text.Text = name + "の種×" + num.ToString();
             _width = 300;
             _height = 35;
+            _seedId = id;
         }
 
         public int GetWidth()
@@ -36,6 +38,11 @@ namespace FarmGame.UI.Parts
         public int GetHeight()
         {
             return _height;
+        }
+
+        public int GetSeedId()
+        {
+            return _seedId;
         }
 
         override public void SetPosition(Vector2F position)

@@ -15,7 +15,7 @@ namespace FarmGame.UI.Parts
             _node.Texture = Texture.FarmWindow;
             var scale = Texture.FarmWindow.Size.Y * 1.5f / (Texture.FarmTexture1.Size.Y / 8.0f);
             _node.Scale = new Vector2F(scale, scale);
-            _node.ZOrder = CommonParameter.ZOrder.Farm;
+            _node.ZOrder = FarmGame.Parameter.ZOrder.Farm;
         }
 
         public void SetPosition(Vector2F pos)
