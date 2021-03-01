@@ -7,7 +7,7 @@ namespace FarmGame.UI.Parts
 {
     class Parameter
     {
-        private SpriteNode _node = null;
+        protected SpriteNode _node = null;
         protected TextNode _text = null;
 
         public Parameter()
@@ -22,7 +22,7 @@ namespace FarmGame.UI.Parts
             _text.ZOrder = FarmGame.Parameter.ZOrder.Text;
         }
 
-        public void SetPosition(Vector2F pos)
+        virtual public void SetPosition(Vector2F pos)
         {
             _node.Position = pos;
             _text.Position = new Vector2F(pos.X + _node.ContentSize.X, pos.Y);

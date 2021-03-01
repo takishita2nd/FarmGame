@@ -50,7 +50,7 @@ namespace FarmGame.UI
                 farmColunm.WaterButton.SetScale(careButtonScale);
                 farmColunm.WaterButton.SetZOrder(Parameter.ZOrder.Farm);
 
-                farmColunm.SetFarmIndex(index);
+                farmColunm.SetFarmData(GameData.PlayerData.farms[index]);
 
                 farmColunms.Add(farmColunm);
             }
@@ -126,6 +126,37 @@ namespace FarmGame.UI
                 return;
             }
 
+            foreach (var column in farmColunms)
+            {
+                if (column.CareButton.Click(position))
+                {
+                    column.Care();
+                    return;
+                }
+                if (column.WaterButton.Click(position))
+                {
+                    column.Water();
+                    return;
+                }
+            }
+
+            if(_allCareButton.Click(position))
+            {
+                foreach (var column in farmColunms)
+                {
+                    column.Care();
+                }
+                return;
+            }
+            if (_allWaterButton.Click(position))
+            {
+                foreach (var column in farmColunms)
+                {
+                    column.Water();
+                }
+                return;
+            }
+
             int maxPage = GameData.PlayerData.farms.Count / Parameter.FarmPageMaxColumn;
             foreach(var farmColumn in farmColunms)
             {
@@ -133,7 +164,7 @@ namespace FarmGame.UI
                 {
                     seedWindow = new SeedWindow(_parentNode, farmColumn);
                     seedWindow.Show();
-
+                    return;
                 }
             }
 
@@ -210,7 +241,7 @@ namespace FarmGame.UI
             int index = page * Parameter.FarmPageMaxColumn;
             foreach (var farmColunm in farmColunms)
             {
-                farmColunm.SetFarmIndex(index);
+                farmColunm.SetFarmData(GameData.PlayerData.farms[index]);
                 index++;
             }
         }

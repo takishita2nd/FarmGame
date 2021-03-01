@@ -11,7 +11,7 @@ namespace FarmGame.Scene
     {
         CommonMenu menu = null;
         Farm farm = null;
-        SeedWindow seedWindow = null;
+        PowerPanel _powerPanel;
 
         protected override void OnAdded()
         {
@@ -28,18 +28,18 @@ namespace FarmGame.Scene
             sign.ZOrder = Parameter.ZOrder.Sign;
             AddChildNode(sign);
 
-            PowerPanel powerPanel = new PowerPanel();
-            powerPanel.SetPosition(new Vector2F(sign.Texture.Size.X, 0));
-            powerPanel.SetNode(this);
-            powerPanel.UpdateValue();
+            _powerPanel = new PowerPanel();
+            _powerPanel.SetPosition(new Vector2F(sign.Texture.Size.X, 0));
+            _powerPanel.SetNode(this);
+            _powerPanel.UpdateValue();
 
             MoneyPanel moneyPanel = new MoneyPanel();
-            moneyPanel.SetPosition(new Vector2F(sign.Texture.Size.X, powerPanel.GetHeight()));
+            moneyPanel.SetPosition(new Vector2F(sign.Texture.Size.X, _powerPanel.GetHeight()));
             moneyPanel.SetNode(this);
             moneyPanel.SetValue(100);
 
             WeatherPanel weatherPanel = new WeatherPanel();
-            weatherPanel.SetPosition(new Vector2F(sign.Texture.Size.X, powerPanel.GetHeight() + moneyPanel.GetHeight()));
+            weatherPanel.SetPosition(new Vector2F(sign.Texture.Size.X, _powerPanel.GetHeight() + moneyPanel.GetHeight()));
             weatherPanel.SetNode(this);
             weatherPanel.UpdateValue();
 
@@ -47,15 +47,6 @@ namespace FarmGame.Scene
 
             farm = new Farm();
             farm.SetNode(this);
-
-
-            //var seed = new SpriteNode();
-            //seed.Texture = Texture2D.Load("100x25_bl.png");
-            //seed.Scale = new Vector2F(2.0f, 2.0f);
-            //seed.Position = new Vector2F(30, 190);
-            //seed.ZOrder = CommonParameter.ZOrder.Seed;
-            //AddChildNode(seed);
-
         }
 
         protected override void OnUpdate()
@@ -70,6 +61,7 @@ namespace FarmGame.Scene
             {
                 menu.Click(position);
                 farm.OnClick(position);
+                _powerPanel.UpdateValue();
             }
         }
     }

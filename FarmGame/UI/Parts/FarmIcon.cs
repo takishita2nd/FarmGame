@@ -11,7 +11,8 @@ namespace FarmGame.UI.Parts
         {
             None,
             Empty,  //空
-            Wheat   //小麦
+            Wheat,  //小麦
+            Cone    //とうもろこし
         }
 
         private Type _type = Type.None;
@@ -33,7 +34,9 @@ namespace FarmGame.UI.Parts
 
         private void setClip(Type type, int growth)
         {
-            switch(type)
+            float width;
+            float height;
+            switch (type)
             {
                 case Type.Empty:
                     _node.Texture = Texture.FarmTexture1;
@@ -41,8 +44,8 @@ namespace FarmGame.UI.Parts
                     break;
                 case Type.Wheat:
                     _node.Texture = Texture.FarmTexture3;
-                    float width = _node.ContentSize.X / 12.0f;
-                    float height = _node.ContentSize.Y / 8.0f;
+                    width = _node.ContentSize.X / 12.0f;
+                    height = _node.ContentSize.Y / 8.0f;
                     if (growth < 30)
                     {
                         _node.Src = new RectF(width * 9, height * 3, width, height);
@@ -58,6 +61,27 @@ namespace FarmGame.UI.Parts
                     if (growth >= 130)
                     {
                         _node.Src = new RectF(width * 11, height * 4, width, height);
+                    }
+                    break;
+                case Type.Cone:
+                    _node.Texture = Texture.FarmTexture2;
+                    width = _node.ContentSize.X / 12.0f;
+                    height = _node.ContentSize.Y / 8.0f;
+                    if (growth < 30)
+                    {
+                        _node.Src = new RectF(width * 0, height * 4, width, height);
+                    }
+                    if (growth >= 30 && growth < 100)
+                    {
+                        _node.Src = new RectF(width * 1, height * 4, width, height);
+                    }
+                    if (growth >= 100 && growth < 130)
+                    {
+                        _node.Src = new RectF(width * 2, height * 4, width, height);
+                    }
+                    if (growth >= 130)
+                    {
+                        _node.Src = new RectF(width * 5, height * 4, width, height);
                     }
                     break;
                 default:

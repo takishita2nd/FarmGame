@@ -107,7 +107,7 @@ namespace FarmGame.UI
             SeedButton pushedSeedButton = null;
             foreach (var seedButton in seedButtons)
             {
-                if(seedButton.IsClick(position))
+                if(seedButton.IsClick(position) && GameData.PlayerData.Seed[seedButton.GetSeedId()] > 0)
                 {
                     pushedSeedButton = seedButton;
                     break;

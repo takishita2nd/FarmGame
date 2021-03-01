@@ -7,12 +7,14 @@ namespace FarmGame.UI.Parts
 {
     class Button : ButtonBase
     {
+        private bool _locked;
         private Texture2D _texture = null;
         private Texture2D _textureHover = null;
         private Texture2D _textureClick = null;
 
         public Button(Texture2D texture, Texture2D textureHover, Texture2D textureClick) : base()
         {
+            _locked = false;
             _texture = texture;
             _textureHover = textureHover;
             _textureClick = textureClick;
@@ -30,7 +32,7 @@ namespace FarmGame.UI.Parts
 
         public void Hover(Vector2F pos)
         {
-            if (_valid == true)
+            if (_valid && !_locked)
             {
                 if (isOnMouse(pos))
                 {
@@ -45,7 +47,7 @@ namespace FarmGame.UI.Parts
 
         public bool Click(Vector2F pos)
         {
-            if(_valid == true)
+            if(_valid && !_locked)
             {
                 if (isOnMouse(pos))
                 {
@@ -62,6 +64,18 @@ namespace FarmGame.UI.Parts
             {
                 return false;
             }
+        }
+
+        public void Lock()
+        {
+            _locked = true;
+            _node.Texture = _textureClick;
+        }
+
+        public void Unlock()
+        {
+            _locked = false;
+            _node.Texture = _texture;
         }
     }
 }

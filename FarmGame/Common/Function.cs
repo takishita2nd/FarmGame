@@ -13,6 +13,8 @@ namespace FarmGame.Common
             {
                 case 0:
                     return FarmIcon.Type.Wheat;
+                case 1:
+                    return FarmIcon.Type.Cone;
                 default:
                     return FarmIcon.Type.Empty;
             }
