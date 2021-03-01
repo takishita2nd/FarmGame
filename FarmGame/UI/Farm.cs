@@ -50,6 +50,8 @@ namespace FarmGame.UI
                 farmColunm.WaterButton.SetScale(careButtonScale);
                 farmColunm.WaterButton.SetZOrder(Parameter.ZOrder.Farm);
 
+                farmColunm.SetFarmIndex(index);
+
                 farmColunms.Add(farmColunm);
             }
 
@@ -161,6 +163,7 @@ namespace FarmGame.UI
                     }
                 }
                 _prevPageButton.SetNode(_parentNode);
+                updateDisplay();
             }
             if (_prevPageButton.Click(position))
             {
@@ -197,6 +200,18 @@ namespace FarmGame.UI
                     _prevPageButton.RemoveNode(_parentNode);
                 }
                 _nextPageButton.SetNode(_parentNode);
+                updateDisplay();
+            }
+
+        }
+
+        private void updateDisplay()
+        {
+            int index = page * Parameter.FarmPageMaxColumn;
+            foreach (var farmColunm in farmColunms)
+            {
+                farmColunm.SetFarmIndex(index);
+                index++;
             }
         }
     }

@@ -8,6 +8,7 @@ namespace FarmGame.UI
 {
     class SeedWindow
     {
+
         private bool _valid = false;
         private List<SeedButton> seedButtons = new List<SeedButton>();
         private SpriteNode _node;

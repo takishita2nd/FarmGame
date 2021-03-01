@@ -9,25 +9,26 @@ namespace FarmGame.UI.Parts
     {
         public enum Type
         {
+            None,
             Empty,  //空
             Wheat   //小麦
         }
 
-        private Type _type;
+        private Type _type = Type.None;
 
         public FarmIcon() : base()
         {
-            setClip(Type.Empty, 0);
             _node.Scale = new Vector2F(2.5f, 2.5f);
-            _width = (int)(_node.ContentSize.X * 2.5f);
-            _height = (int)(_node.ContentSize.Y * 2.5f);
             _node.ZOrder = FarmGame.Parameter.ZOrder.Farm;
         }
 
         public void Plant(Type type)
         {
-            _type = type;
-            setClip(_type, 0);
+            if(_type != type)
+            {
+                _type = type;
+                setClip(_type, 0);
+            }
         }
 
         private void setClip(Type type, int growth)
@@ -62,6 +63,8 @@ namespace FarmGame.UI.Parts
                 default:
                     break;
             }
+            _width = (int)(_node.ContentSize.X * 2.5f);
+            _height = (int)(_node.ContentSize.Y * 2.5f);
         }
     }
 }

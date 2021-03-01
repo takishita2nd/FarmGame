@@ -7,10 +7,18 @@ namespace FarmGame.UI.Parts
 {
     class FarmColunm
     {
+        public enum Status
+        {
+            Empty,
+            Growth,
+            Harvest
+        }
+
         public FarmIcon Icon;
         public PlantWindow Window;
         public Button CareButton;
         public Button WaterButton;
+        private int _index;
 
         public FarmColunm()
         {
@@ -20,10 +28,35 @@ namespace FarmGame.UI.Parts
             WaterButton = new Button(Texture.WaterButton, Texture.WaterButtonHover, Texture.WaterButtonClick);
         }
 
-        public void SetSeed(int seedId)
+        public void SetFarmIndex(int index)
         {
-            Icon.Plant(Function.SeedId2Type(seedId));
+            _index = index;
+            if(!GameData.PlayerData.farms[index].valid)
+            {
+                Icon.Plant(FarmIcon.Type.Empty);
+                Window.SetText(string.Empty);
+            }
+            else
+            {
+                Icon.Plant(Function.SeedId2Type(GameData.PlayerData.farms[index].id));
+                Window.SetText(GameData.GameStatus.Plants[GameData.PlayerData.farms[index].id].name);
+            }
         }
 
+        public void SetSeed(int seedId)
+        {
+            setFarmData(seedId);
+            Icon.Plant(Function.SeedId2Type(seedId));
+            Window.SetText(GameData.GameStatus.Plants[seedId].name);
+        }
+
+        private void setFarmData(int seedId)
+        {
+            GameData.PlayerData.farms[_index].valid = true;
+            GameData.PlayerData.farms[_index].id = seedId;
+            GameData.PlayerData.farms[_index].growth = 0;
+            GameData.PlayerData.farms[_index].water = false;
+            GameData.PlayerData.farms[_index].quality = 0;
+        }
     }
 }
