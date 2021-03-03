@@ -6,7 +6,7 @@ using System.Text;
 
 namespace FarmGame.UI
 {
-    class Farm
+    class FarmPanel
     {
         private int page;
         private Node _parentNode = null;
@@ -15,6 +15,7 @@ namespace FarmGame.UI
         private Button _nextPageButton;
         private Button _prevPageButton;
         private List<FarmColunm> farmColunms = new List<FarmColunm>();
+        private AlartDialog alartDialog = new AlartDialog();
 
         private const int iconXIndex = 50;
         private const int windowXIndex = iconXIndex + 64 + 10;
@@ -30,7 +31,7 @@ namespace FarmGame.UI
 
         SeedWindow seedWindow = null;
 
-        public Farm()
+        public FarmPanel()
         {
             page = 0;
             int showColumn = GameData.PlayerData.farms.Count;
@@ -101,6 +102,10 @@ namespace FarmGame.UI
 
         public void OnMouse(Vector2F position)
         {
+            if (alartDialog.IsShow)
+            {
+                return;
+            }
             if (seedWindow != null && seedWindow.IsShow())
             {
                 seedWindow.OnMouse(position);
@@ -120,6 +125,11 @@ namespace FarmGame.UI
 
         public void OnClick(Vector2F position)
         {
+            if(alartDialog.IsShow)
+            {
+                alartDialog.RemoveNode(_parentNode);
+                return;
+            }
             if (seedWindow != null && seedWindow.IsShow())
             {
                 seedWindow.OnClick(position);
@@ -142,6 +152,20 @@ namespace FarmGame.UI
 
             if(_allCareButton.Click(position))
             {
+                int count = 0;
+                foreach (var column in farmColunms)
+                {
+                    if (!column.CareButton.IsPushed)
+                    {
+                        count++;
+                    }
+                }
+                if(count > GameData.PlayerData.Power)
+                {
+                    alartDialog.SetNode("パワーが足りません", _parentNode);
+                    return;
+                }
+
                 foreach (var column in farmColunms)
                 {
                     column.Care();
@@ -150,6 +174,19 @@ namespace FarmGame.UI
             }
             if (_allWaterButton.Click(position))
             {
+                int count = 0;
+                foreach (var column in farmColunms)
+                {
+                    if (!column.WaterButton.IsPushed)
+                    {
+                        count++;
+                    }
+                }
+                if (count > GameData.PlayerData.Power)
+                {
+                    alartDialog.SetNode("パワーが足りません", _parentNode);
+                    return;
+                }
                 foreach (var column in farmColunms)
                 {
                     column.Water();

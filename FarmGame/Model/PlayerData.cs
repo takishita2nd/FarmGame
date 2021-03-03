@@ -31,7 +31,7 @@ namespace FarmGame.Model
             ProcessingExperience = 0;
             ManagementExperience = 0;
             Money = 100;
-            MaxPower = 10;
+            MaxPower = 3;
             Power = MaxPower;
             farms = new List<Farm>();
             farms.Add(new Farm());
