@@ -171,27 +171,9 @@ namespace FarmGame.UI
             if (_nextPageButton.Click(position))
             {
                 page++;
-                if (page == maxPage)
+                if (page == maxPage - 1)
                 {
-                    int showColumn = GameData.PlayerData.farms.Count - Parameter.FarmPageMaxColumn * page;
-                    int skip = 0;
-                    if (showColumn != Parameter.FarmPageMaxColumn)
-                    {
-                        foreach (var column in farmColunms)
-                        {
-                            if (showColumn > skip)
-                            {
-                                skip++;
-                                continue;
-                            }
-                            column.Icon.RemoveNode(_parentNode);
-                            column.Window.RemoveNode(_parentNode);
-                            column.CareButton.RemoveNode(_parentNode);
-                            column.WaterButton.RemoveNode(_parentNode);
-                        }
-                        farmColunms.RemoveRange(showColumn, farmColunms.Count - showColumn);
-                        _nextPageButton.RemoveNode(_parentNode);
-                    }
+                    _nextPageButton.RemoveNode(_parentNode);
                 }
                 _prevPageButton.SetNode(_parentNode);
                 updateDisplay();
@@ -199,33 +181,6 @@ namespace FarmGame.UI
             if (_prevPageButton.Click(position))
             {
                 page--;
-                int showColumn = farmColunms.Count;
-                int skip = 0;
-                for(var index = 0; index < Parameter.FarmPageMaxColumn; index++)
-                {
-                    if (showColumn > skip)
-                    {
-                        skip++;
-                        continue;
-                    }
-
-                    FarmColunm farmColunm = new FarmColunm();
-                    farmColunm.Icon.SetPosition(new Vector2F(iconXIndex, iconYIndex + columnInterval * index));
-                    farmColunm.Window.SetPosition(new Vector2F(windowXIndex, windowYIndex + columnInterval * index));
-                    farmColunm.CareButton.SetPosition(new Vector2F(careButtonXIndex, careButtonYIndex + columnInterval * index));
-                    farmColunm.CareButton.SetScale(careButtonScale);
-                    farmColunm.CareButton.SetZOrder(Parameter.ZOrder.Farm);
-                    farmColunm.WaterButton.SetPosition(new Vector2F(waterButtonXIndex, waterButtonYIndex + columnInterval * index));
-                    farmColunm.WaterButton.SetScale(careButtonScale);
-                    farmColunm.WaterButton.SetZOrder(Parameter.ZOrder.Farm);
-
-                    farmColunms.Add(farmColunm);
-
-                    farmColunm.Icon.SetNode(_parentNode);
-                    farmColunm.Window.SetNode(_parentNode);
-                    farmColunm.CareButton.SetNode(_parentNode);
-                    farmColunm.WaterButton.SetNode(_parentNode);
-                }
                 if(page == 0)
                 {
                     _prevPageButton.RemoveNode(_parentNode);

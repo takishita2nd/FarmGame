@@ -19,6 +19,7 @@ namespace FarmGame
             public const int Farm = 10;
             public const int Dialog = 25;
             public const int Seed = 30;
+            public const int Alarm = 100;
         }
 
         public const int  FarmPageMaxColumn = 5;
