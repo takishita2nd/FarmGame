@@ -213,7 +213,7 @@ namespace FarmGame.UI
                     _nextPageButton.RemoveNode(_parentNode);
                 }
                 _prevPageButton.SetNode(_parentNode);
-                updateDisplay();
+                UpdateDisplay();
             }
             if (_prevPageButton.Click(position))
             {
@@ -223,12 +223,12 @@ namespace FarmGame.UI
                     _prevPageButton.RemoveNode(_parentNode);
                 }
                 _nextPageButton.SetNode(_parentNode);
-                updateDisplay();
+                UpdateDisplay();
             }
 
         }
 
-        private void updateDisplay()
+        public void UpdateDisplay()
         {
             int index = page * Parameter.FarmPageMaxColumn;
             foreach (var farmColunm in farmColunms)

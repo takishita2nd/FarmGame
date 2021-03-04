@@ -29,19 +29,19 @@ namespace FarmGame.UI.Parts
             WaterButton = new Button(Texture.WaterButton, Texture.WaterButtonHover, Texture.WaterButtonClick);
         }
 
-        public void SetFarmData(Model.Farm farm)
+        public void SetFarmData(Farm farm)
         {
             _farm = farm;
             if(!_farm.valid)
             {
-                Icon.Plant(FarmIcon.Type.Empty);
+                Icon.SetClip(FarmIcon.Type.Empty, 0);
                 Window.SetText(string.Empty);
                 CareButton.Lock();
                 WaterButton.Lock();
             }
             else
             {
-                Icon.Plant(Function.SeedId2Type(_farm.id));
+                Icon.SetClip(Function.SeedId2Type(_farm.id), farm.growth);
                 Window.SetText(GameData.GameStatus.Plants[_farm.id].name);
                 if (farm.care)
                 {
@@ -66,7 +66,7 @@ namespace FarmGame.UI.Parts
         {
             GameData.PlayerData.Seed[seedId]--;
             setFarmData(seedId);
-            Icon.Plant(Function.SeedId2Type(seedId));
+            Icon.SetClip(Function.SeedId2Type(seedId), 0);
             Window.SetText(GameData.GameStatus.Plants[seedId].name);
         }
 

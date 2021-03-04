@@ -7,7 +7,7 @@ using System.Text;
 
 namespace FarmGame.Scene
 {
-    class FarmScene : Node
+    class FarmScene : Node, IScene
     {
         CommonMenu menu = null;
         FarmPanel farm = null;
@@ -61,10 +61,15 @@ namespace FarmGame.Scene
             var mouseStatus = Engine.Mouse.GetMouseButtonState(MouseButton.ButtonLeft);
             if (mouseStatus == ButtonState.Push)
             {
-                menu.Click(position);
+                menu.Click(position, this);
                 farm.OnClick(position);
                 _powerPanel.UpdateValue();
             }
+        }
+
+        public void Update()
+        {
+            farm.UpdateDisplay();
         }
     }
 }

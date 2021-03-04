@@ -16,6 +16,8 @@ namespace FarmGame.UI.Parts
         }
 
         private Type _type = Type.None;
+        private float width = 32.0f;
+        private float height = 32.0f;
 
         public FarmIcon() : base()
         {
@@ -23,29 +25,31 @@ namespace FarmGame.UI.Parts
             _node.ZOrder = FarmGame.Parameter.ZOrder.Farm;
         }
 
-        public void Plant(Type type)
+        public void SetClip(Type type, int growth)
         {
-            if(_type != type)
-            {
-                _type = type;
-                setClip(_type, 0);
-            }
-        }
-
-        private void setClip(Type type, int growth)
-        {
-            float width;
-            float height;
             switch (type)
             {
                 case Type.Empty:
-                    _node.Texture = Texture.FarmTexture1;
-                    _node.Src = new RectF(0, 0, _node.ContentSize.X / 12.0f, _node.ContentSize.Y / 8.0f);
+                    if(_node.Texture == null)
+                    {
+                        _node.Texture = Texture.FarmTexture1;
+                        _node.Src = new RectF(0, 0, _node.ContentSize.X / 12.0f, _node.ContentSize.Y / 8.0f);
+                    }
+                    else if (!_node.Texture.Equals(Texture.FarmTexture1))
+                    {
+                        _node.Texture = Texture.FarmTexture1;
+                        _node.Src = new RectF(0, 0, _node.ContentSize.X / 12.0f, _node.ContentSize.Y / 8.0f);
+                    }
                     break;
                 case Type.Wheat:
-                    _node.Texture = Texture.FarmTexture3;
-                    width = _node.ContentSize.X / 12.0f;
-                    height = _node.ContentSize.Y / 8.0f;
+                    if (_node.Texture == null)
+                    {
+                        _node.Texture = Texture.FarmTexture3;
+                    }
+                    else if (!_node.Texture.Equals(Texture.FarmTexture3))
+                    {
+                        _node.Texture = Texture.FarmTexture3;
+                    }
                     if (growth < 30)
                     {
                         _node.Src = new RectF(width * 9, height * 3, width, height);
@@ -64,9 +68,14 @@ namespace FarmGame.UI.Parts
                     }
                     break;
                 case Type.Cone:
-                    _node.Texture = Texture.FarmTexture2;
-                    width = _node.ContentSize.X / 12.0f;
-                    height = _node.ContentSize.Y / 8.0f;
+                    if (_node.Texture == null)
+                    {
+                        _node.Texture = Texture.FarmTexture2;
+                    }
+                    else if (!_node.Texture.Equals(Texture.FarmTexture2))
+                    {
+                        _node.Texture = Texture.FarmTexture2;
+                    }
                     if (growth < 30)
                     {
                         _node.Src = new RectF(width * 0, height * 4, width, height);

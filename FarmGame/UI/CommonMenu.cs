@@ -105,7 +105,7 @@ namespace FarmGame.UI
             statusButton.Hover(position);
         }
 
-        public void Click(Vector2F position)
+        public void Click(Vector2F position, IScene scene)
         {
             if(farmButton.Click(position))
             {
@@ -148,6 +148,10 @@ namespace FarmGame.UI
                 Engine.RemoveNode(node);
                 node = new MainScene();
                 Engine.AddNode(node);
+            }
+            if (nextButton.Click(position))
+            {
+                Process.Process.Run(scene);
             }
         }
     }

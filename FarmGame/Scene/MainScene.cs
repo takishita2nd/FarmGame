@@ -7,9 +7,14 @@ using FarmGame.UI.Parts;
 
 namespace FarmGame.Scene
 {
-    public class MainScene : Node
+    public class MainScene : Node, IScene
     {
         CommonMenu menu = null;
+
+        public void Update()
+        {
+            throw new NotImplementedException();
+        }
 
         protected override void OnAdded()
         {
@@ -53,7 +58,7 @@ namespace FarmGame.Scene
             var mouseStatus = Engine.Mouse.GetMouseButtonState(MouseButton.ButtonLeft);
             if (mouseStatus == ButtonState.Push)
             {
-                menu.Click(position);
+                menu.Click(position, this);
             }
         }
     }

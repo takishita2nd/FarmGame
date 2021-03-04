@@ -19,5 +19,15 @@ namespace FarmGame.Common
                     return FarmIcon.Type.Empty;
             }
         }
+
+        private static Random random = null;
+        public static int GetRandomValue(int min, int max)
+        {
+            if (random == null)
+            {
+                random = new Random();
+            }
+            return random.Next(min, max);
+        }
     }
 }
