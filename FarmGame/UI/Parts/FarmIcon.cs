@@ -30,26 +30,11 @@ namespace FarmGame.UI.Parts
             switch (type)
             {
                 case Type.Empty:
-                    if(_node.Texture == null)
-                    {
-                        _node.Texture = Texture.FarmTexture1;
-                        _node.Src = new RectF(0, 0, _node.ContentSize.X / 12.0f, _node.ContentSize.Y / 8.0f);
-                    }
-                    else if (!_node.Texture.Equals(Texture.FarmTexture1))
-                    {
-                        _node.Texture = Texture.FarmTexture1;
-                        _node.Src = new RectF(0, 0, _node.ContentSize.X / 12.0f, _node.ContentSize.Y / 8.0f);
-                    }
+                    _node.Texture = Texture.FarmTexture1;
+                    _node.Src = new RectF(0, 0, width, height);
                     break;
                 case Type.Wheat:
-                    if (_node.Texture == null)
-                    {
-                        _node.Texture = Texture.FarmTexture3;
-                    }
-                    else if (!_node.Texture.Equals(Texture.FarmTexture3))
-                    {
-                        _node.Texture = Texture.FarmTexture3;
-                    }
+                    _node.Texture = Texture.FarmTexture3;
                     if (growth < 30)
                     {
                         _node.Src = new RectF(width * 9, height * 3, width, height);
@@ -68,14 +53,7 @@ namespace FarmGame.UI.Parts
                     }
                     break;
                 case Type.Cone:
-                    if (_node.Texture == null)
-                    {
-                        _node.Texture = Texture.FarmTexture2;
-                    }
-                    else if (!_node.Texture.Equals(Texture.FarmTexture2))
-                    {
-                        _node.Texture = Texture.FarmTexture2;
-                    }
+                    _node.Texture = Texture.FarmTexture2;
                     if (growth < 30)
                     {
                         _node.Src = new RectF(width * 0, height * 4, width, height);
