@@ -25,7 +25,8 @@ namespace FarmGame.Process
                 if(farm.valid)
                 {
                     farm.growth += 100 / GameData.GameStatus.Plants[farm.id].cost + Function.GetRandomValue(0, 10);
-                    if(!farm.water)
+                    farm.quality += GameData.PlayerData.AgricultureLevel;
+                    if (!farm.water)
                     {
                         farm.quality /= 2;
                     }

@@ -74,6 +74,7 @@ namespace FarmGame.UI.Parts
                 default:
                     break;
             }
+            _type = type;
             _width = (int)(_node.ContentSize.X * 2.5f);
             _height = (int)(_node.ContentSize.Y * 2.5f);
         }

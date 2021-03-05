@@ -22,6 +22,16 @@ namespace FarmGame
             public const int Alarm = 100;
         }
 
+        public enum Quality
+        {
+            S,
+            A,
+            B,
+            C,
+            D,
+            E
+        }
+
         public const int  FarmPageMaxColumn = 5;
     }
 }

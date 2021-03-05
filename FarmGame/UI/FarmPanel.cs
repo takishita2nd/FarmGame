@@ -1,4 +1,5 @@
 ﻿using Altseed2;
+using FarmGame.Common;
 using FarmGame.UI.Parts;
 using System;
 using System.Collections.Generic;
@@ -199,9 +200,22 @@ namespace FarmGame.UI
             {
                 if(farmColumn.Icon.IsClick(position))
                 {
-                    seedWindow = new SeedWindow(_parentNode, farmColumn);
-                    seedWindow.Show();
-                    return;
+                    if(!farmColumn.IsValid)
+                    {
+                        seedWindow = new SeedWindow(_parentNode, farmColumn);
+                        seedWindow.Show();
+                        return;
+                    }
+                    else if(farmColumn.IsHarvest)
+                    {
+                        alartDialog.SetNode(
+                            farmColumn.Name + "を収穫しました" + 
+                            "(品質" + Function.Quolity2String(farmColumn.GetQuolity()) + ")",
+                            _parentNode);
+                        farmColumn.Harvest();
+                        UpdateDisplay();
+                        return;
+                    }
                 }
             }
 

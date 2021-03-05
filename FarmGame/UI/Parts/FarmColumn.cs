@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using FarmGame.Common;
 using FarmGame.Model;
+using static FarmGame.Parameter;
 
 namespace FarmGame.UI.Parts
 {
@@ -27,6 +28,37 @@ namespace FarmGame.UI.Parts
             Window = new PlantWindow();
             CareButton = new Button(Texture.CareButton, Texture.CareButtonHover, Texture.CareButtonClick);
             WaterButton = new Button(Texture.WaterButton, Texture.WaterButtonHover, Texture.WaterButtonClick);
+        }
+
+        public bool IsValid
+        {
+            get
+            {
+                return _farm.valid;
+            }
+        }
+
+        public bool IsHarvest
+        {
+            get
+            {
+                if(_farm.growth >= 100)
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+        }
+
+        public string Name
+        {
+            get
+            {
+                return GameData.GameStatus.Plants[_farm.id].name;
+            }
         }
 
         public void SetFarmData(Farm farm)
@@ -90,6 +122,18 @@ namespace FarmGame.UI.Parts
             }
         }
 
+        public void Harvest()
+        {
+            _farm.valid = false;
+            _farm.id = -1;
+            _farm.growth = 0;
+            _farm.water = false;
+            _farm.care = false;
+            _farm.quality = 0;
+            CareButton.Lock();
+            WaterButton.Lock();
+        }
+
         private void setFarmData(int seedId)
         {
             _farm.valid = true;
@@ -100,6 +144,36 @@ namespace FarmGame.UI.Parts
             _farm.quality = 0;
             CareButton.Unlock();
             WaterButton.Unlock();
+        }
+
+        public Quality GetQuolity()
+        {
+            int maxQuolity = GameData.GameStatus.Plants[_farm.id].cost * 100;
+            int quolity = _farm.quality * 100 / maxQuolity ;
+            if(quolity >= 100)
+            {
+                return Quality.S;
+            }
+            else if(quolity < 100 && quolity >= 80)
+            {
+                return Quality.A;
+            }
+            else if (quolity < 80 && quolity >= 60)
+            {
+                return Quality.B;
+            }
+            else if (quolity < 60 && quolity >= 40)
+            {
+                return Quality.C;
+            }
+            else if (quolity < 40 && quolity >= 20)
+            {
+                return Quality.D;
+            }
+            else
+            {
+                return Quality.E;
+            }
         }
     }
 }

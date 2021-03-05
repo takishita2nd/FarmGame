@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 using FarmGame.UI.Parts;
+using static FarmGame.Parameter;
 
 namespace FarmGame.Common
 {
@@ -17,6 +18,27 @@ namespace FarmGame.Common
                     return FarmIcon.Type.Cone;
                 default:
                     return FarmIcon.Type.Empty;
+            }
+        }
+
+        public static string Quolity2String(Quality quality)
+        {
+            switch(quality)
+            {
+                case Quality.S:
+                    return "S";
+                case Quality.A:
+                    return "A";
+                case Quality.B:
+                    return "B";
+                case Quality.C:
+                    return "C";
+                case Quality.D:
+                    return "D";
+                case Quality.E:
+                    return "E";
+                default:
+                    return string.Empty;
             }
         }
 
