@@ -61,6 +61,14 @@ namespace FarmGame.UI.Parts
             }
         }
 
+        public int Id
+        {
+            get
+            {
+                return _farm.id;
+            }
+        }
+
         public void SetFarmData(Farm farm)
         {
             _farm = farm;

@@ -16,7 +16,7 @@ namespace FarmGame.UI
         private Button _nextPageButton;
         private Button _prevPageButton;
         private List<FarmColunm> farmColunms = new List<FarmColunm>();
-        private AlartDialog alartDialog = new AlartDialog();
+        private Dialog dialog = new Dialog();
 
         private const int iconXIndex = 50;
         private const int windowXIndex = iconXIndex + 64 + 10;
@@ -103,7 +103,7 @@ namespace FarmGame.UI
 
         public void OnMouse(Vector2F position)
         {
-            if (alartDialog.IsShow)
+            if (dialog.IsShow)
             {
                 return;
             }
@@ -126,9 +126,9 @@ namespace FarmGame.UI
 
         public void OnClick(Vector2F position)
         {
-            if(alartDialog.IsShow)
+            if(dialog.IsShow)
             {
-                alartDialog.RemoveNode(_parentNode);
+                dialog.RemoveNode(_parentNode);
                 return;
             }
             if (seedWindow != null && seedWindow.IsShow())
@@ -163,7 +163,7 @@ namespace FarmGame.UI
                 }
                 if(count > GameData.PlayerData.Power)
                 {
-                    alartDialog.SetNode("パワーが足りません", _parentNode);
+                    dialog.SetNode("パワーが足りません", _parentNode);
                     return;
                 }
 
@@ -185,7 +185,7 @@ namespace FarmGame.UI
                 }
                 if (count > GameData.PlayerData.Power)
                 {
-                    alartDialog.SetNode("パワーが足りません", _parentNode);
+                    dialog.SetNode("パワーが足りません", _parentNode);
                     return;
                 }
                 foreach (var column in farmColunms)
@@ -208,10 +208,12 @@ namespace FarmGame.UI
                     }
                     else if(farmColumn.IsHarvest)
                     {
-                        alartDialog.SetNode(
-                            farmColumn.Name + "を収穫しました" + 
+                        int num = 2 + Function.GetRandomValue(0, 3);
+                        dialog.SetNode(
+                            farmColumn.Name + "を" + num.ToString() + "つ収穫しました\n" + 
                             "(品質" + Function.Quolity2String(farmColumn.GetQuolity()) + ")",
                             _parentNode);
+                        GameData.PlayerData.Item[farmColumn.Id, Function.Quolity2Index(farmColumn.GetQuolity())] += num;
                         farmColumn.Harvest();
                         UpdateDisplay();
                         return;

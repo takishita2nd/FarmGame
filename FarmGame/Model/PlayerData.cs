@@ -19,6 +19,7 @@ namespace FarmGame.Model
         public int MaxPower { get; set; }
         public List<Farm> farms { get; set; }
         public int[] Seed { get; set; }
+        public int[,] Item { get; set; }
 
         public PlayerData()
         {
@@ -47,6 +48,15 @@ namespace FarmGame.Model
             Seed = new int[2];
             Seed[0] = 3;
             Seed[1] = 3;
+            int itemNum = 2;
+            Item = new int[itemNum, Parameter.QuolityMaxNum];
+            for(int i = 0; i < itemNum; i++)
+            {
+                for(int j = 0; j < Parameter.QuolityMaxNum; j++)
+                {
+                    Item[i, j] = 0;
+                }
+            }
         }
     }
 }

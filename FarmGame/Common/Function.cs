@@ -42,6 +42,27 @@ namespace FarmGame.Common
             }
         }
 
+        public static int Quolity2Index(Quality quality)
+        {
+            switch (quality)
+            {
+                case Quality.S:
+                    return 0;
+                case Quality.A:
+                    return 1;
+                case Quality.B:
+                    return 2;
+                case Quality.C:
+                    return 3;
+                case Quality.D:
+                    return 4;
+                case Quality.E:
+                    return 5;
+                default:
+                    return 6;
+            }
+        }
+
         private static Random random = null;
         public static int GetRandomValue(int min, int max)
         {

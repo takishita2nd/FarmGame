@@ -5,7 +5,7 @@ using System.Text;
 
 namespace FarmGame.UI
 {
-    class AlartDialog
+    class Dialog
     {
         private bool _isShow;
         public bool IsShow
@@ -17,12 +17,12 @@ namespace FarmGame.UI
         }
 
         private SpriteNode[] _node = new SpriteNode[12];
-        private TextNode _text = new TextNode();
+        private TextNode[] _text = new TextNode[3];
 
         private const int xPosition = 300;
         private const int yPosition = 200;
         private const int yTextOffset = 20;
-        public AlartDialog()
+        public Dialog()
         {
             _isShow = false;
             int index = 0;
@@ -113,20 +113,27 @@ namespace FarmGame.UI
             _node[index].ZOrder = Parameter.ZOrder.Alarm;
             index++;
 
-            _text.Font = Font.LoadDynamicFontStrict("HachiMaruPop-Regular.ttf", 40);
-            _text.Color = new Color(255, 255, 255);
-            _text.Position = new Vector2F(xPosition, yPosition + yTextOffset);
-            _text.ZOrder = FarmGame.Parameter.ZOrder.Alarm;
         }
 
         public void SetNode(string message, Node parent)
         {
-            _text.Text = message;
             foreach (var n in _node)
             {
                 parent.AddChildNode(n);
             }
-            parent.AddChildNode(_text);
+            var messages = message.Split("\n");
+            int line = 0;
+            foreach(var m in messages)
+            {
+                _text[line] = new TextNode();
+                _text[line].Font = Font.LoadDynamicFontStrict("HachiMaruPop-Regular.ttf", 40);
+                _text[line].Text = m;
+                _text[line].Color = new Color(255, 255, 255);
+                _text[line].Position = new Vector2F(xPosition, yPosition + _text[line].ContentSize.Y * line + yTextOffset);
+                _text[line].ZOrder = FarmGame.Parameter.ZOrder.Alarm;
+                parent.AddChildNode(_text[line]);
+                line++;
+            }
             _isShow = true;
         }
 
@@ -136,7 +143,13 @@ namespace FarmGame.UI
             {
                 parent.RemoveChildNode(n);
             }
-            parent.RemoveChildNode(_text);
+            foreach (var t in _text)
+            {
+                if(t != null)
+                {
+                    parent.RemoveChildNode(t);
+                }
+            }
             _isShow = false;
         }
     }

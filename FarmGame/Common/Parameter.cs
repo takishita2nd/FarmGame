@@ -32,6 +32,7 @@ namespace FarmGame
             E
         }
 
-        public const int  FarmPageMaxColumn = 5;
+        public const int FarmPageMaxColumn = 5;
+        public const int QuolityMaxNum = 6;
     }
 }
