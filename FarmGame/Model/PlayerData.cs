@@ -40,11 +40,6 @@ namespace FarmGame.Model
             farms.Add(new Farm());
             farms.Add(new Farm());
             farms.Add(new Farm());
-            farms.Add(new Farm());
-            farms.Add(new Farm());
-            farms.Add(new Farm());
-            farms.Add(new Farm());
-            farms.Add(new Farm());
             Seed = new int[2];
             Seed[0] = 3;
             Seed[1] = 3;
