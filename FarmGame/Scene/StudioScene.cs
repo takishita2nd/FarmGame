@@ -48,6 +48,34 @@ namespace FarmGame.Scene
 
             menu = new CommonMenu(this);
 
+            int xpos = 50;
+            int ypos = 170;
+            int xinterval = 320;
+            int yinterval = 50;
+            SpriteNode[,] bottun = new SpriteNode[2,7];
+            for(int j = 0; j < 2; j++)
+            {
+                for (int i = 0; i < 7; i++)
+                {
+                    bottun[j,i] = new SpriteNode();
+                    bottun[j,i].Texture = Texture.ItemButton;
+                    bottun[j,i].Position = new Vector2F(xpos + xinterval * j, ypos + yinterval * i);
+                    bottun[j,i].ZOrder = Parameter.ZOrder.Item;
+                    AddChildNode(bottun[j,i]);
+                }
+            }
+            float careButtonScale = 0.6f;
+            var _prevPageButton = new Button(Texture.PrevPageButton, Texture.PrevPageButtonHover, Texture.PrevPageButtonClick);
+            _prevPageButton.SetPosition(new Vector2F(374, 520));
+            _prevPageButton.SetScale(careButtonScale);
+            _prevPageButton.SetZOrder(Parameter.ZOrder.Item);
+            _prevPageButton.SetNode(this);
+
+            var _nextPageButton = new Button(Texture.NextPageButton, Texture.NextPageButtonHover, Texture.NextPageButtonClick);
+            _nextPageButton.SetPosition(new Vector2F(534, 520));
+            _nextPageButton.SetScale(careButtonScale);
+            _nextPageButton.SetZOrder(Parameter.ZOrder.Item);
+            _nextPageButton.SetNode(this);
         }
 
         protected override void OnUpdate()

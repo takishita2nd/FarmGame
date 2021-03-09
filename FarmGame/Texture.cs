@@ -585,6 +585,29 @@ namespace FarmGame
             }
         }
 
+        public static Texture2D ItemButton
+        {
+            get
+            {
+                if (_seedButton == null)
+                {
+                    _seedButton = Texture2D.Load("300x35_bl.png");
+                }
+                return _seedButton;
+            }
+        }
+        public static Texture2D ItemButtonValid
+        {
+            get
+            {
+                if (_seedButtonPush == null)
+                {
+                    _seedButtonPush = Texture2D.Load("300x35_gr.png");
+                }
+                return _seedButtonPush;
+            }
+        }
+
 
         public static Texture2D HomeButton
         {
