@@ -1,4 +1,5 @@
 ﻿using Altseed2;
+using FarmGame.Model;
 using FarmGame.UI.Parts;
 using System;
 using System.Collections.Generic;
@@ -14,7 +15,7 @@ namespace FarmGame.UI
         private const int yinterval = 50;
         private const int Row = 2;
         private const int Col = 7;
-        private ItemButton[,] bottun = new ItemButton[Row, Col];
+        private ItemButton[,] button = new ItemButton[Row, Col];
         private int page;
         private Button _prevPageButton;
         private Button _nextPageButton;
@@ -44,9 +45,17 @@ namespace FarmGame.UI
                         itemnum += GameData.PlayerData.Item[item.id, quolity];
                     }
                 }
-                bottun[row, col] = new ItemButton(Texture.ItemButton, Texture.ItemButtonValid, item.name, itemnum, item.id);
-                bottun[row, col].SetPosition(new Vector2F(xpos + xinterval * row, ypos + yinterval * col));
-                bottun[row, col].SetZOrder(Parameter.ZOrder.Item);
+                Recipe keeprecipe = null;
+                foreach(var recipe in GameData.GameStatus.Recipes)
+                {
+                    if(item.id == recipe.id)
+                    {
+                        keeprecipe = recipe;
+                    }
+                }
+                button[row, col] = new ItemButton(Texture.ItemButton, Texture.ItemButtonValid, item.name, itemnum, keeprecipe);
+                button[row, col].SetPosition(new Vector2F(xpos + xinterval * row, ypos + yinterval * col));
+                button[row, col].SetZOrder(Parameter.ZOrder.Item);
                 col++;
                 if(col >= Col)
                 {
@@ -63,11 +72,11 @@ namespace FarmGame.UI
             {
                 for (col = 0; col < Col; col++)
                 {
-                    if(bottun[row, col] == null)
+                    if(button[row, col] == null)
                     {
-                        bottun[row, col] = new ItemButton(Texture.ItemButton, Texture.ItemButtonValid, string.Empty, 0, 0);
-                        bottun[row, col].SetPosition(new Vector2F(xpos + xinterval * row, ypos + yinterval * col));
-                        bottun[row, col].SetZOrder(Parameter.ZOrder.Item);
+                        button[row, col] = new ItemButton(Texture.ItemButton, Texture.ItemButtonValid, string.Empty, 0, null);
+                        button[row, col].SetPosition(new Vector2F(xpos + xinterval * row, ypos + yinterval * col));
+                        button[row, col].SetZOrder(Parameter.ZOrder.Item);
                     }
                 }
             }
@@ -90,12 +99,46 @@ namespace FarmGame.UI
             {
                 for(int col = 0; col < Col; col++)
                 {
-                    bottun[row, col].SetNode(parentNode);
+                    button[row, col].SetNode(parentNode);
                 }
             }
             if(GameData.GameStatus.Items.Count > Row * Col)
             {
                 _nextPageButton.SetNode(parentNode);
+            }
+        }
+
+        public void DisplayUpdate()
+        {
+            for (int row = 0; row < Row; row++)
+            {
+                for (int col = 0; col < Col; col++)
+                {
+                    var recipe = button[row, col].GetRecipe();
+                    if(recipe == null)
+                    {
+                        button[row, col].SetValid(false);
+                    }
+                    else
+                    {
+                        foreach (var m in recipe)
+                        {
+                            int num = 0;
+                            for (int q = 0; q < Parameter.QuolityMaxNum; q++)
+                            {
+                                num += GameData.PlayerData.Item[m.id, q];
+                            }
+                            if (num >= m.num)
+                            {
+                                button[row, col].SetValid(true);
+                            }
+                            else
+                            {
+                                button[row, col].SetValid(false);
+                            }
+                        }
+                    }
+                }
             }
         }
     }

@@ -213,7 +213,7 @@ namespace FarmGame.UI
                             farmColumn.Name + "を" + num.ToString() + "つ収穫しました\n" + 
                             "(品質" + Function.Quolity2String(farmColumn.GetQuolity()) + ")",
                             _parentNode);
-                        GameData.PlayerData.Item[farmColumn.Id, Function.Quolity2Index(farmColumn.GetQuolity())] += num;
+                        GameData.PlayerData.Item[farmColumn.Id + Parameter.SeedIdOffset, Function.Quolity2Index(farmColumn.GetQuolity())] += num;
                         farmColumn.Harvest();
                         UpdateDisplay();
                         return;

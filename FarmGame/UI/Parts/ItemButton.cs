@@ -1,4 +1,5 @@
 ﻿using Altseed2;
+using FarmGame.Model;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -7,7 +8,7 @@ namespace FarmGame.UI.Parts
 {
     class ItemButton : ButtonBase
     {
-        private bool _valid;
+        private Recipe _recipe;
         public bool IsValid
         {
             get
@@ -20,12 +21,20 @@ namespace FarmGame.UI.Parts
         private Texture2D _textureValid = null;
         private TextNode _text = null;
 
-        public ItemButton(Texture2D texture, Texture2D textureValid, string name, int num, int id) : base()
+        public ItemButton(Texture2D texture, Texture2D textureValid, string name, int num, Recipe recipe) : base()
         {
-            _valid = false;
             _texture = texture;
             _textureValid = textureValid;
-            _node.Texture = _texture;
+            if (recipe == null)
+            {
+                SetValid(false);
+                _recipe = null;
+            }
+            else
+            {
+                SetValid(true);
+                _recipe = recipe;
+            }
 
             _text = new TextNode();
             _text.Font = Font.LoadDynamicFontStrict("HachiMaruPop-Regular.ttf", 40);
@@ -76,6 +85,18 @@ namespace FarmGame.UI.Parts
             {
                 _valid = false;
                 _node.Texture = _texture;
+            }
+        }
+
+        public Model.Material[] GetRecipe()
+        {
+            if(_recipe != null)
+            {
+                return _recipe.material;
+            }
+            else
+            {
+                return null;
             }
         }
     }

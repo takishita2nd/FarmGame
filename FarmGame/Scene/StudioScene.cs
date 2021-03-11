@@ -50,6 +50,7 @@ namespace FarmGame.Scene
             menu = new CommonMenu(this);
             panel = new StudioPanel();
             panel.SetNode(this);
+            panel.DisplayUpdate();
         }
 
         protected override void OnUpdate()
