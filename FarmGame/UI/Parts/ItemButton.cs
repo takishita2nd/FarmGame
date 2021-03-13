@@ -39,7 +39,7 @@ namespace FarmGame.UI.Parts
             _text = new TextNode();
             _text.Font = Font.LoadDynamicFontStrict("HachiMaruPop-Regular.ttf", 40);
             _text.Color = new Color(0, 0, 0);
-            _text.ZOrder = FarmGame.Parameter.ZOrder.Seed;
+            _text.ZOrder = Common.Parameter.ZOrder.Seed;
             if(name != string.Empty)
             {
                 _text.Text = name + "×" + num.ToString();

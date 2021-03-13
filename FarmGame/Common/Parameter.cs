@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace FarmGame
+namespace FarmGame.Common
 {
     public static class Parameter
     {

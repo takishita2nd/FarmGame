@@ -24,8 +24,8 @@ namespace FarmGame.UI
         {
             node = parentNode;
 
-            float scale = (Parameter.WindowWidth / 6.0f) / Texture.FarmButton.Size.X;
-            buttonYPosition = Parameter.WindowHeight - Texture.FarmButton.Size.Y * scale;
+            float scale = (Common.Parameter.WindowWidth / 6.0f) / Texture.FarmButton.Size.X;
+            buttonYPosition = Common.Parameter.WindowHeight - Texture.FarmButton.Size.Y * scale;
             float buttonXPosition = 0.0f;
             var xInterval = Texture.FarmButton.Size.X * scale;
 
@@ -79,13 +79,13 @@ namespace FarmGame.UI
             //ホームボタン
             homeButton = new Button(Texture.HomeButton, Texture.HomeButton, Texture.HomeButton);
             homeButton.SetZOrder(1);
-            homeButton.SetPosition(new Vector2F(Parameter.WindowWidth - Texture.HomeButton.Size.X, buttonYPosition - Texture.HomeButton.Size.Y));
+            homeButton.SetPosition(new Vector2F(Common.Parameter.WindowWidth - Texture.HomeButton.Size.X, buttonYPosition - Texture.HomeButton.Size.Y));
             homeButton.SetNode(parentNode);
 
             //次へボタン
             nextButton = new Button(Texture.NextButton, Texture.NextButton, Texture.NextButton);
             nextButton.SetZOrder(1);
-            nextButton.SetPosition(new Vector2F(Parameter.WindowWidth - Texture.HomeButton.Size.X, buttonYPosition - Texture.HomeButton.Size.Y - Texture.NextButton.Size.Y));
+            nextButton.SetPosition(new Vector2F(Common.Parameter.WindowWidth - Texture.HomeButton.Size.X, buttonYPosition - Texture.HomeButton.Size.Y - Texture.NextButton.Size.Y));
             nextButton.SetNode(parentNode);
 
         }

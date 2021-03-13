@@ -16,12 +16,12 @@ namespace FarmGame.UI.Parts
             _node.Texture = Texture.FarmWindow;
             var scale = Texture.FarmWindow.Size.Y * 1.5f / (Texture.FarmTexture1.Size.Y / 8.0f);
             _node.Scale = new Vector2F(scale, scale);
-            _node.ZOrder = FarmGame.Parameter.ZOrder.Farm;
+            _node.ZOrder = Common.Parameter.ZOrder.Farm;
 
             _text = new TextNode();
             _text.Font = Font.LoadDynamicFontStrict("HachiMaruPop-Regular.ttf", 40);
             _text.Color = new Color(0, 0, 0);
-            _text.ZOrder = FarmGame.Parameter.ZOrder.Farm;
+            _text.ZOrder = Common.Parameter.ZOrder.Farm;
         }
 
         public void SetPosition(Vector2F pos)

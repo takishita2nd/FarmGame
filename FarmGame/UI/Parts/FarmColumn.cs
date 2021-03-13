@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using FarmGame.Common;
 using FarmGame.Model;
-using static FarmGame.Parameter;
+using static FarmGame.Common.Parameter;
 
 namespace FarmGame.UI.Parts
 {

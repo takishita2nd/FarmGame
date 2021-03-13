@@ -44,10 +44,10 @@ namespace FarmGame.Model
             Seed[0] = 3;
             Seed[1] = 3;
             int itemNum = 102;
-            Item = new int[itemNum, Parameter.QuolityMaxNum];
+            Item = new int[itemNum, Common.Parameter.QuolityMaxNum];
             for(int i = 0; i < itemNum; i++)
             {
-                for(int j = 0; j < Parameter.QuolityMaxNum; j++)
+                for(int j = 0; j < Common.Parameter.QuolityMaxNum; j++)
                 {
                     Item[i, j] = 0;
                 }

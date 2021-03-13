@@ -34,13 +34,13 @@ namespace FarmGame.UI
                     continue;
                 }
                 int itemnum = 0;
-                if(item.id < Parameter.SeedIdOffset)
+                if(item.id < Common.Parameter.SeedIdOffset)
                 {
                     itemnum = GameData.PlayerData.Seed[item.id];
                 }
                 else
                 {
-                    for (int quolity = 0; quolity < Parameter.QuolityMaxNum; quolity++)
+                    for (int quolity = 0; quolity < Common.Parameter.QuolityMaxNum; quolity++)
                     {
                         itemnum += GameData.PlayerData.Item[item.id, quolity];
                     }
@@ -55,7 +55,7 @@ namespace FarmGame.UI
                 }
                 button[row, col] = new ItemButton(Texture.ItemButton, Texture.ItemButtonValid, item.name, itemnum, keeprecipe);
                 button[row, col].SetPosition(new Vector2F(xpos + xinterval * row, ypos + yinterval * col));
-                button[row, col].SetZOrder(Parameter.ZOrder.Item);
+                button[row, col].SetZOrder(Common.Parameter.ZOrder.Item);
                 col++;
                 if(col >= Col)
                 {
@@ -76,7 +76,7 @@ namespace FarmGame.UI
                     {
                         button[row, col] = new ItemButton(Texture.ItemButton, Texture.ItemButtonValid, string.Empty, 0, null);
                         button[row, col].SetPosition(new Vector2F(xpos + xinterval * row, ypos + yinterval * col));
-                        button[row, col].SetZOrder(Parameter.ZOrder.Item);
+                        button[row, col].SetZOrder(Common.Parameter.ZOrder.Item);
                     }
                 }
             }
@@ -85,12 +85,12 @@ namespace FarmGame.UI
             _prevPageButton = new Button(Texture.PrevPageButton, Texture.PrevPageButtonHover, Texture.PrevPageButtonClick);
             _prevPageButton.SetPosition(new Vector2F(374, 520));
             _prevPageButton.SetScale(careButtonScale);
-            _prevPageButton.SetZOrder(Parameter.ZOrder.Item);
+            _prevPageButton.SetZOrder(Common.Parameter.ZOrder.Item);
 
             _nextPageButton = new Button(Texture.NextPageButton, Texture.NextPageButtonHover, Texture.NextPageButtonClick);
             _nextPageButton.SetPosition(new Vector2F(534, 520));
             _nextPageButton.SetScale(careButtonScale);
-            _nextPageButton.SetZOrder(Parameter.ZOrder.Item);
+            _nextPageButton.SetZOrder(Common.Parameter.ZOrder.Item);
         }
 
         public void SetNode(Node parentNode)
@@ -124,7 +124,7 @@ namespace FarmGame.UI
                         foreach (var m in recipe)
                         {
                             int num = 0;
-                            for (int q = 0; q < Parameter.QuolityMaxNum; q++)
+                            for (int q = 0; q < Common.Parameter.QuolityMaxNum; q++)
                             {
                                 num += GameData.PlayerData.Item[m.id, q];
                             }

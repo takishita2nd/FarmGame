@@ -33,126 +33,126 @@ namespace FarmGame.UI
             float partsheight = _node[0].ContentSize.Y / 3.0f;
             _node[index].Src = new RectF(0, 0, partswidth, partsheight);
             _node[index].Position = new Vector2F(xPosition, yPosition);
-            _node[index].ZOrder = Parameter.ZOrder.Alarm;
+            _node[index].ZOrder = Common.Parameter.ZOrder.Alarm;
             index++;
 
             _node[index] = new SpriteNode();
             _node[index].Texture = Texture2D.Load("008_b.png");
             _node[index].Src = new RectF(partswidth, 0, partswidth, partsheight);
             _node[index].Position = new Vector2F(xPosition + partswidth, yPosition);
-            _node[index].ZOrder = Parameter.ZOrder.Alarm;
+            _node[index].ZOrder = Common.Parameter.ZOrder.Alarm;
             index++;
 
             _node[index] = new SpriteNode();
             _node[index].Texture = Texture2D.Load("008_b.png");
             _node[index].Src = new RectF(partswidth * 1, 0, partswidth, partsheight);
             _node[index].Position = new Vector2F(xPosition + partswidth * 2, yPosition);
-            _node[index].ZOrder = Parameter.ZOrder.Alarm;
+            _node[index].ZOrder = Common.Parameter.ZOrder.Alarm;
             index++;
 
             _node[index] = new SpriteNode();
             _node[index].Texture = Texture2D.Load("008_b.png");
             _node[index].Src = new RectF(partswidth * 1, 0, partswidth, partsheight);
             _node[index].Position = new Vector2F(xPosition + partswidth * 3, yPosition);
-            _node[index].ZOrder = Parameter.ZOrder.Alarm;
+            _node[index].ZOrder = Common.Parameter.ZOrder.Alarm;
             index++;
 
             _node[index] = new SpriteNode();
             _node[index].Texture = Texture2D.Load("008_b.png");
             _node[index].Src = new RectF(partswidth * 1, 0, partswidth, partsheight);
             _node[index].Position = new Vector2F(xPosition + partswidth * 4, yPosition);
-            _node[index].ZOrder = Parameter.ZOrder.Alarm;
+            _node[index].ZOrder = Common.Parameter.ZOrder.Alarm;
             index++;
 
             _node[index] = new SpriteNode();
             _node[index].Texture = Texture2D.Load("008_b.png");
             _node[index].Src = new RectF(partswidth * 2, 0, partswidth, partsheight);
             _node[index].Position = new Vector2F(xPosition + partswidth * 5, yPosition);
-            _node[index].ZOrder = Parameter.ZOrder.Alarm;
+            _node[index].ZOrder = Common.Parameter.ZOrder.Alarm;
             index++;
 
             _node[index] = new SpriteNode();
             _node[index].Texture = Texture2D.Load("008_b.png");
             _node[index].Src = new RectF(0, partsheight * 1, partswidth, partsheight);
             _node[index].Position = new Vector2F(xPosition, yPosition + partsheight);
-            _node[index].ZOrder = Parameter.ZOrder.Alarm;
+            _node[index].ZOrder = Common.Parameter.ZOrder.Alarm;
             index++;
 
             _node[index] = new SpriteNode();
             _node[index].Texture = Texture2D.Load("008_b.png");
             _node[index].Src = new RectF(partswidth, partsheight * 1, partswidth, partsheight);
             _node[index].Position = new Vector2F(xPosition + partswidth, yPosition + partsheight);
-            _node[index].ZOrder = Parameter.ZOrder.Alarm;
+            _node[index].ZOrder = Common.Parameter.ZOrder.Alarm;
             index++;
 
             _node[index] = new SpriteNode();
             _node[index].Texture = Texture2D.Load("008_b.png");
             _node[index].Src = new RectF(partswidth * 1, partsheight * 1, partswidth, partsheight);
             _node[index].Position = new Vector2F(xPosition + partswidth * 2, yPosition + partsheight);
-            _node[index].ZOrder = Parameter.ZOrder.Alarm;
+            _node[index].ZOrder = Common.Parameter.ZOrder.Alarm;
             index++;
 
             _node[index] = new SpriteNode();
             _node[index].Texture = Texture2D.Load("008_b.png");
             _node[index].Src = new RectF(partswidth * 1, partsheight * 1, partswidth, partsheight);
             _node[index].Position = new Vector2F(xPosition + partswidth * 3, yPosition + partsheight);
-            _node[index].ZOrder = Parameter.ZOrder.Alarm;
+            _node[index].ZOrder = Common.Parameter.ZOrder.Alarm;
             index++;
 
             _node[index] = new SpriteNode();
             _node[index].Texture = Texture2D.Load("008_b.png");
             _node[index].Src = new RectF(partswidth * 1, partsheight * 1, partswidth, partsheight);
             _node[index].Position = new Vector2F(xPosition + partswidth * 4, yPosition + partsheight);
-            _node[index].ZOrder = Parameter.ZOrder.Alarm;
+            _node[index].ZOrder = Common.Parameter.ZOrder.Alarm;
             index++;
 
             _node[index] = new SpriteNode();
             _node[index].Texture = Texture2D.Load("008_b.png");
             _node[index].Src = new RectF(partswidth * 2, partsheight * 1, partswidth, partsheight);
             _node[index].Position = new Vector2F(xPosition + partswidth * 5, yPosition + partsheight);
-            _node[index].ZOrder = Parameter.ZOrder.Alarm;
+            _node[index].ZOrder = Common.Parameter.ZOrder.Alarm;
             index++;
 
             _node[index] = new SpriteNode();
             _node[index].Texture = Texture2D.Load("008_b.png");
             _node[index].Src = new RectF(0, partsheight * 2, partswidth, partsheight);
             _node[index].Position = new Vector2F(xPosition, yPosition + partsheight * 2);
-            _node[index].ZOrder = Parameter.ZOrder.Alarm;
+            _node[index].ZOrder = Common.Parameter.ZOrder.Alarm;
             index++;
 
             _node[index] = new SpriteNode();
             _node[index].Texture = Texture2D.Load("008_b.png");
             _node[index].Src = new RectF(partswidth, partsheight * 2, partswidth, partsheight);
             _node[index].Position = new Vector2F(xPosition + partswidth, yPosition + partsheight * 2);
-            _node[index].ZOrder = Parameter.ZOrder.Alarm;
+            _node[index].ZOrder = Common.Parameter.ZOrder.Alarm;
             index++;
 
             _node[index] = new SpriteNode();
             _node[index].Texture = Texture2D.Load("008_b.png");
             _node[index].Src = new RectF(partswidth * 1, partsheight * 2, partswidth, partsheight);
             _node[index].Position = new Vector2F(xPosition + partswidth * 2, yPosition + partsheight * 2);
-            _node[index].ZOrder = Parameter.ZOrder.Alarm;
+            _node[index].ZOrder = Common.Parameter.ZOrder.Alarm;
             index++;
 
             _node[index] = new SpriteNode();
             _node[index].Texture = Texture2D.Load("008_b.png");
             _node[index].Src = new RectF(partswidth * 1, partsheight * 2, partswidth, partsheight);
             _node[index].Position = new Vector2F(xPosition + partswidth * 3, yPosition + partsheight * 2);
-            _node[index].ZOrder = Parameter.ZOrder.Alarm;
+            _node[index].ZOrder = Common.Parameter.ZOrder.Alarm;
             index++;
 
             _node[index] = new SpriteNode();
             _node[index].Texture = Texture2D.Load("008_b.png");
             _node[index].Src = new RectF(partswidth * 1, partsheight * 2, partswidth, partsheight);
             _node[index].Position = new Vector2F(xPosition + partswidth * 4, yPosition + partsheight * 2);
-            _node[index].ZOrder = Parameter.ZOrder.Alarm;
+            _node[index].ZOrder = Common.Parameter.ZOrder.Alarm;
             index++;
 
             _node[index] = new SpriteNode();
             _node[index].Texture = Texture2D.Load("008_b.png");
             _node[index].Src = new RectF(partswidth * 2, partsheight * 2, partswidth, partsheight);
             _node[index].Position = new Vector2F(xPosition + partswidth * 5, yPosition + partsheight * 2);
-            _node[index].ZOrder = Parameter.ZOrder.Alarm;
+            _node[index].ZOrder = Common.Parameter.ZOrder.Alarm;
             index++;
 
         }
@@ -172,7 +172,7 @@ namespace FarmGame.UI
                 _text[line].Text = m;
                 _text[line].Color = new Color(255, 255, 255);
                 _text[line].Position = new Vector2F(xPosition, yPosition + _text[line].ContentSize.Y * line + yTextOffset);
-                _text[line].ZOrder = FarmGame.Parameter.ZOrder.Alarm;
+                _text[line].ZOrder = Common.Parameter.ZOrder.Alarm;
                 parent.AddChildNode(_text[line]);
                 line++;
             }

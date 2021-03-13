@@ -23,13 +23,13 @@ namespace FarmGame.Scene
             var background = new SpriteNode();
             background.Texture = Texture2D.Load("bg_studio.jpg");
             background.Position = new Vector2F(0, 0);
-            background.ZOrder = Parameter.ZOrder.BackGround;
+            background.ZOrder = Common.Parameter.ZOrder.BackGround;
             AddChildNode(background);
 
             var sign = new SpriteNode();
             sign.Texture = Texture2D.Load("studiosign.png");
             sign.Position = new Vector2F(0, 0);
-            sign.ZOrder = Parameter.ZOrder.Sign;
+            sign.ZOrder = Common.Parameter.ZOrder.Sign;
             AddChildNode(sign);
 
             PowerPanel powerPanel = new PowerPanel();
@@ -51,6 +51,26 @@ namespace FarmGame.Scene
             panel = new StudioPanel();
             panel.SetNode(this);
             panel.DisplayUpdate();
+
+            var _node = new SpriteNode();
+            _node.Texture = Texture.SeedWindow;
+            _node.Src = new RectF(0, 680, 900, 220);
+            _node.Position = new Vector2F(0, 170);
+            _node.Scale = new Vector2F(1.0f, 1.5f);
+            _node.ZOrder = Common.Parameter.ZOrder.Dialog;
+            AddChildNode(_node);
+
+            float buttonScale = 0.6f;
+            var _okButton = new Button(Texture.OKButton, Texture.OKButtonHover, Texture.OKButtonClick);
+            _okButton.SetPosition(new Vector2F(230, 410));
+            _okButton.SetScale(buttonScale);
+            _okButton.SetZOrder(Common.Parameter.ZOrder.Seed);
+            _okButton.SetNode(this);
+            var _cancelButton = new Button(Texture.CancelButton, Texture.CancelButtonHover, Texture.CancelButtonClick);
+            _cancelButton.SetPosition(new Vector2F(430, 410));
+            _cancelButton.SetScale(buttonScale);
+            _cancelButton.SetZOrder(Common.Parameter.ZOrder.Seed);
+            _cancelButton.SetNode(this);
         }
 
         protected override void OnUpdate()

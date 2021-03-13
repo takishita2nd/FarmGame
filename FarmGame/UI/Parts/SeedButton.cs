@@ -18,12 +18,12 @@ namespace FarmGame.UI.Parts
             _texture = texture;
             _texturePush = texturePush;
             _node.Texture = texture;
-            _node.ZOrder = FarmGame.Parameter.ZOrder.Seed;
+            _node.ZOrder = Common.Parameter.ZOrder.Seed;
 
             _text = new TextNode();
             _text.Font = Font.LoadDynamicFontStrict("HachiMaruPop-Regular.ttf", 40);
             _text.Color = new Color(0, 0, 0);
-            _text.ZOrder = FarmGame.Parameter.ZOrder.Seed;
+            _text.ZOrder = Common.Parameter.ZOrder.Seed;
             _text.Text = name + "の種×" + num.ToString();
             _width = 300;
             _height = 35;

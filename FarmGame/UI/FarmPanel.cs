@@ -36,9 +36,9 @@ namespace FarmGame.UI
         {
             page = 0;
             int showColumn = GameData.PlayerData.farms.Count;
-            if (showColumn > Parameter.FarmPageMaxColumn)
+            if (showColumn > Common.Parameter.FarmPageMaxColumn)
             {
-                showColumn = Parameter.FarmPageMaxColumn;
+                showColumn = Common.Parameter.FarmPageMaxColumn;
             }
             for(int index = 0; index < showColumn; index++)
             {
@@ -47,10 +47,10 @@ namespace FarmGame.UI
                 farmColunm.Window.SetPosition(new Vector2F(windowXIndex, windowYIndex + columnInterval * index));
                 farmColunm.CareButton.SetPosition(new Vector2F(careButtonXIndex, careButtonYIndex + columnInterval * index));
                 farmColunm.CareButton.SetScale(careButtonScale);
-                farmColunm.CareButton.SetZOrder(Parameter.ZOrder.Farm);
+                farmColunm.CareButton.SetZOrder(Common.Parameter.ZOrder.Farm);
                 farmColunm.WaterButton.SetPosition(new Vector2F(waterButtonXIndex, waterButtonYIndex + columnInterval * index));
                 farmColunm.WaterButton.SetScale(careButtonScale);
-                farmColunm.WaterButton.SetZOrder(Parameter.ZOrder.Farm);
+                farmColunm.WaterButton.SetZOrder(Common.Parameter.ZOrder.Farm);
 
                 farmColunm.SetFarmData(GameData.PlayerData.farms[index]);
 
@@ -60,22 +60,22 @@ namespace FarmGame.UI
             _allCareButton = new Button(Texture.AllCareButton, Texture.AllCareButtonHover, Texture.AllCareButtonClick);
             _allCareButton.SetPosition(new Vector2F(careButtonXIndex, careButtonYIndex + columnInterval * -1));
             _allCareButton.SetScale(careButtonScale);
-            _allCareButton.SetZOrder(Parameter.ZOrder.Farm);
+            _allCareButton.SetZOrder(Common.Parameter.ZOrder.Farm);
 
             _allWaterButton = new Button(Texture.AllWaterButton, Texture.AllWaterButtonHover, Texture.AllWaterButtonClick);
             _allWaterButton.SetPosition(new Vector2F(waterButtonXIndex, waterButtonYIndex + columnInterval * -1));
             _allWaterButton.SetScale(careButtonScale);
-            _allWaterButton.SetZOrder(Parameter.ZOrder.Farm);
+            _allWaterButton.SetZOrder(Common.Parameter.ZOrder.Farm);
 
             _prevPageButton = new Button(Texture.PrevPageButton, Texture.PrevPageButtonHover, Texture.PrevPageButtonClick);
-            _prevPageButton.SetPosition(new Vector2F(careButtonXIndex, waterButtonYIndex + columnInterval * Parameter.FarmPageMaxColumn + 1));
+            _prevPageButton.SetPosition(new Vector2F(careButtonXIndex, waterButtonYIndex + columnInterval * Common.Parameter.FarmPageMaxColumn + 1));
             _prevPageButton.SetScale(careButtonScale);
-            _prevPageButton.SetZOrder(Parameter.ZOrder.Farm);
+            _prevPageButton.SetZOrder(Common.Parameter.ZOrder.Farm);
 
             _nextPageButton = new Button(Texture.NextPageButton, Texture.NextPageButtonHover, Texture.NextPageButtonClick);
-            _nextPageButton.SetPosition(new Vector2F(waterButtonXIndex, careButtonYIndex + columnInterval * Parameter.FarmPageMaxColumn + 1));
+            _nextPageButton.SetPosition(new Vector2F(waterButtonXIndex, careButtonYIndex + columnInterval * Common.Parameter.FarmPageMaxColumn + 1));
             _nextPageButton.SetScale(careButtonScale);
-            _nextPageButton.SetZOrder(Parameter.ZOrder.Farm);
+            _nextPageButton.SetZOrder(Common.Parameter.ZOrder.Farm);
 
         }
 
@@ -95,7 +95,7 @@ namespace FarmGame.UI
             {
                 _prevPageButton.SetNode(parentNode);
             }
-            if(GameData.PlayerData.farms.Count > Parameter.FarmPageMaxColumn)
+            if(GameData.PlayerData.farms.Count > Common.Parameter.FarmPageMaxColumn)
             {
                 _nextPageButton.SetNode(parentNode);
             }
@@ -195,7 +195,7 @@ namespace FarmGame.UI
                 return;
             }
 
-            int maxPage = GameData.PlayerData.farms.Count / Parameter.FarmPageMaxColumn;
+            int maxPage = GameData.PlayerData.farms.Count / Common.Parameter.FarmPageMaxColumn;
             foreach(var farmColumn in farmColunms)
             {
                 if(farmColumn.Icon.IsClick(position))
@@ -213,7 +213,7 @@ namespace FarmGame.UI
                             farmColumn.Name + "を" + num.ToString() + "つ収穫しました\n" + 
                             "(品質" + Function.Quolity2String(farmColumn.GetQuolity()) + ")",
                             _parentNode);
-                        GameData.PlayerData.Item[farmColumn.Id + Parameter.SeedIdOffset, Function.Quolity2Index(farmColumn.GetQuolity())] += num;
+                        GameData.PlayerData.Item[farmColumn.Id + Common.Parameter.SeedIdOffset, Function.Quolity2Index(farmColumn.GetQuolity())] += num;
                         farmColumn.Harvest();
                         UpdateDisplay();
                         return;
@@ -246,7 +246,7 @@ namespace FarmGame.UI
 
         public void UpdateDisplay()
         {
-            int index = page * Parameter.FarmPageMaxColumn;
+            int index = page * Common.Parameter.FarmPageMaxColumn;
             foreach (var farmColunm in farmColunms)
             {
                 farmColunm.SetFarmData(GameData.PlayerData.farms[index]);

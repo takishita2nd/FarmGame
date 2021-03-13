@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 using FarmGame.UI.Parts;
-using static FarmGame.Parameter;
+using static FarmGame.Common.Parameter;
 
 namespace FarmGame.Common
 {

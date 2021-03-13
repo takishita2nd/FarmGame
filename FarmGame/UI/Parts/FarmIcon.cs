@@ -22,7 +22,7 @@ namespace FarmGame.UI.Parts
         public FarmIcon() : base()
         {
             _node.Scale = new Vector2F(2.5f, 2.5f);
-            _node.ZOrder = FarmGame.Parameter.ZOrder.Farm;
+            _node.ZOrder = Common.Parameter.ZOrder.Farm;
         }
 
         public void SetClip(Type type, int growth)
