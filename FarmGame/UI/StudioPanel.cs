@@ -19,6 +19,8 @@ namespace FarmGame.UI
         private int page;
         private Button _prevPageButton;
         private Button _nextPageButton;
+        private CraftWindow _craftWindow;
+        private Node _parentNode = null;
 
         public StudioPanel()
         {
@@ -95,7 +97,8 @@ namespace FarmGame.UI
 
         public void SetNode(Node parentNode)
         {
-            for(int row = 0; row < Row; row++)
+            _parentNode = parentNode;
+            for (int row = 0; row < Row; row++)
             {
                 for(int col = 0; col < Col; col++)
                 {
@@ -136,6 +139,36 @@ namespace FarmGame.UI
                             {
                                 button[row, col].SetValid(false);
                             }
+                        }
+                    }
+                }
+            }
+        }
+
+        public void OnMouse(Vector2F position)
+        {
+            if (_craftWindow != null && _craftWindow.IsShow())
+            {
+                _craftWindow.OnMouse(position);
+            }
+        }
+
+        public void OnClick(Vector2F position)
+        {
+            if(_craftWindow != null && _craftWindow.IsShow())
+            {
+                _craftWindow.OnClick(position);
+            }
+            else
+            {
+                for (int r = 0; r < Row; r++)
+                {
+                    for (int c = 0; c < Col; c++)
+                    {
+                        if (button[r,c].IsValid && button[r, c].IsClick(position))
+                        {
+                            _craftWindow = new CraftWindow(button[r, c].GetRecipe(), _parentNode);
+                            _craftWindow.Show();
                         }
                     }
                 }
