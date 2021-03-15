@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using FarmGame.Model;
 using FarmGame.UI.Parts;
 using static FarmGame.Common.Parameter;
 
@@ -71,6 +72,18 @@ namespace FarmGame.Common
                 random = new Random();
             }
             return random.Next(min, max);
+        }
+
+        public static Item SearchItemById(int id)
+        {
+            foreach(var item in GameData.GameStatus.Items)
+            {
+                if(item.id == id)
+                {
+                    return item;
+                }
+            }
+            return null;
         }
     }
 }
