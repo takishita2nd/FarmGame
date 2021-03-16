@@ -35,18 +35,6 @@ namespace FarmGame.UI
                     skip++;
                     continue;
                 }
-                int itemnum = 0;
-                if(item.id < Common.Parameter.SeedIdOffset)
-                {
-                    itemnum = GameData.PlayerData.Seed[item.id];
-                }
-                else
-                {
-                    for (int quolity = 0; quolity < Common.Parameter.QuolityMaxNum; quolity++)
-                    {
-                        itemnum += GameData.PlayerData.Item[item.id, quolity];
-                    }
-                }
                 Recipe keeprecipe = null;
                 foreach(var recipe in GameData.GameStatus.Recipes)
                 {
@@ -55,7 +43,7 @@ namespace FarmGame.UI
                         keeprecipe = recipe;
                     }
                 }
-                button[row, col] = new ItemButton(Texture.ItemButton, Texture.ItemButtonValid, item.name, itemnum, keeprecipe);
+                button[row, col] = new ItemButton(Texture.ItemButton, Texture.ItemButtonValid, item.id, keeprecipe);
                 button[row, col].SetPosition(new Vector2F(xpos + xinterval * row, ypos + yinterval * col));
                 button[row, col].SetZOrder(Common.Parameter.ZOrder.Item);
                 col++;
@@ -76,7 +64,7 @@ namespace FarmGame.UI
                 {
                     if(button[row, col] == null)
                     {
-                        button[row, col] = new ItemButton(Texture.ItemButton, Texture.ItemButtonValid, string.Empty, 0, null);
+                        button[row, col] = new ItemButton(Texture.ItemButton, Texture.ItemButtonValid, -1, null);
                         button[row, col].SetPosition(new Vector2F(xpos + xinterval * row, ypos + yinterval * col));
                         button[row, col].SetZOrder(Common.Parameter.ZOrder.Item);
                     }
@@ -141,6 +129,7 @@ namespace FarmGame.UI
                             }
                         }
                     }
+                    button[row, col].TextUpdate();
                 }
             }
         }
@@ -158,6 +147,10 @@ namespace FarmGame.UI
             if(_craftWindow != null && _craftWindow.IsShow())
             {
                 _craftWindow.OnClick(position);
+                if(_craftWindow.IsCreated)
+                {
+                    DisplayUpdate();
+                }
             }
             else
             {
@@ -167,7 +160,7 @@ namespace FarmGame.UI
                     {
                         if (button[r,c].IsValid && button[r, c].IsClick(position))
                         {
-                            _craftWindow = new CraftWindow(button[r, c].GetRecipe(), _parentNode);
+                            _craftWindow = new CraftWindow(button[r, c].ItemId, button[r, c].GetRecipe(), _parentNode);
                             _craftWindow.Show();
                         }
                     }

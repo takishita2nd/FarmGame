@@ -10,16 +10,28 @@ namespace FarmGame.UI
 {
     class CraftWindow : WindowBase
     {
+        public bool IsCreated
+        {
+            get
+            {
+                return _isCreated;
+            }
+        }
         private const int textLine = 5;
         private const int xPosition = 30;
         private const int yPosition = 190;
         private const int yInterval = 40;
 
+        private bool _isCreated;
+        private int _itemId;
         private Model.Material[] _recipe = null;
         private TextNode[] _text = new TextNode[textLine];
+        private Dialog _dialog = null;
 
-        public CraftWindow(Model.Material[] recipe, Node parentNode): base(parentNode)
+        public CraftWindow(int itemId, Model.Material[] recipe, Node parentNode): base(parentNode)
         {
+            _isCreated = false;
+            _itemId = itemId;
             _recipe = recipe;
             for(int line = 0; line < textLine; line++)
             {
@@ -67,9 +79,65 @@ namespace FarmGame.UI
 
         override public void OnClick(Vector2F position)
         {
+            if(_dialog != null && _dialog.IsShow)
+            {
+                _isCreated = true;
+                _dialog.RemoveNode(_parentNode);
+                Hide();
+            }
             if (_okButton.Click(position))
             {
-                Hide();
+                int quorityValue = 0;
+                //アイテムを消費
+                foreach(var r in _recipe)
+                {
+                    int num = r.num;
+                    for(int q = 0; q < Common.Parameter.QuolityMaxNum; q++)
+                    {
+                        if(GameData.PlayerData.Item[r.id, q] >= num)
+                        {
+                            GameData.PlayerData.Item[r.id, q] -= num;
+                            quorityValue += Function.Quolity2Value(q) * num;
+                        }
+                        else
+                        {
+                            num -= GameData.PlayerData.Item[r.id, q];
+                            quorityValue += Function.Quolity2Value(q) * GameData.PlayerData.Item[r.id, q];
+                            GameData.PlayerData.Item[r.id, q] = 0;
+                        }
+                    }
+                }
+                //品質を算出
+                int itemNum = 0;
+                foreach (var r in _recipe)
+                {
+                    itemNum += r.num;
+                }
+                var quolity = Function.QualityByValue(quorityValue / itemNum);
+                //アイテムを追加
+                if (_itemId > Common.Parameter.SeedIdOffset)
+                {
+                    GameData.PlayerData.Item[_itemId, Function.Quolity2Index(quolity)]++;
+                }
+                else
+                {
+                    GameData.PlayerData.Seed[_itemId]++;
+                }
+                //ダイアログ表示
+                _dialog = new Dialog();
+                if (_itemId > Common.Parameter.SeedIdOffset)
+                {
+                    _dialog.SetNode(
+                    Function.SearchItemById(_itemId).name + "を作成しました\n" +
+                            "(品質" + Function.Quolity2String(quolity) + ")",
+                    _parentNode);
+                }
+                else
+                {
+                    _dialog.SetNode(
+                    Function.SearchItemById(_itemId).name + "を作成しました\n",
+                    _parentNode);
+                }
             }
             if (_cancelButton.Click(position))
             {

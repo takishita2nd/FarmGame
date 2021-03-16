@@ -1,4 +1,5 @@
 ﻿using Altseed2;
+using FarmGame.Common;
 using FarmGame.Model;
 using System;
 using System.Collections.Generic;
@@ -16,13 +17,15 @@ namespace FarmGame.UI.Parts
                 return _valid;
             }
         }
+        public int ItemId { get; }
 
         private Texture2D _texture = null;
         private Texture2D _textureValid = null;
         private TextNode _text = null;
 
-        public ItemButton(Texture2D texture, Texture2D textureValid, string name, int num, Recipe recipe) : base()
+        public ItemButton(Texture2D texture, Texture2D textureValid, int itemId, Recipe recipe) : base()
         {
+            ItemId = itemId;
             _texture = texture;
             _textureValid = textureValid;
             if (recipe == null)
@@ -40,13 +43,31 @@ namespace FarmGame.UI.Parts
             _text.Font = Font.LoadDynamicFontStrict("HachiMaruPop-Regular.ttf", 40);
             _text.Color = new Color(0, 0, 0);
             _text.ZOrder = Common.Parameter.ZOrder.Seed;
-            if(name != string.Empty)
-            {
-                _text.Text = name + "×" + num.ToString();
-            }
+            TextUpdate();
 
             _width = _texture.Size.X;
             _height = _texture.Size.Y;
+        }
+
+        public void TextUpdate()
+        {
+            var item = Function.SearchItemById(ItemId);
+            int itemnum = 0;
+            if (item != null)
+            {
+                if (item.id < Common.Parameter.SeedIdOffset)
+                {
+                    itemnum = GameData.PlayerData.Seed[item.id];
+                }
+                else
+                {
+                    for (int quolity = 0; quolity < Common.Parameter.QuolityMaxNum; quolity++)
+                    {
+                        itemnum += GameData.PlayerData.Item[item.id, quolity];
+                    }
+                }
+                _text.Text = item.name + "×" + itemnum.ToString();
+            }
         }
 
         override public void SetPosition(Vector2F position)

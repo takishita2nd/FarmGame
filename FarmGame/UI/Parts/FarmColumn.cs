@@ -158,30 +158,7 @@ namespace FarmGame.UI.Parts
         {
             int maxQuolity = GameData.GameStatus.Plants[_farm.id].cost * 100;
             int quolity = _farm.quality * 100 / maxQuolity ;
-            if(quolity >= 100)
-            {
-                return Quality.S;
-            }
-            else if(quolity < 100 && quolity >= 80)
-            {
-                return Quality.A;
-            }
-            else if (quolity < 80 && quolity >= 60)
-            {
-                return Quality.B;
-            }
-            else if (quolity < 60 && quolity >= 40)
-            {
-                return Quality.C;
-            }
-            else if (quolity < 40 && quolity >= 20)
-            {
-                return Quality.D;
-            }
-            else
-            {
-                return Quality.E;
-            }
+            return Function.QualityByValue(quolity);
         }
     }
 }

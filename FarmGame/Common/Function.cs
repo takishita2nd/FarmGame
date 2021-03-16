@@ -85,5 +85,54 @@ namespace FarmGame.Common
             }
             return null;
         }
+
+        public static int Quolity2Value(int quality)
+        {
+            switch(quality)
+            {
+                case 0:
+                    return 100;
+                case 1:
+                    return 80;
+                case 2:
+                    return 60;
+                case 3:
+                    return 40;
+                case 4:
+                    return 20;
+                case 5:
+                    return 0;
+                default:
+                    return 0;
+            }
+        }
+
+        public static Quality QualityByValue(int quolity)
+        {
+            if (quolity >= 100)
+            {
+                return Quality.S;
+            }
+            else if (quolity < 100 && quolity >= 80)
+            {
+                return Quality.A;
+            }
+            else if (quolity < 80 && quolity >= 60)
+            {
+                return Quality.B;
+            }
+            else if (quolity < 60 && quolity >= 40)
+            {
+                return Quality.C;
+            }
+            else if (quolity < 40 && quolity >= 20)
+            {
+                return Quality.D;
+            }
+            else
+            {
+                return Quality.E;
+            }
+        }
     }
 }
