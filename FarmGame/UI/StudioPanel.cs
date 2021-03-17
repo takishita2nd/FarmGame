@@ -36,7 +36,7 @@ namespace FarmGame.UI
                     continue;
                 }
                 Recipe keeprecipe = null;
-                foreach(var recipe in GameData.GameStatus.Recipes)
+                foreach(var recipe in GameData.GameStatus.Recipes.recipe)
                 {
                     if(item.id == recipe.id)
                     {

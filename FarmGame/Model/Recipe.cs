@@ -4,10 +4,14 @@ using System.Text;
 
 namespace FarmGame.Model
 {
+    public class Recipes
+    {
+        public Recipe[] recipe { get; set; }
+    }
+
     public class Recipe
     {
         public int id { get; set; }
-        public int itemid { get; set; }
         public Material[] material { get; set; }
     }
 

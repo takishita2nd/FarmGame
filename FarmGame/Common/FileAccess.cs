@@ -48,5 +48,18 @@ namespace FarmGame.Common
             }
             return items;
         }
+        private const string _recipefilename = "recipe.json";
+        public static Recipes RecipeLoad()
+        {
+            Recipes recipes = null;
+            using (var stream = new StreamReader(_recipefilename, true))
+            {
+                //1行目はカラム名なので捨てる
+                string json = stream.ReadToEnd();
+                recipes = JsonConvert.DeserializeObject<Recipes>(json);
+            }
+            return recipes;
+        }
+
     }
 }
