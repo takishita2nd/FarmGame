@@ -155,7 +155,7 @@ namespace FarmGame.UI
                     GameData.PlayerData.ProcessingExperience += _recipe.cost;
                     if (GameData.PlayerData.ProcessingExperience >= GameData.PlayerData.ProcessingLevel * 25)
                     {
-                        GameData.PlayerData.AgricultureLevel++;
+                        GameData.PlayerData.ProcessingLevel++;
                         _isLevelup = true;
                     }
                 }
