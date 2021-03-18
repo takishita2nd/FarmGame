@@ -69,6 +69,14 @@ namespace FarmGame.UI.Parts
             }
         }
 
+        public int Exp
+        {
+            get
+            {
+                return GameData.GameStatus.Plants[_farm.id].cost;
+            }
+        }
+
         public void SetFarmData(Farm farm)
         {
             _farm = farm;
@@ -156,7 +164,7 @@ namespace FarmGame.UI.Parts
 
         public Quality GetQuolity()
         {
-            int maxQuolity = GameData.GameStatus.Plants[_farm.id].cost * 100;
+            int maxQuolity = GameData.GameStatus.Plants[_farm.id].cost * 150;
             int quolity = _farm.quality * 100 / maxQuolity ;
             return Function.QualityByValue(quolity);
         }

@@ -109,11 +109,11 @@ namespace FarmGame.UI.Parts
             }
         }
 
-        public Model.Material[] GetRecipe()
+        public Model.Recipe GetRecipe()
         {
             if(_recipe != null)
             {
-                return _recipe.material;
+                return _recipe;
             }
             else
             {

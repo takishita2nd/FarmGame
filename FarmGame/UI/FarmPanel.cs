@@ -9,6 +9,7 @@ namespace FarmGame.UI
 {
     class FarmPanel
     {
+        private bool _isLevelup = false;
         private int page;
         private Node _parentNode = null;
         private Button _allCareButton;
@@ -34,6 +35,7 @@ namespace FarmGame.UI
 
         public FarmPanel()
         {
+            _isLevelup = false;
             page = 0;
             int showColumn = GameData.PlayerData.farms.Count;
             if (showColumn > Common.Parameter.FarmPageMaxColumn)
@@ -124,19 +126,33 @@ namespace FarmGame.UI
             _prevPageButton.Hover(position);
         }
 
+        /**
+         * <summary>クリック処理</summary>
+         * */
         public void OnClick(Vector2F position)
         {
+            //ダイアログ表示中
             if(dialog.IsShow)
             {
+                if(_isLevelup)
+                {
+                    dialog.UpdateText(
+                        "農業レベルが上がりました\n(" + GameData.PlayerData.AgricultureLevel.ToString() + ")"
+                        );
+                    _isLevelup = false;
+                    return;
+                }
                 dialog.RemoveNode(_parentNode);
                 return;
             }
+            //種ウィンドウ表示中
             if (seedWindow != null && seedWindow.IsShow())
             {
                 seedWindow.OnClick(position);
                 return;
             }
 
+            //お手入れ/水やりボタン押下
             foreach (var column in farmColunms)
             {
                 if (column.CareButton.Click(position))
@@ -150,8 +166,8 @@ namespace FarmGame.UI
                     return;
                 }
             }
-
-            if(_allCareButton.Click(position))
+            //全お手入れボタン押下
+            if (_allCareButton.Click(position))
             {
                 int count = 0;
                 foreach (var column in farmColunms)
@@ -173,6 +189,7 @@ namespace FarmGame.UI
                 }
                 return;
             }
+            //全水やりボタン押下
             if (_allWaterButton.Click(position))
             {
                 int count = 0;
@@ -195,6 +212,7 @@ namespace FarmGame.UI
                 return;
             }
 
+            //畑アイコンクリック時
             int maxPage = GameData.PlayerData.farms.Count / Common.Parameter.FarmPageMaxColumn;
             foreach(var farmColumn in farmColunms)
             {
@@ -202,18 +220,26 @@ namespace FarmGame.UI
                 {
                     if(!farmColumn.IsValid)
                     {
+                        //畑が空
                         seedWindow = new SeedWindow(_parentNode, farmColumn);
                         seedWindow.Show();
                         return;
                     }
                     else if(farmColumn.IsHarvest)
                     {
+                        //収穫可能
                         int num = 2 + Function.GetRandomValue(0, 3);
                         dialog.SetNode(
                             farmColumn.Name + "を" + num.ToString() + "つ収穫しました\n" + 
                             "(品質" + Function.Quolity2String(farmColumn.GetQuolity()) + ")",
                             _parentNode);
                         GameData.PlayerData.Item[farmColumn.Id + Common.Parameter.SeedIdOffset, Function.Quolity2Index(farmColumn.GetQuolity())] += num;
+                        GameData.PlayerData.AgricultureExperience += farmColumn.Exp;
+                        if(GameData.PlayerData.AgricultureExperience >= GameData.PlayerData.AgricultureLevel * 25)
+                        {
+                            GameData.PlayerData.AgricultureLevel++;
+                            _isLevelup = true;
+                        }
                         farmColumn.Harvest();
                         UpdateDisplay();
                         return;

@@ -6,19 +6,61 @@ namespace FarmGame.Model
 {
     class PlayerData
     {
-        public int AgricultureLevel { get; set; }   //農業レベル
-        public int DairyLevel { get; set; }         //酪農レベル
-        public int ProcessingLevel { get; set; }    //工房レベル
-        public int ManagementLevel { get; set; }    //経営レベル
+        /**
+         * <summary>農業レベル</summary>
+         * */
+        public int AgricultureLevel { get; set; }
+        /**
+         * <summary>酪農レベル</summary>
+         * */
+        public int DairyLevel { get; set; }
+        /**
+         * <summary>工房レベル</summary>
+         * */
+        public int ProcessingLevel { get; set; }
+        /**
+         * <summary>経営レベル</summary>
+         * */
+        public int ManagementLevel { get; set; }
+        /**
+         * <summary>農業経験値</summary>
+         * */
         public int AgricultureExperience { get; set; }
+        /**
+         * <summary>酪農経験値</summary>
+         * */
         public int DairyExperience { get; set; }
+        /**
+         * <summary>工房経験値</summary>
+         * */
         public int ProcessingExperience { get; set; }
+        /**
+         * <summary>経営経験値</summary>
+         * */
         public int ManagementExperience { get; set; }
+        /**
+         * <summary>お金</summary>
+         * */
         public int Money { get; set; }
+        /**
+         * <summary>体力値</summary>
+         * */
         public int Power { get; set; }
+        /**
+         * <summary>最大体力値</summary>
+         * */
         public int MaxPower { get; set; }
+        /**
+         * <summary>農場データ</summary>
+         * */
         public List<Farm> farms { get; set; }
+        /**
+         * <summary>種データ</summary>
+         * */
         public int[] Seed { get; set; }
+        /**
+         * <summary>書字アイテム[アイテムID,品質]</summary>
+         * */
         public int[,] Item { get; set; }
 
         public PlayerData()
@@ -32,7 +74,7 @@ namespace FarmGame.Model
             ProcessingExperience = 0;
             ManagementExperience = 0;
             Money = 100;
-            MaxPower = 3;
+            MaxPower = 10;
             Power = MaxPower;
             farms = new List<Farm>();
             farms.Add(new Farm());

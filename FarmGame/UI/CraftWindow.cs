@@ -22,13 +22,14 @@ namespace FarmGame.UI
         private const int yPosition = 190;
         private const int yInterval = 40;
 
+        private bool _isLevelup = false;
         private bool _isCreated;
         private int _itemId;
-        private Model.Material[] _recipe = null;
+        private Recipe _recipe = null;
         private TextNode[] _text = new TextNode[textLine];
         private Dialog _dialog = null;
 
-        public CraftWindow(int itemId, Model.Material[] recipe, Node parentNode): base(parentNode)
+        public CraftWindow(int itemId, Model.Recipe recipe, Node parentNode): base(parentNode)
         {
             _isCreated = false;
             _itemId = itemId;
@@ -43,23 +44,26 @@ namespace FarmGame.UI
             }
         }
 
+        /**
+         * <summary>クラフトウィンドウ表示</summary>
+         * */
         new public void Show()
         {
             base.Show();
             for (int line = 0; line < textLine - 1; line++)
             {
-                if(line >= _recipe.Length)
+                if(line >= _recipe.material.Length)
                 {
                     break;
                 }
                 int itemNum = 0;
                 for(int q = 0; q < Common.Parameter.QuolityMaxNum; q++)
                 {
-                    itemNum += GameData.PlayerData.Item[_recipe[line].id, q];
+                    itemNum += GameData.PlayerData.Item[_recipe.material[line].id, q];
                 }
-                var item = Function.SearchItemById(_recipe[line].id);
+                var item = Function.SearchItemById(_recipe.material[line].id);
                 _text[line].Text = item.name + ":"
-                    + _recipe[line].num.ToString()
+                    + _recipe.material[line].num.ToString()
                     + "(" + itemNum.ToString() + ")";
                 _parentNode.AddChildNode(_text[line]);
             }
@@ -68,6 +72,9 @@ namespace FarmGame.UI
             _okButton.SetNode(_parentNode);
         }
 
+        /**
+         * <summary>クラフトウィンドウ非表示</summary>
+         * */
         new public void Hide()
         {
             base.Hide();
@@ -77,19 +84,33 @@ namespace FarmGame.UI
             }
         }
 
+        /**
+         * <summary>クリック処理</summary>
+         * */
         override public void OnClick(Vector2F position)
         {
+            //ダイアログ表示中
             if(_dialog != null && _dialog.IsShow)
             {
+                if (_isLevelup)
+                {
+                    _dialog.UpdateText(
+                        "工房レベルが上がりました\n(" + GameData.PlayerData.ProcessingLevel.ToString() + ")"
+                        );
+                    _isLevelup = false;
+                    return;
+                }
                 _isCreated = true;
                 _dialog.RemoveNode(_parentNode);
                 Hide();
+                return;
             }
+            //決定ボタン押下
             if (_okButton.Click(position))
             {
                 int quorityValue = 0;
                 //アイテムを消費
-                foreach(var r in _recipe)
+                foreach(var r in _recipe.material)
                 {
                     int num = r.num;
                     for(int q = 0; q < Common.Parameter.QuolityMaxNum; q++)
@@ -109,7 +130,7 @@ namespace FarmGame.UI
                 }
                 //品質を算出
                 int itemNum = 0;
-                foreach (var r in _recipe)
+                foreach (var r in _recipe.material)
                 {
                     itemNum += r.num;
                 }
@@ -131,6 +152,12 @@ namespace FarmGame.UI
                     Function.SearchItemById(_itemId).name + "を作成しました\n" +
                             "(品質" + Function.Quolity2String(quolity) + ")",
                     _parentNode);
+                    GameData.PlayerData.ProcessingExperience += _recipe.cost;
+                    if (GameData.PlayerData.ProcessingExperience >= GameData.PlayerData.ProcessingLevel * 25)
+                    {
+                        GameData.PlayerData.AgricultureLevel++;
+                        _isLevelup = true;
+                    }
                 }
                 else
                 {
@@ -138,12 +165,14 @@ namespace FarmGame.UI
                     Function.SearchItemById(_itemId).name + "を作成しました\n",
                     _parentNode);
                 }
+                return;
             }
+            //キャンセルボタン押下
             if (_cancelButton.Click(position))
             {
                 Hide();
+                return;
             }
-
         }
     }
 }

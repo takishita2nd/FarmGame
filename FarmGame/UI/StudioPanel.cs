@@ -112,7 +112,7 @@ namespace FarmGame.UI
                     }
                     else
                     {
-                        foreach (var m in recipe)
+                        foreach (var m in recipe.material)
                         {
                             int num = 0;
                             for (int q = 0; q < Common.Parameter.QuolityMaxNum; q++)

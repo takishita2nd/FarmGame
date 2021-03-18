@@ -157,28 +157,31 @@ namespace FarmGame.UI
 
         }
 
+        /**
+         * <summary>ダイアログ表示</summary>
+         * */
         public void SetNode(string message, Node parent)
         {
             foreach (var n in _node)
             {
                 parent.AddChildNode(n);
             }
-            var messages = message.Split("\n");
-            int line = 0;
-            foreach(var m in messages)
+            for (int line = 0; line < 3; line++)
             {
                 _text[line] = new TextNode();
                 _text[line].Font = Font.LoadDynamicFontStrict("HachiMaruPop-Regular.ttf", 40);
-                _text[line].Text = m;
                 _text[line].Color = new Color(255, 255, 255);
                 _text[line].Position = new Vector2F(xPosition, yPosition + _text[line].ContentSize.Y * line + yTextOffset);
                 _text[line].ZOrder = Common.Parameter.ZOrder.Alarm;
                 parent.AddChildNode(_text[line]);
-                line++;
             }
+            UpdateText(message);
             _isShow = true;
         }
 
+        /**
+         * <summary>ダイアログ非表示</summary>
+         * */
         public void RemoveNode(Node parent)
         {
             foreach (var n in _node)
@@ -193,6 +196,22 @@ namespace FarmGame.UI
                 }
             }
             _isShow = false;
+        }
+
+        public void UpdateText(string message)
+        {
+            var messages = message.Split("\n");
+            for (int line = 0; line < 3; line++)
+            {
+                if (line < messages.Length)
+                {
+                    _text[line].Text = messages[line];
+                }
+                else
+                {
+                    _text[line].Text = string.Empty;
+                }
+            }
         }
     }
 }

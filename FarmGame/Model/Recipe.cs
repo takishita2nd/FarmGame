@@ -12,6 +12,7 @@ namespace FarmGame.Model
     public class Recipe
     {
         public int id { get; set; }
+        public int cost { get; set; }
         public Material[] material { get; set; }
     }
 
