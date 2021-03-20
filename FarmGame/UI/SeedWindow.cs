@@ -49,9 +49,12 @@ namespace FarmGame.UI
         }
 
 
-
+        /**
+         * <summary>種ウィンドウのクリック処理</summary>
+         * */
         override public void OnClick(Vector2F position)
         {
+            //OKボタン押下
             if (_okButton.Click(position))
             {
                 foreach(var seedButton in seedButtons)
@@ -59,14 +62,17 @@ namespace FarmGame.UI
                     if (seedButton.GetButtonStatus())
                     {
                         _farmColunm.SetSeed(seedButton.GetSeedId());
+                        GameData.PlayerData.Power--;
                     }
                 }
                 Hide();
             }
-            if(_cancelButton.Click(position))
+            //キャンセルボタン押下
+            if (_cancelButton.Click(position))
             {
                 Hide();
             }
+            //種ボタン押下
             SeedButton pushedSeedButton = null;
             foreach (var seedButton in seedButtons)
             {

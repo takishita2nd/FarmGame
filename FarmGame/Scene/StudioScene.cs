@@ -11,10 +11,10 @@ namespace FarmGame.Scene
     {
         CommonMenu menu = null;
         StudioPanel panel = null;
+        PowerPanel _powerPanel;
 
         public void Update()
         {
-            throw new NotImplementedException();
         }
 
         protected override void OnAdded()
@@ -32,18 +32,18 @@ namespace FarmGame.Scene
             sign.ZOrder = Common.Parameter.ZOrder.Sign;
             AddChildNode(sign);
 
-            PowerPanel powerPanel = new PowerPanel();
-            powerPanel.SetPosition(new Vector2F(sign.Texture.Size.X, 0));
-            powerPanel.SetNode(this);
-            powerPanel.UpdateValue();
+            _powerPanel = new PowerPanel();
+            _powerPanel.SetPosition(new Vector2F(sign.Texture.Size.X, 0));
+            _powerPanel.SetNode(this);
+            _powerPanel.UpdateValue();
 
             MoneyPanel moneyPanel = new MoneyPanel();
-            moneyPanel.SetPosition(new Vector2F(sign.Texture.Size.X, powerPanel.GetHeight()));
+            moneyPanel.SetPosition(new Vector2F(sign.Texture.Size.X, _powerPanel.GetHeight()));
             moneyPanel.SetNode(this);
             moneyPanel.SetValue(100);
 
             WeatherPanel weatherPanel = new WeatherPanel();
-            weatherPanel.SetPosition(new Vector2F(sign.Texture.Size.X, powerPanel.GetHeight() + moneyPanel.GetHeight()));
+            weatherPanel.SetPosition(new Vector2F(sign.Texture.Size.X, _powerPanel.GetHeight() + moneyPanel.GetHeight()));
             weatherPanel.SetNode(this);
             weatherPanel.UpdateValue();
 
@@ -65,6 +65,7 @@ namespace FarmGame.Scene
             {
                 panel.OnClick(position);
                 menu.Click(position, this);
+                _powerPanel.UpdateValue();
             }
         }
     }

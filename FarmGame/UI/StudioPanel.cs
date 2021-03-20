@@ -142,6 +142,9 @@ namespace FarmGame.UI
             }
         }
 
+        /**
+         * <summary>クリック処理</summary>
+         * */
         public void OnClick(Vector2F position)
         {
             if(_craftWindow != null && _craftWindow.IsShow())

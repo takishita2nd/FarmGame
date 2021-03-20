@@ -157,11 +157,21 @@ namespace FarmGame.UI
             {
                 if (column.CareButton.Click(position))
                 {
+                    if (GameData.PlayerData.Power == 0)
+                    {
+                        dialog.SetNode("パワーが足りません", _parentNode);
+                        return;
+                    }
                     column.Care();
                     return;
                 }
                 if (column.WaterButton.Click(position))
                 {
+                    if (GameData.PlayerData.Power == 0)
+                    {
+                        dialog.SetNode("パワーが足りません", _parentNode);
+                        return;
+                    }
                     column.Water();
                     return;
                 }
@@ -221,6 +231,11 @@ namespace FarmGame.UI
                     if(!farmColumn.IsValid)
                     {
                         //畑が空
+                        if (GameData.PlayerData.Power == 0)
+                        {
+                            dialog.SetNode("パワーが足りません", _parentNode);
+                            return;
+                        }
                         seedWindow = new SeedWindow(_parentNode, farmColumn);
                         seedWindow.Show();
                         return;
@@ -228,6 +243,11 @@ namespace FarmGame.UI
                     else if(farmColumn.IsHarvest)
                     {
                         //収穫可能
+                        if (GameData.PlayerData.Power == 0)
+                        {
+                            dialog.SetNode("パワーが足りません", _parentNode);
+                            return;
+                        }
                         int num = 2 + Function.GetRandomValue(0, 3);
                         dialog.SetNode(
                             farmColumn.Name + "を" + num.ToString() + "つ収穫しました\n" + 
@@ -240,6 +260,7 @@ namespace FarmGame.UI
                             GameData.PlayerData.AgricultureLevel++;
                             _isLevelup = true;
                         }
+                        GameData.PlayerData.Power--;
                         farmColumn.Harvest();
                         UpdateDisplay();
                         return;

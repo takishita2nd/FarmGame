@@ -108,6 +108,12 @@ namespace FarmGame.UI
             //決定ボタン押下
             if (_okButton.Click(position))
             {
+                if (GameData.PlayerData.Power < _recipe.cost)
+                {
+                    _dialog = new Dialog();
+                    _dialog.SetNode("パワーが足りません", _parentNode);
+                    return;
+                }
                 int quorityValue = 0;
                 //アイテムを消費
                 foreach(var r in _recipe.material)
@@ -144,6 +150,7 @@ namespace FarmGame.UI
                 {
                     GameData.PlayerData.Seed[_itemId]++;
                 }
+                GameData.PlayerData.Power -= _recipe.cost;
                 //ダイアログ表示
                 _dialog = new Dialog();
                 if (_itemId > Common.Parameter.SeedIdOffset)
