@@ -10,10 +10,10 @@ namespace FarmGame.Scene
     class MarketScene : Node, IScene
     {
         CommonMenu menu = null;
+        MarketPanel panel = null;
 
         public void Update()
         {
-            throw new NotImplementedException();
         }
 
         protected override void OnAdded()
@@ -47,7 +47,8 @@ namespace FarmGame.Scene
             weatherPanel.UpdateValue();
 
             menu = new CommonMenu(this);
-
+            panel = new MarketPanel();
+            panel.SetNode(this);
         }
 
         protected override void OnUpdate()
@@ -55,11 +56,13 @@ namespace FarmGame.Scene
             var position = Engine.Mouse.Position;
 
             menu.OnMouse(position);
+            panel.OnMouse(position);
 
             var mouseStatus = Engine.Mouse.GetMouseButtonState(MouseButton.ButtonLeft);
             if (mouseStatus == ButtonState.Push)
             {
                 menu.Click(position, this);
+                panel.OnClick(position);
             }
         }
     }

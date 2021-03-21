@@ -51,6 +51,18 @@ namespace FarmGame
         private static Texture2D _nextPageButton = null;
         private static Texture2D _nextPageButtonHover = null;
         private static Texture2D _nextPageButtonClick = null;
+        private static Texture2D _marketSeedButton = null;
+        private static Texture2D _marketSeedButtonHover = null;
+        private static Texture2D _marketSeedButtonClick = null;
+        private static Texture2D _marketFoodButton = null;
+        private static Texture2D _marketFoodButtonHover = null;
+        private static Texture2D _marketFoodButtonClick = null;
+        private static Texture2D _marketAnimalButton = null;
+        private static Texture2D _marketAnimalButtonHover = null;
+        private static Texture2D _marketAnimalButtonClick = null;
+        private static Texture2D _marketFarmButton = null;
+        private static Texture2D _marketFarmButtonHover = null;
+        private static Texture2D _marketFarmButtonClick = null;
 
         private static Texture2D _seedButton = null;
         private static Texture2D _seedButtonPush = null;
@@ -559,6 +571,138 @@ namespace FarmGame
                     _nextPageButtonClick = Texture2D.Load("wnext_page_click.png");
                 }
                 return _nextPageButtonClick;
+            }
+        }
+        public static Texture2D MarketSeedButton
+        {
+            get
+            {
+                if (_marketSeedButton == null)
+                {
+                    _marketSeedButton = Texture2D.Load("market_seed_button.png");
+                }
+                return _marketSeedButton;
+            }
+        }
+        public static Texture2D MarketSeedButtonHover
+        {
+            get
+            {
+                if (_marketSeedButtonHover == null)
+                {
+                    _marketSeedButtonHover = Texture2D.Load("market_seed_button_hover.png");
+                }
+                return _marketSeedButtonHover;
+            }
+        }
+        public static Texture2D MarketSeedButtonClick
+        {
+            get
+            {
+                if (_marketSeedButtonClick == null)
+                {
+                    _marketSeedButtonClick = Texture2D.Load("market_seed_button_click.png");
+                }
+                return _marketSeedButtonClick;
+            }
+        }
+        public static Texture2D MarketFoodButton
+        {
+            get
+            {
+                if (_marketFoodButton == null)
+                {
+                    _marketFoodButton = Texture2D.Load("market_food_button.png");
+                }
+                return _marketFoodButton;
+            }
+        }
+        public static Texture2D MarketFoodButtonHover
+        {
+            get
+            {
+                if (_marketFoodButtonHover == null)
+                {
+                    _marketFoodButtonHover = Texture2D.Load("market_food_button_hover.png");
+                }
+                return _marketFoodButtonHover;
+            }
+        }
+        public static Texture2D MarketFoodButtonClick
+        {
+            get
+            {
+                if (_marketFoodButtonClick == null)
+                {
+                    _marketFoodButtonClick = Texture2D.Load("market_food_button_click.png");
+                }
+                return _marketFoodButtonClick;
+            }
+        }
+        public static Texture2D MarketAnimalButton
+        {
+            get
+            {
+                if (_marketAnimalButton == null)
+                {
+                    _marketAnimalButton = Texture2D.Load("market_animal_button.png");
+                }
+                return _marketAnimalButton;
+            }
+        }
+        public static Texture2D MarketAnimalButtonHover
+        {
+            get
+            {
+                if (_marketAnimalButtonHover == null)
+                {
+                    _marketAnimalButtonHover = Texture2D.Load("market_animal_button_hover.png");
+                }
+                return _marketAnimalButtonHover;
+            }
+        }
+        public static Texture2D MarketAnimalButtonClick
+        {
+            get
+            {
+                if (_marketAnimalButtonClick == null)
+                {
+                    _marketAnimalButtonClick = Texture2D.Load("market_animal_button_click.png");
+                }
+                return _marketAnimalButtonClick;
+            }
+        }
+        public static Texture2D MarketFarmButton
+        {
+            get
+            {
+                if (_marketFarmButton == null)
+                {
+                    _marketFarmButton = Texture2D.Load("market_food_button.png");
+                }
+                return _marketFarmButton;
+            }
+        }
+        public static Texture2D MarketFarmButtonHover
+        {
+            get
+            {
+                if (_marketFarmButtonHover == null)
+                {
+                    _marketFarmButtonHover = Texture2D.Load("market_food_button_hover.png");
+                }
+                return _marketFarmButtonHover;
+            }
+        }
+        public static Texture2D MarketFarmButtonClick
+        {
+            get
+            {
+                if (_marketFarmButtonClick == null)
+                {
+                    _marketFarmButtonClick = Texture2D.Load("market_food_button_click.png");
+                }
+                return _marketFarmButtonClick;
             }
         }
 
