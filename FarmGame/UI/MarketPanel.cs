@@ -8,11 +8,12 @@ namespace FarmGame.UI
 {
     class MarketPanel
     {
+        private Node _parentNode;
         private Button _seedButton;
         private Button _foodButton;
         private Button _animalButton;
         private Button _farmButton;
-
+        private ShopWindow _shopWindow = null;
         public MarketPanel()
         {
             _seedButton = new Button(Texture.MarketSeedButton, Texture.MarketSeedButtonHover, Texture.MarketSeedButtonClick);
@@ -30,10 +31,12 @@ namespace FarmGame.UI
             _farmButton = new Button(Texture.MarketFarmButton, Texture.MarketFarmButtonHover, Texture.MarketFarmButtonClick);
             _farmButton.SetPosition(new Vector2F(500, 400));
             _farmButton.SetZOrder(Common.Parameter.ZOrder.Panel);
+
         }
 
         public void SetNode(Node parentNode)
         {
+            _parentNode = parentNode;
             _seedButton.SetNode(parentNode);
             _foodButton.SetNode(parentNode);
             _animalButton.SetNode(parentNode);
@@ -42,15 +45,32 @@ namespace FarmGame.UI
 
         public void OnMouse(Vector2F position)
         {
-            _seedButton.Hover(position);
-            _foodButton.Hover(position);
-            _animalButton.Hover(position);
-            _farmButton.Hover(position);
+            if(_shopWindow != null &&_shopWindow.IsShow())
+            {
+                _shopWindow.OnMouse(position);
+            }
+            else
+            {
+                _seedButton.Hover(position);
+                _foodButton.Hover(position);
+                _animalButton.Hover(position);
+                _farmButton.Hover(position);
+            }
         }
 
         public void OnClick(Vector2F position)
         {
-            _seedButton.Click(position);
+            if (_shopWindow != null && _shopWindow.IsShow())
+            {
+                _shopWindow.OnClick(position);
+                return;
+            }
+            if (_seedButton.Click(position))
+            {
+                _shopWindow = new ShopWindow(_parentNode);
+                _shopWindow.Show();
+                return;
+            }
             _foodButton.Click(position);
             _animalButton.Click(position);
             _farmButton.Click(position);
