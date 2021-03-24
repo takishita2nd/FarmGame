@@ -67,7 +67,7 @@ namespace FarmGame.UI
             }
             if (_seedButton.Click(position))
             {
-                _shopWindow = new ShopWindow(_parentNode);
+                _shopWindow = new ShopWindow(GameData.GameStatus.Shoplists.seed, _parentNode);
                 _shopWindow.Show();
                 return;
             }

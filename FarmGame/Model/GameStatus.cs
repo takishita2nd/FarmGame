@@ -19,6 +19,7 @@ namespace FarmGame.Model
         public List<Plant> Plants { get; set; }
         public List<Item> Items { get; set; }
         public Recipes Recipes { get; set; }
+        public ShopList Shoplists { get; set; }
         public GameStatus()
         {
             Turn = 1;
@@ -26,6 +27,10 @@ namespace FarmGame.Model
             Items = FileAccess.ItemLoad();
             Plants = FileAccess.PlantLoad();
             Recipes = FileAccess.RecipeLoad();
+            Shoplists = new ShopList();
+            Shoplists.seed = new Seed[2];
+            Shoplists.seed[0] = new Seed { id = 0, money = 10 };
+            Shoplists.seed[1] = new Seed { id = 1, money = 30 };
         }
     }
 }

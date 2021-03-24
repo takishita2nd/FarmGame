@@ -1,0 +1,28 @@
+{
+    "shoplist" : {
+        "seed" : [
+            {
+                "id" : 1,
+                "money" : 10
+            }
+        ],
+        "food" :[
+            {
+                "id" : 1,
+                "money" : 10
+            }
+        ],
+        "animal" :[
+            {
+                "id" : 1,
+                "money" : 10
+            }
+        ],
+        "farmshop": [
+            {
+                "id" : 1,
+                "money" : 10
+            }
+        ]
+    }
+}
