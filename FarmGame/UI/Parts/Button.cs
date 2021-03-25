@@ -12,7 +12,7 @@ namespace FarmGame.UI.Parts
         private Texture2D _textureHover = null;
         private Texture2D _textureClick = null;
 
-        public bool IsPushed
+        public bool IsLocked
         {
             get
             {

@@ -182,7 +182,7 @@ namespace FarmGame.UI
                 int count = 0;
                 foreach (var column in farmColunms)
                 {
-                    if (!column.CareButton.IsPushed)
+                    if (!column.CareButton.IsLocked)
                     {
                         count++;
                     }
@@ -205,7 +205,7 @@ namespace FarmGame.UI
                 int count = 0;
                 foreach (var column in farmColunms)
                 {
-                    if (!column.WaterButton.IsPushed)
+                    if (!column.WaterButton.IsLocked)
                     {
                         count++;
                     }

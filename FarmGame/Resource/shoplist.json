@@ -2,27 +2,21 @@
     "shoplist" : {
         "seed" : [
             {
-                "id" : 1,
+                "comment" : "小麦の種",
+                "id" : 0,
                 "money" : 10
+            },
+            {
+                "comment" : "小麦の種",
+                "id" : 1,
+                "money" : 30
             }
         ],
         "food" :[
-            {
-                "id" : 1,
-                "money" : 10
-            }
         ],
         "animal" :[
-            {
-                "id" : 1,
-                "money" : 10
-            }
         ],
         "farmshop": [
-            {
-                "id" : 1,
-                "money" : 10
-            }
         ]
     }
 }

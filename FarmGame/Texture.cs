@@ -678,7 +678,7 @@ namespace FarmGame
             {
                 if (_marketFarmButton == null)
                 {
-                    _marketFarmButton = Texture2D.Load("market_food_button.png");
+                    _marketFarmButton = Texture2D.Load("market_farm_button.png");
                 }
                 return _marketFarmButton;
             }
@@ -689,7 +689,7 @@ namespace FarmGame
             {
                 if (_marketFarmButtonHover == null)
                 {
-                    _marketFarmButtonHover = Texture2D.Load("market_food_button_hover.png");
+                    _marketFarmButtonHover = Texture2D.Load("market_farm_button_hover.png");
                 }
                 return _marketFarmButtonHover;
             }

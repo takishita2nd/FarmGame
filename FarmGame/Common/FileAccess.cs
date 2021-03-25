@@ -54,11 +54,21 @@ namespace FarmGame.Common
             Recipes recipes = null;
             using (var stream = new StreamReader(_recipefilename, true))
             {
-                //1行目はカラム名なので捨てる
                 string json = stream.ReadToEnd();
                 recipes = JsonConvert.DeserializeObject<Recipes>(json);
             }
             return recipes;
+        }
+        private const string _shopfilename = "shoplist.json";
+        public static ShopListRoot ShopListLoad()
+        {
+            ShopListRoot shoplist = null;
+            using (var stream = new StreamReader(_shopfilename, true))
+            {
+                string json = stream.ReadToEnd();
+                shoplist = JsonConvert.DeserializeObject<ShopListRoot>(json);
+            }
+            return shoplist;
         }
 
     }

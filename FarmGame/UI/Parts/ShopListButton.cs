@@ -8,11 +8,31 @@ namespace FarmGame.UI.Parts
 {
     class ShopListButton : ButtonBase
     {
+        private int _id;
+        public int Id 
+        {
+            get
+            {
+                return _id;
+            }
+        }
+        private int _money;
+        public int Money
+        {
+            get
+            {
+                return _money;
+            }
+        }
+
         private Texture2D _texture = null;
         private TextNode _text = null;
 
         public ShopListButton(Texture2D texture, int id, int money) : base()
         {
+            _id = id;
+            _money = money;
+
             _texture = texture;
             _node.Texture = texture;
             _node.ZOrder = Common.Parameter.ZOrder.ShopList;

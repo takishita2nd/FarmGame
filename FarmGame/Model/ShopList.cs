@@ -4,12 +4,17 @@ using System.Text;
 
 namespace FarmGame.Model
 {
+    class ShopListRoot
+    {
+        public ShopList shopList { get; set; }
+    }
+
     class ShopList
     {
         public Seed[] seed { get; set; }
         public Food[] food { get; set; }
         public Animal[] animal { get; set; }
-        public Farm[] farm { get; set; }
+        public Farmshop[] farmshop { get; set; }
     }
 
     public class Seed

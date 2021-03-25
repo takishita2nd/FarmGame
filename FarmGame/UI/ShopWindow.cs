@@ -11,7 +11,8 @@ namespace FarmGame.UI
     {
         Seed[] _seeds = null;
         private List<ShopListButton> shopListButtons = new List<ShopListButton>();
-        
+        NumberInputWindow _numberInputWindow = null;
+
         private const int seedYInterval = 40;
 
         public ShopWindow(Seed[] seeds, Node parentNode) : base(parentNode)
@@ -55,13 +56,39 @@ namespace FarmGame.UI
 
         }
 
+        public override void OnMouse(Vector2F position)
+        {
+            if(_numberInputWindow != null && _numberInputWindow.IsShow())
+            {
+                _numberInputWindow.OnMouse(position);
+                return;
+            }
+            base.OnMouse(position);
+        }
+
         /**
          * <summary>クリック処理</summary>
          * */
         public override void OnClick(Vector2F position)
         {
+            if (_numberInputWindow != null && _numberInputWindow.IsShow())
+            {
+                _numberInputWindow.OnClick(position);
+                return;
+            }
+
+            foreach (var shopListButton in shopListButtons)
+            {
+                if(shopListButton.IsClick(position))
+                {
+                    _numberInputWindow = new NumberInputWindow(_parentNode, shopListButton.Id, shopListButton.Money);
+                    _numberInputWindow.Show();
+                    return;
+                }
+            }
+
             //キャンセルボタン押下
-            if(_cancelButton.IsClick(position))
+            if (_cancelButton.IsClick(position))
             {
                 Hide();
             }

@@ -56,7 +56,7 @@ namespace FarmGame.UI.Parts
             return _valid;
         }
 
-        public void OnMouse(Vector2F position)
+        virtual public void OnMouse(Vector2F position)
         {
             _okButton.Hover(position);
             _cancelButton.Hover(position);
