@@ -9,7 +9,8 @@ namespace FarmGame.Scene
 {
     class ShopScene : Node, IScene
     {
-        CommonMenu menu = null;
+        private CommonMenu menu = null;
+        private ShopPanel shop = null;
 
         public void Update()
         {
@@ -47,7 +48,8 @@ namespace FarmGame.Scene
             weatherPanel.UpdateValue();
 
             menu = new CommonMenu(this);
-
+            shop = new ShopPanel();
+            shop.SetNode(this);
         }
 
         protected override void OnUpdate()

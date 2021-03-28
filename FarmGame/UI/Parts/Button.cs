@@ -20,6 +20,22 @@ namespace FarmGame.UI.Parts
             }
         }
 
+        public int Width
+        {
+            get
+            {
+                return _width;
+            }
+        }
+
+        public int Height
+        {
+            get
+            {
+                return _height;
+            }
+        }
+
         public Button(Texture2D texture, Texture2D textureHover, Texture2D textureClick) : base()
         {
             _locked = false;

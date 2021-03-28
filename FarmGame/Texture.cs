@@ -63,6 +63,12 @@ namespace FarmGame
         private static Texture2D _marketFarmButton = null;
         private static Texture2D _marketFarmButtonHover = null;
         private static Texture2D _marketFarmButtonClick = null;
+        private static Texture2D _deliveryButton = null;
+        private static Texture2D _deliveryButtonHover = null;
+        private static Texture2D _deliveryButtonClick = null;
+        private static Texture2D _destructionButton = null;
+        private static Texture2D _destructionButtonHover = null;
+        private static Texture2D _destructionButtonClick = null;
 
         private static Texture2D _seedButton = null;
         private static Texture2D _seedButtonPush = null;
@@ -705,6 +711,74 @@ namespace FarmGame
                 return _marketFarmButtonClick;
             }
         }
+
+        public static Texture2D DeliveryButton
+        {
+            get
+            {
+                if (_deliveryButton == null)
+                {
+                    _deliveryButton = Texture2D.Load("delivery_button.png");
+                }
+                return _deliveryButton;
+            }
+        }
+        public static Texture2D DeliveryButtonHover
+        {
+            get
+            {
+                if (_deliveryButtonHover == null)
+                {
+                    _deliveryButtonHover = Texture2D.Load("delivery_button_hover.png");
+                }
+                return _deliveryButtonHover;
+            }
+        }
+        public static Texture2D DeliveryButtonClick
+        {
+            get
+            {
+                if (_deliveryButtonClick == null)
+                {
+                    _deliveryButtonClick = Texture2D.Load("delivery_button_click.png");
+                }
+                return _deliveryButtonClick;
+            }
+        }
+        public static Texture2D DestructionButton
+        {
+            get
+            {
+                if (_destructionButton == null)
+                {
+                    _destructionButton = Texture2D.Load("destruction_button.png");
+                }
+                return _destructionButton;
+            }
+        }
+        public static Texture2D DestructionButtonHover
+        {
+            get
+            {
+                if (_destructionButtonHover == null)
+                {
+                    _destructionButtonHover = Texture2D.Load("destruction_button_hover.png");
+                }
+                return _destructionButtonHover;
+            }
+        }
+        public static Texture2D DestructionButtonClick
+        {
+            get
+            {
+                if (_destructionButtonClick == null)
+                {
+                    _destructionButtonClick = Texture2D.Load("destruction_button_click.png");
+                }
+                return _destructionButtonClick;
+            }
+        }
+
 
         public static Texture2D SeedButton
         {
