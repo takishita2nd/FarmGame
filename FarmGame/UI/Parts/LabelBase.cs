@@ -1,27 +1,22 @@
-﻿using System;
+﻿using Altseed2;
+using System;
 using System.Collections.Generic;
 using System.Text;
-using Altseed2;
 
 namespace FarmGame.UI.Parts
 {
-    class PlantWindow
+    class LabelBase
     {
-        private SpriteNode _node;
-        private TextNode _text;
-
-        public PlantWindow()
+        protected SpriteNode _node;
+        protected TextNode _text;
+        public LabelBase()
         {
             _node = new SpriteNode();
             _node.Texture = Texture.FarmWindow;
-            var scale = Texture.FarmWindow.Size.Y * 1.5f / (Texture.FarmTexture1.Size.Y / 8.0f);
-            _node.Scale = new Vector2F(scale, scale);
-            _node.ZOrder = Common.Parameter.ZOrder.Farm;
 
             _text = new TextNode();
             _text.Font = Font.LoadDynamicFontStrict("HachiMaruPop-Regular.ttf", 40);
             _text.Color = new Color(0, 0, 0);
-            _text.ZOrder = Common.Parameter.ZOrder.Farm;
         }
 
         public void SetPosition(Vector2F pos)

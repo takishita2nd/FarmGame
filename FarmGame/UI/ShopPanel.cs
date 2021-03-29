@@ -8,34 +8,42 @@ namespace FarmGame.UI
 {
     class ShopPanel
     {
-        SpriteNode _node;
-        Button _delivery;
-        Button _destruction;
+        private const int LabelXIndex = 30;
+        private const int LabelYIndex = 190;
+        private const int columnInterval = 60;
+
+        private List<RequestColumn> requestColumns = new List<RequestColumn>();
 
         public ShopPanel()
         {
-            _node = new SpriteNode();
-            _node.Texture = Texture.SeedButton;
-            _node.ZOrder = Common.Parameter.ZOrder.Request;
-            _node.Scale = new Vector2F(1.5f, 1.5f);
+            for (int index = 0; index < Common.Parameter.RequestPageMaxColumn; index++)
+            {
+                RequestColumn requestColumn = new RequestColumn();
+                requestColumn.Label.SetPosition(new Vector2F(LabelXIndex, LabelYIndex + columnInterval * index));
+                requestColumn.DeliveryButton.SetZOrder(Common.Parameter.ZOrder.Request);
+                requestColumn.DestructionButton.SetZOrder(Common.Parameter.ZOrder.Farm);
 
-            _delivery = new Button(Texture.DeliveryButton, Texture.DeliveryButtonHover, Texture.DeliveryButtonClick);
-            _delivery.SetZOrder(Common.Parameter.ZOrder.Request);
-            _delivery.SetScale(0.6f);
+                if(index < GameData.PlayerData.Requests.Count)
+                {
+                    requestColumn.SetRequestData(GameData.PlayerData.Requests[index]);
+                }
 
-            _destruction = new Button(Texture.DestructionButton, Texture.DestructionButtonHover, Texture.DestructionButtonClick);
-            _destruction.SetZOrder(Common.Parameter.ZOrder.Request);
-            _destruction.SetScale(0.6f);
+                requestColumns.Add(requestColumn);
+            }
         }
 
         public void SetNode(Node parentNode)
         {
-            _node.Position = new Vector2F(30, 190);
-            parentNode.AddChildNode(_node);
-            _delivery.SetPosition(new Vector2F(30 + _node.ContentSize.X * 1.5f, 190));
-            _delivery.SetNode(parentNode);
-            _destruction.SetPosition(new Vector2F(30 + _node.ContentSize.X * 1.5f + _delivery.Width, 190));
-            _destruction.SetNode(parentNode);
+            int index = 0;
+            foreach(var column in requestColumns)
+            {
+                column.Label.SetNode(parentNode);
+                column.DeliveryButton.SetPosition(new Vector2F(LabelXIndex + column.Label.GetContentWidth(), LabelYIndex + columnInterval * index));
+                column.DeliveryButton.SetNode(parentNode);
+                column.DestructionButton.SetPosition(new Vector2F(LabelXIndex + column.Label.GetContentWidth() + column.DeliveryButton.Width, LabelYIndex + columnInterval * index));
+                column.DestructionButton.SetNode(parentNode);
+                index++;
+            }
         }
 
         public void OnMouse(Vector2F position)

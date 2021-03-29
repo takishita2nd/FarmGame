@@ -59,10 +59,13 @@ namespace FarmGame.Model
          * */
         public int[] Seed { get; set; }
         /**
-         * <summary>書字アイテム[アイテムID,品質]</summary>
+         * <summary>所持アイテム[アイテムID,品質]</summary>
          * */
         public int[,] Item { get; set; }
-
+        /**
+         * <summary>依頼リスト</summary>
+         * */
+        public List<Request> Requests { get; set; }
         public PlayerData()
         {
             AgricultureLevel = 1;
@@ -85,6 +88,9 @@ namespace FarmGame.Model
             Seed = new int[2];
             Seed[0] = 3;
             Seed[1] = 3;
+            Requests = new List<Request>();
+            Requests.Add(new Request() { ItemId = 100, Num = 2 });
+            Requests.Add(new Request() { ItemId = 1001, Num = 2 });
             int itemNum = 1999;
             Item = new int[itemNum, Common.Parameter.QuolityMaxNum];
             for(int i = 0; i < itemNum; i++)

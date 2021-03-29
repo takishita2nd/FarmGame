@@ -17,7 +17,7 @@ namespace FarmGame.UI.Parts
         }
 
         public FarmIcon Icon;
-        public PlantWindow Window;
+        public PlantLabel Window;
         public Button CareButton;
         public Button WaterButton;
         private Model.Farm _farm;
@@ -25,7 +25,7 @@ namespace FarmGame.UI.Parts
         public FarmColunm()
         {
             Icon = new FarmIcon();
-            Window = new PlantWindow();
+            Window = new PlantLabel();
             CareButton = new Button(Texture.CareButton, Texture.CareButtonHover, Texture.CareButtonClick);
             WaterButton = new Button(Texture.WaterButton, Texture.WaterButtonHover, Texture.WaterButtonClick);
         }
