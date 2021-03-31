@@ -57,11 +57,13 @@ namespace FarmGame.Scene
             var position = Engine.Mouse.Position;
 
             menu.OnMouse(position);
+            shop.OnMouse(position);
 
             var mouseStatus = Engine.Mouse.GetMouseButtonState(MouseButton.ButtonLeft);
             if (mouseStatus == ButtonState.Push)
             {
                 menu.Click(position, this);
+                shop.OnClick(position);
             }
         }
     }

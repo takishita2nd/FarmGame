@@ -48,11 +48,19 @@ namespace FarmGame.UI
 
         public void OnMouse(Vector2F position)
         {
-
+            foreach (var column in requestColumns)
+            {
+                column.DeliveryButton.Hover(position);
+                column.DestructionButton.Hover(position);
+            }
         }
-        public void OnClick(Vector2F position)
+            public void OnClick(Vector2F position)
         {
-
+            foreach (var column in requestColumns)
+            {
+                column.DeliveryButton.Click(position);
+                column.DestructionButton.Click(position);
+            }
         }
     }
 }

@@ -134,5 +134,16 @@ namespace FarmGame.Common
                 return Quality.E;
             }
         }
+
+        public static int GetItemNum(int itemId)
+        {
+            int num = 0;
+            for(int i = 0; i < Parameter.QuolityMaxNum; i++)
+            {
+                num += GameData.PlayerData.Item[itemId, i];
+            }
+
+            return num;
+        }
     }
 }
