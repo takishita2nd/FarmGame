@@ -41,5 +41,10 @@ namespace FarmGame.UI.Parts
         {
             _text.Text = text;
         }
+
+        public string GetText()
+        {
+            return _text.Text;
+        }
     }
 }

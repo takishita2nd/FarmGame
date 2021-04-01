@@ -22,6 +22,5 @@ namespace FarmGame.UI.Parts
         {
             return (int)(_node.ContentSize.X * Scale);
         }
-
     }
 }

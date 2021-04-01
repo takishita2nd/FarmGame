@@ -23,6 +23,7 @@ namespace FarmGame.Common
             public const int Seed = 30;
             public const int ShopList = 30;
             public const int NumberInput = 40;
+            public const int Confirm = 40;
             public const int Alarm = 100;
         }
 

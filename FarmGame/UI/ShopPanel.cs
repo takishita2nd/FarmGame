@@ -13,6 +13,8 @@ namespace FarmGame.UI
         private const int columnInterval = 60;
 
         private List<RequestColumn> requestColumns = new List<RequestColumn>();
+        private Node _parentNode;
+        private ConfirmWindow _confirmWindow;
 
         public ShopPanel()
         {
@@ -34,6 +36,7 @@ namespace FarmGame.UI
 
         public void SetNode(Node parentNode)
         {
+            _parentNode = parentNode;
             int index = 0;
             foreach(var column in requestColumns)
             {
@@ -48,18 +51,44 @@ namespace FarmGame.UI
 
         public void OnMouse(Vector2F position)
         {
+            if(_confirmWindow != null && _confirmWindow.IsShow())
+            {
+                _confirmWindow.OnMouse(position);
+                return;
+            }
             foreach (var column in requestColumns)
             {
                 column.DeliveryButton.Hover(position);
                 column.DestructionButton.Hover(position);
             }
         }
-            public void OnClick(Vector2F position)
+
+        public void OnClick(Vector2F position)
         {
+            if (_confirmWindow != null && _confirmWindow.IsShow())
+            {
+                _confirmWindow.OnClick(position);
+                return;
+            }
+
             foreach (var column in requestColumns)
             {
-                column.DeliveryButton.Click(position);
-                column.DestructionButton.Click(position);
+                if(column.DeliveryButton.Click(position))
+                {
+                    _confirmWindow = new ConfirmWindow(_parentNode,
+                        column.Label.GetText() +
+                        "\n納品しますか？");
+                    _confirmWindow.Show();
+                    return;
+                }
+                if(column.DestructionButton.Click(position))
+                {
+                    _confirmWindow = new ConfirmWindow(_parentNode,
+                        column.Label.GetText() +
+                        "\n破棄しますか？");
+                    _confirmWindow.Show();
+                    return;
+                }
             }
         }
     }
