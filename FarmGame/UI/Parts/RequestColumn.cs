@@ -32,7 +32,9 @@ namespace FarmGame.UI.Parts
         public void SetRequestData(Request request)
         {
             _request = request;
-            Label.SetText(Function.SearchItemById(_request.ItemId).name + "×" + _request.Num.ToString());
+            Label.SetText(Function.SearchItemById(_request.ItemId).name + 
+                "×" + _request.Num.ToString() + 
+                "（" + _request.Money.ToString() + "Ｇ）");
 
             //アイテムを所有しているかを確認
             if(Function.GetItemNum(_request.ItemId) >= _request.Num)
@@ -40,6 +42,11 @@ namespace FarmGame.UI.Parts
                 DeliveryButton.Unlock();
             }
             DestructionButton.Unlock();
+        }
+
+        public Request GetRequest()
+        {
+            return _request;
         }
     }
 }

@@ -1,4 +1,5 @@
 ﻿using Altseed2;
+using FarmGame.Common;
 using FarmGame.UI.Parts;
 using System;
 using System.Collections.Generic;
@@ -15,6 +16,7 @@ namespace FarmGame.UI
         private List<RequestColumn> requestColumns = new List<RequestColumn>();
         private Node _parentNode;
         private ConfirmWindow _confirmWindow;
+        private Dialog _dialog;
 
         public ShopPanel()
         {
@@ -65,6 +67,12 @@ namespace FarmGame.UI
 
         public void OnClick(Vector2F position)
         {
+            if( _dialog != null && _dialog.IsShow)
+            {
+                _dialog.RemoveNode(_parentNode);
+                _confirmWindow.Hide();
+            }
+
             if (_confirmWindow != null && _confirmWindow.IsShow())
             {
                 _confirmWindow.OnClick(position);
@@ -76,8 +84,37 @@ namespace FarmGame.UI
                 if(column.DeliveryButton.Click(position))
                 {
                     _confirmWindow = new ConfirmWindow(_parentNode,
-                        column.Label.GetText() +
-                        "\n納品しますか？");
+                        column.Label.GetText() + "\n" +
+                        "納品しますか？\n" +
+                        "(品質の高いものから使用されます)",
+                        () => 
+                        {
+                            var request = column.GetRequest();
+                            int num = request.Num;
+                            int quolity = 0;
+                            for (int q = 0; q < Common.Parameter.QuolityMaxNum; q++)
+                            {
+                                if(GameData.PlayerData.Item[request.ItemId, q] < num)
+                                {
+                                    quolity += Function.Quolity2Value(q) * GameData.PlayerData.Item[request.ItemId, q];
+                                    num -= GameData.PlayerData.Item[request.ItemId, q];
+                                    GameData.PlayerData.Item[request.ItemId, q] = 0;
+                                }
+                                else
+                                {
+                                    quolity += Function.Quolity2Value(q) * num;
+                                    GameData.PlayerData.Item[request.ItemId, q] -= num;
+                                    break;
+                                }
+                            }
+                            Common.Parameter.Quality averageQuolity = Function.QualityByValue(quolity / request.Num);
+                            float bonus = Function.Quolity2Bonus(averageQuolity);
+                            GameData.PlayerData.Money += (int)(request.Money * bonus);
+                            _dialog = new Dialog();
+                            _dialog.SetNode("納品しました\n" +
+                                "(品質" + Function.Quolity2String(averageQuolity) + ")\n" +
+                                "(＋" + (request.Money * bonus).ToString() + "Ｇ)", _parentNode);
+                        });
                     _confirmWindow.Show();
                     return;
                 }
@@ -85,7 +122,12 @@ namespace FarmGame.UI
                 {
                     _confirmWindow = new ConfirmWindow(_parentNode,
                         column.Label.GetText() +
-                        "\n破棄しますか？");
+                        "\n破棄しますか？",
+                        () =>
+                        {
+                            _dialog = new Dialog();
+                            _dialog.SetNode("破棄しました", _parentNode);
+                        });
                     _confirmWindow.Show();
                     return;
                 }

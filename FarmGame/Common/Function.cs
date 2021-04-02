@@ -63,6 +63,26 @@ namespace FarmGame.Common
                     return 6;
             }
         }
+        public static float Quolity2Bonus(Quality quality)
+        {
+            switch (quality)
+            {
+                case Quality.S:
+                    return 2.5f;
+                case Quality.A:
+                    return 2.0f;
+                case Quality.B:
+                    return 1.5f;
+                case Quality.C:
+                    return 1.2f;
+                case Quality.D:
+                    return 1.0f;
+                case Quality.E:
+                    return 0.8f;
+                default:
+                    return 1.0f;
+            }
+        }
 
         private static Random random = null;
         public static int GetRandomValue(int min, int max)

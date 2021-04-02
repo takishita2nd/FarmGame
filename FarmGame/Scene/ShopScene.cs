@@ -11,10 +11,11 @@ namespace FarmGame.Scene
     {
         private CommonMenu menu = null;
         private ShopPanel shop = null;
+        MoneyPanel _moneyPanel;
 
         public void Update()
         {
-            throw new NotImplementedException();
+            
         }
 
         protected override void OnAdded()
@@ -37,13 +38,13 @@ namespace FarmGame.Scene
             powerPanel.SetNode(this);
             powerPanel.UpdateValue();
 
-            MoneyPanel moneyPanel = new MoneyPanel();
-            moneyPanel.SetPosition(new Vector2F(sign.Texture.Size.X, powerPanel.GetHeight()));
-            moneyPanel.SetNode(this);
-            moneyPanel.SetValue(100);
+            _moneyPanel = new MoneyPanel();
+            _moneyPanel.SetPosition(new Vector2F(sign.Texture.Size.X, powerPanel.GetHeight()));
+            _moneyPanel.SetNode(this);
+            _moneyPanel.SetValue(100);
 
             WeatherPanel weatherPanel = new WeatherPanel();
-            weatherPanel.SetPosition(new Vector2F(sign.Texture.Size.X, powerPanel.GetHeight() + moneyPanel.GetHeight()));
+            weatherPanel.SetPosition(new Vector2F(sign.Texture.Size.X, powerPanel.GetHeight() + _moneyPanel.GetHeight()));
             weatherPanel.SetNode(this);
             weatherPanel.UpdateValue();
 
@@ -64,6 +65,7 @@ namespace FarmGame.Scene
             {
                 menu.Click(position, this);
                 shop.OnClick(position);
+                _moneyPanel.SetValue(GameData.PlayerData.Money);
             }
         }
     }

@@ -89,8 +89,8 @@ namespace FarmGame.Model
             Seed[0] = 3;
             Seed[1] = 3;
             Requests = new List<Request>();
-            Requests.Add(new Request() { ItemId = 100, Num = 2 });
-            Requests.Add(new Request() { ItemId = 1001, Num = 2 });
+            Requests.Add(new Request() { ItemId = 100, Num = 2, Money = 100 });
+            Requests.Add(new Request() { ItemId = 1001, Num = 2, Money = 150 });
             int itemNum = 1999;
             Item = new int[itemNum, Common.Parameter.QuolityMaxNum];
             for(int i = 0; i < itemNum; i++)

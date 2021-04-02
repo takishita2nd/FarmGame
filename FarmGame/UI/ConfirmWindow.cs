@@ -14,9 +14,12 @@ namespace FarmGame.UI
         new private Button _okButton;
         new private Button _cancelButton;
         private TextNode[] _message = new TextNode[5];
+        private Action _callback;
 
-        public ConfirmWindow(Node parent, string message) : base(parent)
+        public ConfirmWindow(Node parent, string message, Action confirmCallback) : base(parent)
         {
+            _callback = confirmCallback;
+
             _node.Src = new RectF(0, 680, 300, 220);
             _node.Position = new Vector2F(150, 170);
             _node.ZOrder = Common.Parameter.ZOrder.Confirm;
@@ -91,7 +94,7 @@ namespace FarmGame.UI
         {
             if(_okButton.IsClick(position))
             {
-                Hide();
+                _callback();
             }
             if(_cancelButton.IsClick(position))
             {

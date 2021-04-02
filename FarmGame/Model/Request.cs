@@ -14,5 +14,9 @@ namespace FarmGame.Model
          * <summary>アイテム数</summary>
          * */
         public int Num { get; set; }
+        /**
+         * <summary>報酬</summary>
+         * */
+        public int Money { get; set; }
     }
 }
