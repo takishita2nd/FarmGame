@@ -39,6 +39,7 @@ namespace FarmGame.Common
 
         public const int FarmPageMaxColumn = 5;
         public const int RequestPageMaxColumn = 5;
+        public const int RequestMaxNum = 5;
         public const int QuolityMaxNum = 6;
         public const int SeedIdOffset = 100;
     }

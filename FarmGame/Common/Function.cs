@@ -165,5 +165,26 @@ namespace FarmGame.Common
 
             return num;
         }
+
+        public static Request GetNewRequest()
+        {
+            //リクエスト対象となるアイテムを検索
+            List<Item> items = new List<Item>();
+            foreach(var i in GameData.GameStatus.Items)
+            {
+                if(i.level >= 1 && i.level <= GameData.PlayerData.ManagementLevel)
+                {
+                    items.Add(i);
+                }
+            }
+            Request request = new Request();
+            int index = GetRandomValue(0, items.Count - 1);
+            request.Valid = true;
+            request.ItemId = items[index].id;
+            request.Num = GetRandomValue(1, RequestMaxNum);
+            request.Money = items[index].level * request.Num * 10;
+
+            return request;
+        }
     }
 }

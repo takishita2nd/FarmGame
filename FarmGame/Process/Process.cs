@@ -1,4 +1,5 @@
 ﻿using FarmGame.Common;
+using FarmGame.Model;
 using FarmGame.Scene;
 using FarmGame.UI;
 using System;
@@ -14,6 +15,7 @@ namespace FarmGame.Process
             GameData.PlayerData.Power = GameData.PlayerData.MaxPower;
 
             farmProcess();
+            ShopProcess();
 
             scene.Update();
         }
@@ -33,6 +35,19 @@ namespace FarmGame.Process
                     farm.water = false;
                     farm.care = false;
                 }
+            }
+        }
+
+        private static void ShopProcess()
+        {
+            //削除されているリクエストがあればリクエストを追加する
+            for(int index = 0; index < Parameter.RequestPageMaxColumn; index++)
+            {
+                if(!GameData.PlayerData.Requests[index].Valid)
+                {
+                    GameData.PlayerData.Requests[index] = Function.GetNewRequest();
+                }
+                index++;
             }
         }
     }

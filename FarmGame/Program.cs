@@ -13,6 +13,9 @@ namespace FarmGame
 
             Engine.AddNode(new MainScene());
 
+            //ゲームデータの初期化
+            GameData.Initialize();
+
             while (Engine.DoEvents())
             {
                 // エンジンを更新

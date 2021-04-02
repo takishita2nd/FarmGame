@@ -14,6 +14,21 @@ namespace FarmGame.UI.Parts
         public Button DestructionButton;
         private Request _request;
 
+        public bool Valid
+        {
+            get
+            {
+                if(_request == null)
+                {
+                    return false;
+                }
+                else
+                {
+                    return _request.Valid;
+                }
+            }
+        }
+
         public RequestColumn()
         {
             Label = new RequestLabel();
@@ -42,6 +57,14 @@ namespace FarmGame.UI.Parts
                 DeliveryButton.Unlock();
             }
             DestructionButton.Unlock();
+        }
+
+        public void DeleteRequest()
+        {
+            Label.SetText(string.Empty);
+            DeliveryButton.Lock();
+            DestructionButton.Lock();
+            _request.Valid = false;
         }
 
         public Request GetRequest()

@@ -41,7 +41,7 @@ namespace FarmGame.Common
                 while (line != null)
                 {
                     var str = line.Split(",");
-                    Item item = new Item() { id = int.Parse(str[0]), name = str[1] };
+                    Item item = new Item() { id = int.Parse(str[0]), name = str[1], level = int.Parse(str[2]) };
                     items.Add(item);
                     line = stream.ReadLine();
                 }

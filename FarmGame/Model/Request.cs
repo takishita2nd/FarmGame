@@ -7,6 +7,10 @@ namespace FarmGame.Model
     class Request
     {
         /**
+         * <summary>有効・無効</summary>
+         * */
+        public bool Valid { get; set; }
+        /**
          * <summary>アイテムID</summary>
          * */
         public int ItemId { get; set; }

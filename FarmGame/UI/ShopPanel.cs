@@ -114,6 +114,8 @@ namespace FarmGame.UI
                             _dialog.SetNode("納品しました\n" +
                                 "(品質" + Function.Quolity2String(averageQuolity) + ")\n" +
                                 "(＋" + (request.Money * bonus).ToString() + "Ｇ)", _parentNode);
+                            column.DeleteRequest();
+
                         });
                     _confirmWindow.Show();
                     return;
@@ -127,9 +129,21 @@ namespace FarmGame.UI
                         {
                             _dialog = new Dialog();
                             _dialog.SetNode("破棄しました", _parentNode);
+                            column.DeleteRequest();
                         });
                     _confirmWindow.Show();
                     return;
+                }
+            }
+        }
+
+        public void RequestUpdate()
+        {
+            for (int index = 0; index < Common.Parameter.RequestPageMaxColumn; index++)
+            {
+                if (!requestColumns[index].Valid)
+                {
+                    requestColumns[index].SetRequestData(GameData.PlayerData.Requests[index]);
                 }
             }
         }

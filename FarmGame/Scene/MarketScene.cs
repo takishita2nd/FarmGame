@@ -11,6 +11,7 @@ namespace FarmGame.Scene
     {
         CommonMenu menu = null;
         MarketPanel panel = null;
+        PowerPanel _powerPanel;
         MoneyPanel _moneyPanel;
 
         public void Update()
@@ -32,18 +33,18 @@ namespace FarmGame.Scene
             sign.ZOrder = Common.Parameter.ZOrder.Sign;
             AddChildNode(sign);
 
-            PowerPanel powerPanel = new PowerPanel();
-            powerPanel.SetPosition(new Vector2F(sign.Texture.Size.X, 0));
-            powerPanel.SetNode(this);
-            powerPanel.UpdateValue();
+            _powerPanel = new PowerPanel();
+            _powerPanel.SetPosition(new Vector2F(sign.Texture.Size.X, 0));
+            _powerPanel.SetNode(this);
+            _powerPanel.UpdateValue();
 
             _moneyPanel = new MoneyPanel();
-            _moneyPanel.SetPosition(new Vector2F(sign.Texture.Size.X, powerPanel.GetHeight()));
+            _moneyPanel.SetPosition(new Vector2F(sign.Texture.Size.X, _powerPanel.GetHeight()));
             _moneyPanel.SetNode(this);
             _moneyPanel.SetValue(GameData.PlayerData.Money);
 
             WeatherPanel weatherPanel = new WeatherPanel();
-            weatherPanel.SetPosition(new Vector2F(sign.Texture.Size.X, powerPanel.GetHeight() + _moneyPanel.GetHeight()));
+            weatherPanel.SetPosition(new Vector2F(sign.Texture.Size.X, _powerPanel.GetHeight() + _moneyPanel.GetHeight()));
             weatherPanel.SetNode(this);
             weatherPanel.UpdateValue();
 
@@ -64,6 +65,7 @@ namespace FarmGame.Scene
             {
                 menu.Click(position, this);
                 panel.OnClick(position);
+                _powerPanel.UpdateValue();
                 _moneyPanel.SetValue(GameData.PlayerData.Money);
             }
         }

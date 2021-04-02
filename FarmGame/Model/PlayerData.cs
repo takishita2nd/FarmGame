@@ -1,4 +1,5 @@
-﻿using System;
+﻿using FarmGame.Common;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
@@ -66,40 +67,5 @@ namespace FarmGame.Model
          * <summary>依頼リスト</summary>
          * */
         public List<Request> Requests { get; set; }
-        public PlayerData()
-        {
-            AgricultureLevel = 1;
-            DairyLevel = 1;
-            ProcessingLevel = 1;
-            ManagementLevel = 1;
-            AgricultureExperience = 0;
-            DairyExperience = 0;
-            ProcessingExperience = 0;
-            ManagementExperience = 0;
-            Money = 100;
-            MaxPower = 10;
-            Power = MaxPower;
-            farms = new List<Farm>();
-            farms.Add(new Farm());
-            farms.Add(new Farm());
-            farms.Add(new Farm());
-            farms.Add(new Farm());
-            farms.Add(new Farm());
-            Seed = new int[2];
-            Seed[0] = 3;
-            Seed[1] = 3;
-            Requests = new List<Request>();
-            Requests.Add(new Request() { ItemId = 100, Num = 2, Money = 100 });
-            Requests.Add(new Request() { ItemId = 1001, Num = 2, Money = 150 });
-            int itemNum = 1999;
-            Item = new int[itemNum, Common.Parameter.QuolityMaxNum];
-            for(int i = 0; i < itemNum; i++)
-            {
-                for(int j = 0; j < Common.Parameter.QuolityMaxNum; j++)
-                {
-                    Item[i, j] = 0;
-                }
-            }
-        }
     }
 }

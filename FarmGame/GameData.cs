@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using Altseed2;
 using FarmGame.Model;
+using FarmGame.Common;
 
 namespace FarmGame
 {
@@ -15,10 +16,6 @@ namespace FarmGame
         {
             get
             {
-                if (_gameStatus == null)
-                {
-                    _gameStatus = new GameStatus();
-                }
                 return _gameStatus;
             }
         }
@@ -27,11 +24,48 @@ namespace FarmGame
         {
             get
             {
-                if (_playerData == null)
-                {
-                    _playerData = new PlayerData();
-                }
                 return _playerData;
+            }
+        }
+
+        public static void Initialize()
+        {
+            _gameStatus = new GameStatus();
+            _playerData = new PlayerData();
+            _playerData.AgricultureLevel = 1;
+            _playerData.DairyLevel = 1;
+            _playerData.ProcessingLevel = 1;
+            _playerData.ManagementLevel = 1;
+            _playerData.AgricultureExperience = 0;
+            _playerData.DairyExperience = 0;
+            _playerData.ProcessingExperience = 0;
+            _playerData.ManagementExperience = 0;
+            _playerData.Money = 100;
+            _playerData.MaxPower = 10;
+            _playerData.Power = _playerData.MaxPower;
+            _playerData.farms = new List<Farm>();
+            _playerData.farms.Add(new Farm());
+            _playerData.farms.Add(new Farm());
+            _playerData.farms.Add(new Farm());
+            _playerData.farms.Add(new Farm());
+            _playerData.farms.Add(new Farm());
+            _playerData.Seed = new int[2];
+            _playerData.Seed[0] = 3;
+            _playerData.Seed[1] = 3;
+            _playerData.Requests = new List<Request>();
+            int itemNum = 1999;
+            _playerData.Item = new int[itemNum, Parameter.QuolityMaxNum];
+            for (int i = 0; i < itemNum; i++)
+            {
+                for (int j = 0; j < Parameter.QuolityMaxNum; j++)
+                {
+                    _playerData.Item[i, j] = 0;
+                }
+            }
+
+            for (int i = 0; i < Parameter.RequestMaxNum; i++)
+            {
+                _playerData.Requests.Add(Function.GetNewRequest());
             }
         }
 
