@@ -12,6 +12,7 @@ namespace FarmGame.Process
     {
         public static void Run(IScene scene)
         {
+            GameData.PlayerData.Turn++;
             GameData.PlayerData.Power = GameData.PlayerData.MaxPower;
 
             farmProcess();

@@ -13,7 +13,6 @@ namespace FarmGame.Scene
 
         public void Update()
         {
-            throw new NotImplementedException();
         }
 
         protected override void OnAdded()

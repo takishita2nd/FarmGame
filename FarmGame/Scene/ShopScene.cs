@@ -16,6 +16,7 @@ namespace FarmGame.Scene
 
         public void Update()
         {
+            _moneyPanel.SetValue(GameData.PlayerData.Money);
             shop.RequestUpdate();
         }
 
@@ -42,7 +43,7 @@ namespace FarmGame.Scene
             _moneyPanel = new MoneyPanel();
             _moneyPanel.SetPosition(new Vector2F(sign.Texture.Size.X, _powerPanel.GetHeight()));
             _moneyPanel.SetNode(this);
-            _moneyPanel.SetValue(100);
+            _moneyPanel.SetValue(GameData.PlayerData.Money);
 
             WeatherPanel weatherPanel = new WeatherPanel();
             weatherPanel.SetPosition(new Vector2F(sign.Texture.Size.X, _powerPanel.GetHeight() + _moneyPanel.GetHeight()));

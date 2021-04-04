@@ -33,7 +33,7 @@ namespace FarmGame.UI.Parts
         {
             get
             {
-                return Function.SearchItemById(_request.ItemId).level;
+                return Function.SearchItemById(_request.ItemId).level * _request.Num;
             }
         }
 

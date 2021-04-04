@@ -32,6 +32,7 @@ namespace FarmGame
         {
             _gameStatus = new GameStatus();
             _playerData = new PlayerData();
+            _playerData.Turn = 1;
             _playerData.AgricultureLevel = 1;
             _playerData.DairyLevel = 1;
             _playerData.ProcessingLevel = 1;

@@ -8,6 +8,10 @@ namespace FarmGame.Model
     class PlayerData
     {
         /**
+         * <summary>経過ターン</summary>
+         * */
+        public int Turn { get; set; }
+        /**
          * <summary>農業レベル</summary>
          * */
         public int AgricultureLevel { get; set; }
