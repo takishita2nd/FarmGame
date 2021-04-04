@@ -13,6 +13,7 @@ namespace FarmGame.UI
         private const int LabelYIndex = 190;
         private const int columnInterval = 60;
 
+        private bool _isLevelup = false;
         private List<RequestColumn> requestColumns = new List<RequestColumn>();
         private Node _parentNode;
         private ConfirmWindow _confirmWindow;
@@ -20,6 +21,7 @@ namespace FarmGame.UI
 
         public ShopPanel()
         {
+            _isLevelup = false;
             for (int index = 0; index < Common.Parameter.RequestPageMaxColumn; index++)
             {
                 RequestColumn requestColumn = new RequestColumn();
@@ -69,8 +71,17 @@ namespace FarmGame.UI
         {
             if( _dialog != null && _dialog.IsShow)
             {
+                if (_isLevelup)
+                {
+                    _dialog.UpdateText(
+                        "経営レベルが上がりました\n(" + GameData.PlayerData.ManagementLevel.ToString() + ")"
+                        );
+                    _isLevelup = false;
+                    return;
+                }
                 _dialog.RemoveNode(_parentNode);
                 _confirmWindow.Hide();
+                return;
             }
 
             if (_confirmWindow != null && _confirmWindow.IsShow())
@@ -115,6 +126,19 @@ namespace FarmGame.UI
                                 "(品質" + Function.Quolity2String(averageQuolity) + ")\n" +
                                 "(＋" + (request.Money * bonus).ToString() + "Ｇ)", _parentNode);
                             column.DeleteRequest();
+                            //納品出来なくなったリクエストはロックする
+                            foreach (var column2 in requestColumns)
+                            {
+                                column2.ButtonUpdate();
+                            }
+                            GameData.PlayerData.ManagementExperience += column.Exp;
+                            if (GameData.PlayerData.ManagementExperience >= GameData.PlayerData.ManagementLevel * 25)
+                            {
+                                GameData.PlayerData.ManagementExperience -= GameData.PlayerData.ManagementLevel * 25;
+                                GameData.PlayerData.ManagementLevel++;
+                                GameData.PlayerData.MaxPower++;
+                                _isLevelup = true;
+                            }
 
                         });
                     _confirmWindow.Show();

@@ -29,6 +29,14 @@ namespace FarmGame.UI.Parts
             }
         }
 
+        public int Exp
+        {
+            get
+            {
+                return Function.SearchItemById(_request.ItemId).level;
+            }
+        }
+
         public RequestColumn()
         {
             Label = new RequestLabel();
@@ -52,11 +60,19 @@ namespace FarmGame.UI.Parts
                 "（" + _request.Money.ToString() + "Ｇ）");
 
             //アイテムを所有しているかを確認
-            if(Function.GetItemNum(_request.ItemId) >= _request.Num)
+            if (Function.GetItemNum(_request.ItemId) >= _request.Num)
             {
                 DeliveryButton.Unlock();
             }
             DestructionButton.Unlock();
+        }
+
+        public void ButtonUpdate()
+        {
+            if (Function.GetItemNum(_request.ItemId) < _request.Num)
+            {
+                DeliveryButton.Lock();
+            }
         }
 
         public void DeleteRequest()

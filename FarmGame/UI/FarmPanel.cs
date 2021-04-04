@@ -257,6 +257,7 @@ namespace FarmGame.UI
                         GameData.PlayerData.AgricultureExperience += farmColumn.Exp;
                         if(GameData.PlayerData.AgricultureExperience >= GameData.PlayerData.AgricultureLevel * 25)
                         {
+                            GameData.PlayerData.AgricultureExperience -= GameData.PlayerData.AgricultureLevel * 25;
                             GameData.PlayerData.AgricultureLevel++;
                             _isLevelup = true;
                         }
