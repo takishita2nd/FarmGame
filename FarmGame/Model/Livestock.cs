@@ -4,15 +4,11 @@ using System.Text;
 
 namespace FarmGame.Model
 {
-    class Plant
+    class Livestock
     {
-        //種ID
-        public int id { get; set;}
-
-        //名前
+        public int id { get; set; }
         public string name { get; set; }
-
-        //育成コスト
         public int cost { get; set; }
+        public int product { get; set; }
     }
 }

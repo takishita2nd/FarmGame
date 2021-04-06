@@ -15,7 +15,7 @@ namespace FarmGame.UI.Parts
         public void UpdateValue()
         {
             string weather = string.Empty;
-            switch(GameData.GameStatus.Weather)
+            switch(GameData.PlayerData.Weather)
             {
                 case Model.GameStatus.WeatherParameter.Sunny:
                     weather = "晴れ";

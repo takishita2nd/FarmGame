@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
+using static FarmGame.Model.GameStatus;
 
 namespace FarmGame.Model
 {
@@ -11,6 +12,7 @@ namespace FarmGame.Model
          * <summary>経過ターン</summary>
          * */
         public int Turn { get; set; }
+        public WeatherParameter Weather { get; set; }
         /**
          * <summary>農業レベル</summary>
          * */
@@ -60,9 +62,14 @@ namespace FarmGame.Model
          * */
         public List<Farm> farms { get; set; }
         /**
+         * <summary>牧場データ</summary>
+         * */
+        public List<Ranch> ranches { get; set; }
+        /**
          * <summary>種データ</summary>
          * */
         public int[] Seed { get; set; }
+
         /**
          * <summary>所持アイテム[アイテムID,品質]</summary>
          * */

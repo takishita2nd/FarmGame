@@ -1,4 +1,5 @@
 ﻿using Altseed2;
+using FarmGame.Common;
 using FarmGame.Model;
 using System;
 using System.Collections.Generic;
@@ -8,6 +9,12 @@ namespace FarmGame.UI.Parts
 {
     class ShopListButton : ButtonBase
     {
+        public enum Type
+        {
+            Seed,
+            Animal
+        }
+
         private int _id;
         public int Id 
         {
@@ -25,13 +32,23 @@ namespace FarmGame.UI.Parts
             }
         }
 
+        private Type _type;
+        public Type type
+        {
+            get
+            {
+                return _type;
+            }
+        }
+
         private Texture2D _texture = null;
         private TextNode _text = null;
 
-        public ShopListButton(Texture2D texture, int id, int money) : base()
+        public ShopListButton(Texture2D texture, int id, int money, Type type) : base()
         {
             _id = id;
             _money = money;
+            _type = type;
 
             _texture = texture;
             _node.Texture = texture;
@@ -41,7 +58,18 @@ namespace FarmGame.UI.Parts
             _text.Font = Font.LoadDynamicFontStrict("HachiMaruPop-Regular.ttf", 40);
             _text.Color = new Color(0, 0, 0);
             _text.ZOrder = Common.Parameter.ZOrder.ShopList;
-            _text.Text = GameData.GameStatus.Items[id].name + "：" + money.ToString() + "Ｇ";
+            switch (type)
+            {
+                case Type.Seed:
+                    _text.Text = GameData.GameStatus.Items[id].name + "：" + money.ToString() + "Ｇ";
+                    break;
+                case Type.Animal:
+                    _text.Text = Function.SearchItemById(id + 200).name + "：" + money.ToString() + "Ｇ";
+                    break;
+                default:
+                    break;
+            }
+
 
             _width = 300;
             _height = 35;

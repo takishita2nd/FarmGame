@@ -21,12 +21,31 @@ namespace FarmGame.Common
                 while (line != null)
                 {
                     var str = line.Split(",");
-                    Plant plant = new Plant() {id = int.Parse(str[0]), name = str[1], cost = int.Parse(str[2]), money = int.Parse(str[3])};
+                    Plant plant = new Plant() {id = int.Parse(str[0]), name = str[1], cost = int.Parse(str[2])};
                     plants.Add(plant);
                     line = stream.ReadLine();
                 }
             }
             return plants;
+        }
+        private const string _animalfilename = "animal.csv";
+        public static List<Livestock> AnimalLoad()
+        {
+            List<Livestock> animals = new List<Livestock>();
+            using (var stream = new StreamReader(_animalfilename, true))
+            {
+                //1行目はカラム名なので捨てる
+                string? line = stream.ReadLine();
+                line = stream.ReadLine();
+                while (line != null)
+                {
+                    var str = line.Split(",");
+                    Livestock animal = new Livestock() { id = int.Parse(str[0]), name = str[1], cost = int.Parse(str[2]), product = int.Parse(str[3]) };
+                    animals.Add(animal);
+                    line = stream.ReadLine();
+                }
+            }
+            return animals;
         }
 
         private const string _itemfilename = "item.csv";

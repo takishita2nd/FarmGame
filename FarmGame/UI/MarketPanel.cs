@@ -72,7 +72,12 @@ namespace FarmGame.UI
                 return;
             }
             _foodButton.Click(position);
-            _animalButton.Click(position);
+            if(_animalButton.Click(position))
+            {
+                _shopWindow = new ShopWindow(GameData.GameStatus.Shoplist.shopList.animal, _parentNode);
+                _shopWindow.Show();
+                return;
+            }
             _farmButton.Click(position);
         }
     }

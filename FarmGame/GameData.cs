@@ -4,6 +4,7 @@ using System.Text;
 using Altseed2;
 using FarmGame.Model;
 using FarmGame.Common;
+using static FarmGame.Model.GameStatus;
 
 namespace FarmGame
 {
@@ -32,6 +33,7 @@ namespace FarmGame
         {
             _gameStatus = new GameStatus();
             _playerData = new PlayerData();
+            _playerData.Weather = WeatherParameter.Sunny;
             _playerData.Turn = 1;
             _playerData.AgricultureLevel = 1;
             _playerData.DairyLevel = 1;

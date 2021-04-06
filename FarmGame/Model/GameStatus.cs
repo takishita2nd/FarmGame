@@ -14,18 +14,16 @@ namespace FarmGame.Model
             Rain,
         }
 
-        public WeatherParameter Weather { get; set; }
-        public int Turn { get; set; }
         public List<Plant> Plants { get; set; }
         public List<Item> Items { get; set; }
+        public List<Livestock> Animals { get; set; }
         public Recipes Recipes { get; set; }
         public ShopListRoot Shoplist { get; set; }
         public GameStatus()
         {
-            Turn = 1;
-            Weather = WeatherParameter.Sunny;
             Items = FileAccess.ItemLoad();
             Plants = FileAccess.PlantLoad();
+            Animals = FileAccess.AnimalLoad();
             Recipes = FileAccess.RecipeLoad();
             Shoplist = FileAccess.ShopListLoad();
         }

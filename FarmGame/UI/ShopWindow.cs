@@ -1,4 +1,5 @@
 ﻿using Altseed2;
+using FarmGame.Common;
 using FarmGame.Model;
 using FarmGame.UI.Parts;
 using System;
@@ -9,7 +10,6 @@ namespace FarmGame.UI
 {
     class ShopWindow : WindowBase
     {
-        Seed[] _seeds = null;
         private List<ShopListButton> shopListButtons = new List<ShopListButton>();
         NumberInputWindow _numberInputWindow = null;
 
@@ -17,14 +17,22 @@ namespace FarmGame.UI
 
         public ShopWindow(Seed[] seeds, Node parentNode) : base(parentNode)
         {
-            _seeds = seeds;
             foreach (var seed in seeds)
             {
                 if (GameData.PlayerData.Seed.Length > seed.id)
                 {
-                    ShopListButton shopListButton = new ShopListButton(Texture.SeedButton, seed.id, seed.money);
+                    ShopListButton shopListButton = new ShopListButton(Texture.SeedButton, seed.id, seed.money, ShopListButton.Type.Seed);
                     shopListButtons.Add(shopListButton);
                 }
+            }
+        }
+
+        public ShopWindow(Animal[] animals, Node parentNode) : base(parentNode)
+        {
+            foreach (var animal in animals)
+            {
+                ShopListButton shopListButton = new ShopListButton(Texture.SeedButton, animal.id, animal.money, ShopListButton.Type.Animal); ;
+                shopListButtons.Add(shopListButton);
             }
         }
 
@@ -81,8 +89,14 @@ namespace FarmGame.UI
             {
                 if(shopListButton.IsClick(position))
                 {
-                    _numberInputWindow = new NumberInputWindow(_parentNode, shopListButton.Id, shopListButton.Money);
-                    _numberInputWindow.Show();
+                    if(shopListButton.type == ShopListButton.Type.Seed)
+                    {
+                        _numberInputWindow = new NumberInputWindow(_parentNode, shopListButton.Id, shopListButton.Money);
+                        _numberInputWindow.Show();
+                    }
+                    else
+                    {
+                    }
                     return;
                 }
             }
