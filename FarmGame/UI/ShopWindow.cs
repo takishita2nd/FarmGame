@@ -12,6 +12,8 @@ namespace FarmGame.UI
     {
         private List<ShopListButton> shopListButtons = new List<ShopListButton>();
         NumberInputWindow _numberInputWindow = null;
+        ConfirmWindow _confirmWindow = null;
+        Dialog _dialog = null;
 
         private const int seedYInterval = 40;
 
@@ -66,9 +68,18 @@ namespace FarmGame.UI
 
         public override void OnMouse(Vector2F position)
         {
+            if(_dialog != null && _dialog.IsShow)
+            {
+                return;
+            }
             if(_numberInputWindow != null && _numberInputWindow.IsShow())
             {
                 _numberInputWindow.OnMouse(position);
+                return;
+            }
+            if (_confirmWindow != null && _confirmWindow.IsShow())
+            {
+                _confirmWindow.OnMouse(position);
                 return;
             }
             base.OnMouse(position);
@@ -79,9 +90,19 @@ namespace FarmGame.UI
          * */
         public override void OnClick(Vector2F position)
         {
+            if (_dialog != null && _dialog.IsShow)
+            {
+                _dialog.RemoveNode(_parentNode);
+                return;
+            }
             if (_numberInputWindow != null && _numberInputWindow.IsShow())
             {
                 _numberInputWindow.OnClick(position);
+                return;
+            }
+            if (_confirmWindow != null && _confirmWindow.IsShow())
+            {
+                _confirmWindow.OnClick(position);
                 return;
             }
 
@@ -94,8 +115,31 @@ namespace FarmGame.UI
                         _numberInputWindow = new NumberInputWindow(_parentNode, shopListButton.Id, shopListButton.Money);
                         _numberInputWindow.Show();
                     }
-                    else
+                    else if(shopListButton.type == ShopListButton.Type.Animal)
                     {
+                        if(GameData.PlayerData.Money >= shopListButton.Money)
+                        {
+                            _confirmWindow = new ConfirmWindow(_parentNode,
+                                Function.SearchItemById(shopListButton.Id + 200).name + "を購入しますか？\n" +
+                                "(" + shopListButton.Money.ToString() + "Ｇ)",
+                                () => {
+                                    _dialog = new Dialog();
+                                    _dialog.SetNode(
+                                        Function.SearchItemById(shopListButton.Id + 200).name + "を購入しました",
+                                        _parentNode);
+                                    //お金を払う
+                                    GameData.PlayerData.Money -= shopListButton.Money;
+                                    //動物の追加
+                                    GameData.PlayerData.ranches.Add(new Ranch() { id = shopListButton.Id, growth = 0, quality = 0 });
+                                    _confirmWindow.Hide();
+                                });
+                            _confirmWindow.Show();
+                        }
+                        else
+                        {
+                            _dialog = new Dialog();
+                            _dialog.SetNode("お金が足りません。", _parentNode);
+                        }
                     }
                     return;
                 }

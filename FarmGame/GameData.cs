@@ -43,7 +43,7 @@ namespace FarmGame
             _playerData.DairyExperience = 0;
             _playerData.ProcessingExperience = 0;
             _playerData.ManagementExperience = 0;
-            _playerData.Money = 100;
+            _playerData.Money = 1000;
             _playerData.MaxPower = 10;
             _playerData.Power = _playerData.MaxPower;
             _playerData.farms = new List<Farm>();
@@ -55,6 +55,7 @@ namespace FarmGame
             _playerData.Seed = new int[2];
             _playerData.Seed[0] = 3;
             _playerData.Seed[1] = 3;
+            _playerData.ranches = new List<Ranch>();
             _playerData.Requests = new List<Request>();
             int itemNum = 1999;
             _playerData.Item = new int[itemNum, Parameter.QuolityMaxNum];
