@@ -9,13 +9,6 @@ namespace FarmGame.UI.Parts
 {
     class FarmColunm
     {
-        public enum Status
-        {
-            Empty,
-            Growth,
-            Harvest
-        }
-
         public FarmIcon Icon;
         public PlantLabel Window;
         public Button CareButton;
