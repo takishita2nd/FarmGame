@@ -82,6 +82,8 @@ namespace FarmGame
         private static Texture2D _farmWindow = null;
         private static Texture2D _seedWindow = null;
 
+        private static Texture2D _mapChip = null;
+
         public static Texture2D Window
         {
             get
@@ -902,6 +904,18 @@ namespace FarmGame
                     _seedWindow = Texture2D.Load("284244.png");
                 }
                 return _seedWindow;
+            }
+        }
+
+        public static Texture2D MapChip
+        {
+            get
+            {
+                if (_mapChip == null)
+                {
+                    _mapChip = Texture2D.Load("chip23a_forest_fall.png");
+                }
+                return _mapChip;
             }
         }
 

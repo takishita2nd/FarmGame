@@ -5,17 +5,17 @@ using System.Text;
 
 namespace FarmGame.UI.Parts
 {
-    class RequestLabel : LabelBase
+    class RanchLabel : LabelBase
     {
         private const float Scale = 1.5f;
-        public RequestLabel()
+        public RanchLabel()
         {
             _node.Texture = Texture.SeedButton;
-            _node.ZOrder = Common.Parameter.ZOrder.Request;
+            _node.ZOrder = Common.Parameter.ZOrder.Ranch;
             _node.Scale = new Vector2F(Scale, Scale);
 
             _text.Color = new Color(0, 0, 0);
-            _text.ZOrder = Common.Parameter.ZOrder.Request;
+            _text.ZOrder = Common.Parameter.ZOrder.Ranch;
         }
 
         public int GetContentWidth()
