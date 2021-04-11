@@ -1,4 +1,5 @@
-﻿using System;
+﻿using FarmGame.Model;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
@@ -35,5 +36,9 @@ namespace FarmGame.UI.Parts
             }
         }
 
+        public void SetRanchData(Ranch ranch)
+        {
+            _ranch = ranch;
+        }
     }
 }
