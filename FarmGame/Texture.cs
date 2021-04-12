@@ -83,6 +83,8 @@ namespace FarmGame
         private static Texture2D _seedWindow = null;
 
         private static Texture2D _mapChip = null;
+        private static Texture2D _chikinTexture = null;
+        private static Texture2D _cowTexture = null;
 
         public static Texture2D Window
         {
@@ -916,6 +918,29 @@ namespace FarmGame
                     _mapChip = Texture2D.Load("chip23a_forest_fall.png");
                 }
                 return _mapChip;
+            }
+        }
+
+        public static Texture2D Chikin
+        {
+            get
+            {
+                if (_chikinTexture == null)
+                {
+                    _chikinTexture = Texture2D.Load("largechicken.png");
+                }
+                return _chikinTexture;
+            }
+        }
+        public static Texture2D Cow
+        {
+            get
+            {
+                if (_cowTexture == null)
+                {
+                    _cowTexture = Texture2D.Load("morecows.png");
+                }
+                return _cowTexture;
             }
         }
 

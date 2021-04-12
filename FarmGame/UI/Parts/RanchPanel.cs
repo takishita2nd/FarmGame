@@ -18,16 +18,19 @@ namespace FarmGame.UI.Parts
         private Button _allCareButton;
         private Button _nextPageButton;
         private Button _prevPageButton;
+        private int page;
 
         public RanchPanel()
         {
+            page = 0;
             for (int i = 0; i < Common.Parameter.RanchPageMaxColumn; i++)
             {
                 ranchColumns[i] = new RanchColumn();
                 ranchColumns[i].Icon.SetPosition(new Vector2F(iconXIndex, iconYIndex + columnInterval * i));
-                ranchColumns[i].Window.SetPosition(new Vector2F(windowXIndex + ranchColumns[i].Icon.Width, windowYIndex + columnInterval * i));
-                ranchColumns[i].CareButton.SetPosition(new Vector2F(iconXIndex + ranchColumns[i].Icon.Width + ranchColumns[i].Window.GetContentWidth() + 10,
-                    windowYIndex + columnInterval * i));
+                int xPos = windowXIndex + ranchColumns[i].Icon.Width;
+                ranchColumns[i].Window.SetPosition(new Vector2F(xPos, windowYIndex + columnInterval * i));
+                xPos += ranchColumns[i].Window.GetContentWidth() + 10;
+                ranchColumns[i].CareButton.SetPosition(new Vector2F(xPos, windowYIndex + columnInterval * i));
             }
 
             int j = 0;
@@ -38,6 +41,7 @@ namespace FarmGame.UI.Parts
                     break;
                 }
                 ranchColumns[j].SetRanchData(r);
+                j++;
             }
             _allCareButton = new Button(Texture.AllCareButton, Texture.AllCareButtonHover, Texture.AllCareButtonClick);
             _allCareButton.SetPosition(new Vector2F(iconXIndex + ranchColumns[Common.Parameter.RanchPageMaxColumn - 1].Icon.Width + ranchColumns[Common.Parameter.RanchPageMaxColumn - 1].Window.GetContentWidth() + 10,
@@ -68,8 +72,22 @@ namespace FarmGame.UI.Parts
                 r.CareButton.SetNode(parentNode);
             }
             _allCareButton.SetNode(parentNode);
-            _prevPageButton.SetNode(parentNode);
-            _nextPageButton.SetNode(parentNode);
+            if (page != 0)
+            {
+                _prevPageButton.SetNode(parentNode);
+            }
+            if (GameData.PlayerData.ranches.Count > Common.Parameter.RanchPageMaxColumn)
+            {
+                _nextPageButton.SetNode(parentNode);
+            }
+        }
+
+        public void Animetion()
+        {
+            foreach (var r in ranchColumns)
+            {
+                r.Icon.Animetion();
+            }
         }
     }
 

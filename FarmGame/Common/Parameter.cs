@@ -20,6 +20,7 @@ namespace FarmGame.Common
             public const int Ranch = 10;
             public const int Item = 10;
             public const int Request = 10;
+            public const int Animal = 11;
             public const int Dialog = 25;
             public const int Seed = 30;
             public const int ShopList = 30;

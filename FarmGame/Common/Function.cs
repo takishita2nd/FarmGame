@@ -186,5 +186,21 @@ namespace FarmGame.Common
 
             return request;
         }
+
+        public static RanchIcon.Type GetId2RanchType(int id)
+        {
+            if(id == 200)
+            {
+                return RanchIcon.Type.Chicken;
+            }
+            else if(id == 201)
+            {
+                return RanchIcon.Type.Cow;
+            }
+            else
+            {
+                return RanchIcon.Type.Empty;
+            }
+        }
     }
 }

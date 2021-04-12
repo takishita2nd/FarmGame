@@ -52,8 +52,15 @@ namespace FarmGame.Scene
             _ranchPanel.SetNode(this);
         }
 
+        int frameCount = 0;
         protected override void OnUpdate()
         {
+            if(frameCount > Engine.TargetFPS / 4)
+            {
+                frameCount = 0;
+                _ranchPanel.Animetion();
+            }
+            frameCount++;
             var position = Engine.Mouse.Position;
 
             menu.OnMouse(position);

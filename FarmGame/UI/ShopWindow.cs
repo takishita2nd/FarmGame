@@ -120,12 +120,12 @@ namespace FarmGame.UI
                         if(GameData.PlayerData.Money >= shopListButton.Money)
                         {
                             _confirmWindow = new ConfirmWindow(_parentNode,
-                                Function.SearchItemById(shopListButton.Id + 200).name + "を購入しますか？\n" +
+                                Function.SearchItemById(shopListButton.Id).name + "を購入しますか？\n" +
                                 "(" + shopListButton.Money.ToString() + "Ｇ)",
                                 () => {
                                     _dialog = new Dialog();
                                     _dialog.SetNode(
-                                        Function.SearchItemById(shopListButton.Id + 200).name + "を購入しました",
+                                        Function.SearchItemById(shopListButton.Id).name + "を購入しました",
                                         _parentNode);
                                     //お金を払う
                                     GameData.PlayerData.Money -= shopListButton.Money;

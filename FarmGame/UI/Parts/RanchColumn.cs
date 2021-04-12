@@ -1,4 +1,5 @@
-﻿using FarmGame.Model;
+﻿using FarmGame.Common;
+using FarmGame.Model;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -19,6 +20,7 @@ namespace FarmGame.UI.Parts
             CareButton = new Button(Texture.CareButton, Texture.CareButtonHover, Texture.CareButtonClick);
             CareButton.SetZOrder(Common.Parameter.ZOrder.Ranch);
             CareButton.SetScale(0.6f);
+            CareButton.Lock();
         }
 
         public bool Valid
@@ -39,6 +41,9 @@ namespace FarmGame.UI.Parts
         public void SetRanchData(Ranch ranch)
         {
             _ranch = ranch;
+            Icon.SetClip(Function.GetId2RanchType(_ranch.id), _ranch.growth);
+            Window.SetText(Function.SearchItemById(_ranch.id).name);
+            CareButton.Unlock();
         }
     }
 }

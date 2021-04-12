@@ -64,7 +64,7 @@ namespace FarmGame.UI.Parts
                     _text.Text = GameData.GameStatus.Items[id].name + "：" + money.ToString() + "Ｇ";
                     break;
                 case Type.Animal:
-                    _text.Text = Function.SearchItemById(id + 200).name + "：" + money.ToString() + "Ｇ";
+                    _text.Text = Function.SearchItemById(id).name + "：" + money.ToString() + "Ｇ";
                     break;
                 default:
                     break;
