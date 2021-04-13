@@ -41,9 +41,39 @@ namespace FarmGame.UI.Parts
         public void SetRanchData(Ranch ranch)
         {
             _ranch = ranch;
-            Icon.SetClip(Function.GetId2RanchType(_ranch.id), _ranch.growth);
-            Window.SetText(Function.SearchItemById(_ranch.id).name);
-            CareButton.Unlock();
+            if(ranch == null)
+            {
+                Icon.SetClip(RanchIcon.Type.Empty, 0);
+                Window.SetText(string.Empty);
+                CareButton.Lock();
+            }
+            else
+            {
+                Icon.SetClip(Function.GetId2RanchType(_ranch.id), _ranch.growth);
+                Window.SetText(Function.SearchItemById(_ranch.id).name);
+                if(_ranch.care)
+                {
+                    CareButton.Lock();
+                }
+                else
+                {
+                    CareButton.Unlock();
+                }
+            }
         }
+        /**
+         * <summary>お手入れ処理</summary>
+         * */
+        public void Care()
+        {
+            if (_ranch != null && !_ranch.care)
+            {
+                _ranch.care = true;
+                _ranch.quality += GameData.PlayerData.DairyLevel;
+                GameData.PlayerData.Power--;
+                CareButton.Lock();
+            }
+        }
+
     }
 }

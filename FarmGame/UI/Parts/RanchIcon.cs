@@ -26,6 +26,7 @@ namespace FarmGame.UI.Parts
         private SpriteNode _animal = null;
         private Type _type = Type.Empty;
         private int _anime = 0;
+        private Node _parentNode = null;
 
         private float width;
         public int Width
@@ -36,6 +37,10 @@ namespace FarmGame.UI.Parts
             }
         }
         private float height;
+
+        private float animeWidth = 48.0f;
+        private float animeHeight = 48.0f;
+
         public int Height
         {
             get
@@ -63,8 +68,6 @@ namespace FarmGame.UI.Parts
 
         public void SetClip(Type type, int growth)
         {
-            float width;
-            float height;
             float x;
             float y;
 
@@ -73,28 +76,26 @@ namespace FarmGame.UI.Parts
             {
                 case Type.Empty:
                     _animal.Texture = null;
+                    _animal.Src = new RectF(0, 0, 0, 0);
                     break;
                 case Type.Chicken:
                     _animal.Texture = Texture.Chikin;
-                    width = _animal.ContentSize.X / wchipnum;
-                    height = _animal.ContentSize.Y / hchipnum;
                     x = 0;
-                    y = height;
-                    _animal.Src = new RectF(x, y, width, height);
+                    y = animeHeight;
+                    _animal.Src = new RectF(x, y, animeWidth, animeHeight);
                     break;
                 case Type.Cow:
                     _animal.Texture = Texture.Cow;
-                    width = _animal.ContentSize.X / wchipnum;
-                    height = _animal.ContentSize.Y / hchipnum;
                     x = 0;
-                    y = height;
-                    _animal.Src = new RectF(x, y, width, height);
+                    y = animeHeight;
+                    _animal.Src = new RectF(x, y, animeWidth, animeHeight);
                     break;
             }
         }
 
         public override void SetNode(Node parent)
         {
+            _parentNode = parent;
             base.SetNode(parent);
             parent.AddChildNode(_animal);
         }
@@ -109,8 +110,6 @@ namespace FarmGame.UI.Parts
 
         public void Animetion()
         {
-            float width = _animal.ContentSize.X;
-            float height = _animal.ContentSize.Y;
             float x;
             float y;
 
@@ -121,14 +120,14 @@ namespace FarmGame.UI.Parts
                     switch (_type)
                     {
                         case Type.Chicken:
-                            x = width;
-                            y = height;
-                            _animal.Src = new RectF(x, y, width, height);
+                            x = animeWidth;
+                            y = animeHeight;
+                            _animal.Src = new RectF(x, y, animeWidth, animeHeight);
                             break;
                         case Type.Cow:
-                            x = width;
-                            y = height;
-                            _animal.Src = new RectF(x, y, width, height);
+                            x = animeWidth;
+                            y = animeHeight;
+                            _animal.Src = new RectF(x, y, animeWidth, animeHeight);
                             break;
                     }
                     break;
@@ -139,13 +138,13 @@ namespace FarmGame.UI.Parts
                     {
                         case Type.Chicken:
                             x = 0;
-                            y = height;
-                            _animal.Src = new RectF(x, y, width, height);
+                            y = animeHeight;
+                            _animal.Src = new RectF(x, y, animeWidth, animeHeight);
                             break;
                         case Type.Cow:
                             x = 0;
-                            y = height;
-                            _animal.Src = new RectF(x, y, width, height);
+                            y = animeHeight;
+                            _animal.Src = new RectF(x, y, animeWidth, animeHeight);
                             break;
                     }
                     break;

@@ -43,7 +43,7 @@ namespace FarmGame
             _playerData.DairyExperience = 0;
             _playerData.ProcessingExperience = 0;
             _playerData.ManagementExperience = 0;
-            _playerData.Money = 2000;
+            _playerData.Money = 20000;
             _playerData.MaxPower = 10;
             _playerData.Power = _playerData.MaxPower;
             _playerData.farms = new List<Farm>();

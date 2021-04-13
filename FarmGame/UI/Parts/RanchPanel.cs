@@ -19,6 +19,9 @@ namespace FarmGame.UI.Parts
         private Button _nextPageButton;
         private Button _prevPageButton;
         private int page;
+        private Node _parentNode = null;
+        private Dialog dialog = new Dialog();
+        private bool _isLevelup = false;
 
         public RanchPanel()
         {
@@ -36,7 +39,7 @@ namespace FarmGame.UI.Parts
             int j = 0;
             foreach(var r in GameData.PlayerData.ranches)
             {
-                if(j > Common.Parameter.RanchPageMaxColumn)
+                if(j >= Common.Parameter.RanchPageMaxColumn)
                 {
                     break;
                 }
@@ -65,7 +68,8 @@ namespace FarmGame.UI.Parts
 
         public void SetNode(Node parentNode)
         {
-            foreach(var r in ranchColumns)
+            _parentNode = parentNode;
+            foreach (var r in ranchColumns)
             {
                 r.Icon.SetNode(parentNode);
                 r.Window.SetNode(parentNode);
@@ -89,6 +93,119 @@ namespace FarmGame.UI.Parts
                 r.Icon.Animetion();
             }
         }
+
+        public void OnMouse(Vector2F position)
+        {
+            if (dialog.IsShow)
+            {
+                return;
+            }
+
+            foreach (var column in ranchColumns)
+            {
+                column.CareButton.Hover(position);
+            }
+            _allCareButton.Hover(position);
+            _nextPageButton.Hover(position);
+            _prevPageButton.Hover(position);
+
+        }
+
+        public void OnClick(Vector2F position)
+        {
+            //ダイアログ表示中
+            if (dialog.IsShow)
+            {
+                if (_isLevelup)
+                {
+                    dialog.UpdateText(
+                        "酪農レベルが上がりました\n(" + GameData.PlayerData.DairyLevel.ToString() + ")"
+                        );
+                    _isLevelup = false;
+                    return;
+                }
+                dialog.RemoveNode(_parentNode);
+                return;
+            }
+
+            //お手入れボタン押下
+            foreach (var column in ranchColumns)
+            {
+                if (column.CareButton.Click(position))
+                {
+                    if (GameData.PlayerData.Power == 0)
+                    {
+                        dialog.SetNode("パワーが足りません", _parentNode);
+                        return;
+                    }
+                    column.Care();
+                    return;
+                }
+            }
+            //全お手入れボタン押下
+            if (_allCareButton.Click(position))
+            {
+                int count = 0;
+                foreach (var column in ranchColumns)
+                {
+                    if (!column.CareButton.IsLocked)
+                    {
+                        count++;
+                    }
+                }
+                if (count > GameData.PlayerData.Power)
+                {
+                    dialog.SetNode("パワーが足りません", _parentNode);
+                    return;
+                }
+
+                foreach (var column in ranchColumns)
+                {
+                    column.Care();
+                }
+                return;
+            }
+            int maxPage = GameData.PlayerData.ranches.Count / Common.Parameter.RanchPageMaxColumn;
+
+            if (_nextPageButton.Click(position))
+            {
+                page++;
+                if (page == maxPage - 1)
+                {
+                    _nextPageButton.RemoveNode(_parentNode);
+                }
+                _prevPageButton.SetNode(_parentNode);
+                UpdateDisplay();
+            }
+            if (_prevPageButton.Click(position))
+            {
+                page--;
+                if (page == 0)
+                {
+                    _prevPageButton.RemoveNode(_parentNode);
+                }
+                _nextPageButton.SetNode(_parentNode);
+                UpdateDisplay();
+            }
+
+        }
+        public void UpdateDisplay()
+        {
+            int index = page * Common.Parameter.RanchPageMaxColumn;
+            foreach (var ranchColumn in ranchColumns)
+            {
+                if(index < GameData.PlayerData.ranches.Count)
+                {
+                    ranchColumn.SetRanchData(GameData.PlayerData.ranches[index]);
+                    index++;
+                }
+                else
+                {
+                    ranchColumn.SetRanchData(null);
+                }
+            }
+        }
+
     }
 
 }

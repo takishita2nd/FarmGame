@@ -202,5 +202,17 @@ namespace FarmGame.Common
                 return RanchIcon.Type.Empty;
             }
         }
+
+        public static Livestock SearchAnimalById(int id)
+        {
+            foreach(var a in GameData.GameStatus.Animals)
+            {
+                if(a.id == id)
+                {
+                    return a;
+                }
+            }
+            return null;
+        }
     }
 }

@@ -103,6 +103,9 @@ namespace FarmGame.UI
             }
         }
 
+        /**
+         * <summary>マウスカーソル処理</summary>
+         * */
         public void OnMouse(Vector2F position)
         {
             if (dialog.IsShow)

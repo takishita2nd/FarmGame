@@ -16,6 +16,7 @@ namespace FarmGame.Process
             GameData.PlayerData.Power = GameData.PlayerData.MaxPower;
 
             farmProcess();
+            ranchProcess();
             ShopProcess();
 
             scene.Update();
@@ -28,7 +29,6 @@ namespace FarmGame.Process
                 if(farm.valid)
                 {
                     farm.growth += 100 / GameData.GameStatus.Plants[farm.id].cost + Function.GetRandomValue(0, 10);
-                    farm.quality += GameData.PlayerData.AgricultureLevel;
                     if (!farm.water)
                     {
                         farm.quality /= 2;
@@ -36,6 +36,15 @@ namespace FarmGame.Process
                     farm.water = false;
                     farm.care = false;
                 }
+            }
+        }
+
+        private static void ranchProcess()
+        {
+            foreach (var ranch in GameData.PlayerData.ranches)
+            {
+                ranch.growth += 100 / Function.SearchAnimalById(ranch.id).cost + Function.GetRandomValue(0, 10);
+                ranch.care = false;
             }
         }
 

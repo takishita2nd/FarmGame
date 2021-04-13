@@ -15,6 +15,7 @@ namespace FarmGame.Scene
         RanchPanel _ranchPanel;
         public void Update()
         {
+            _ranchPanel.UpdateDisplay();
         }
 
         protected override void OnAdded()
@@ -64,11 +65,13 @@ namespace FarmGame.Scene
             var position = Engine.Mouse.Position;
 
             menu.OnMouse(position);
+            _ranchPanel.OnMouse(position);
 
             var mouseStatus = Engine.Mouse.GetMouseButtonState(MouseButton.ButtonLeft);
             if (mouseStatus == ButtonState.Push)
             {
                 menu.Click(position, this);
+                _ranchPanel.OnClick(position);
                 _powerPanel.UpdateValue();
                 _moneyPanel.SetValue(GameData.PlayerData.Money);
             }

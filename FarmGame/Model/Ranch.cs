@@ -8,6 +8,7 @@ namespace FarmGame.Model
     {
         //動物ID
         public int id { get; set; }
+        public bool care { get; set; }
         //成長度
         public int growth { get; set; }
         //品質
