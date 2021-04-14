@@ -28,15 +28,13 @@ namespace FarmGame.UI.Parts
         private int _anime = 0;
         private Node _parentNode = null;
 
-        private float width;
         public int Width
         {
             get
             {
-                return (int)width;
+                return _width;
             }
         }
-        private float height;
 
         private float animeWidth = 48.0f;
         private float animeHeight = 48.0f;
@@ -45,7 +43,7 @@ namespace FarmGame.UI.Parts
         {
             get
             {
-                return (int)height;
+                return _height;
             }
         }
 
@@ -61,8 +59,8 @@ namespace FarmGame.UI.Parts
 
             _node.Src = new RectF(xPosition * xsize, yPosition * ysize, xsize, ysize);
             _node.Scale = new Vector2F(scale, scale);
-            width = xsize * scale;
-            height = ysize * scale;
+            _width = (int)(xsize * scale);
+            _height = (int)(ysize * scale);
             _node.ZOrder = Common.Parameter.ZOrder.Ranch;
         }
 

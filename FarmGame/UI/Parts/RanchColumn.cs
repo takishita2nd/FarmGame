@@ -3,6 +3,7 @@ using FarmGame.Model;
 using System;
 using System.Collections.Generic;
 using System.Text;
+using static FarmGame.Common.Parameter;
 
 namespace FarmGame.UI.Parts
 {
@@ -37,6 +38,50 @@ namespace FarmGame.UI.Parts
                 }
             }
         }
+        public int Id
+        {
+            get
+            {
+                if (_ranch == null)
+                {
+                    return -1;
+                }
+                else
+                {
+                    return _ranch.id;
+                }
+            }
+        }
+        public int Exp
+        {
+            get
+            {
+                return Function.SearchAnimalById(_ranch.id).cost;
+            }
+        }
+
+        public bool IsHarvest
+        {
+            get
+            {
+                if (_ranch != null && _ranch.growth >= 100)
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+        }
+
+        public string HarvestItemName
+        {
+            get
+            {
+                return Function.SearchItemById(Function.SearchAnimalById(_ranch.id).product).name;
+            }
+        }
 
         public void SetRanchData(Ranch ranch)
         {
@@ -50,8 +95,16 @@ namespace FarmGame.UI.Parts
             else
             {
                 Icon.SetClip(Function.GetId2RanchType(_ranch.id), _ranch.growth);
-                Window.SetText(Function.SearchItemById(_ranch.id).name);
-                if(_ranch.care)
+                if(_ranch.growth < 100)
+                {
+                    Window.SetText(Function.SearchItemById(_ranch.id).name);
+                }
+                else
+                {
+                    Window.SetText(Function.SearchItemById(_ranch.id).name + 
+                        "(" + HarvestItemName + ")");
+                }
+                if (_ranch.care)
                 {
                     CareButton.Lock();
                 }
@@ -73,6 +126,19 @@ namespace FarmGame.UI.Parts
                 GameData.PlayerData.Power--;
                 CareButton.Lock();
             }
+        }
+        public Quality GetQuolity()
+        {
+            int maxQuolity = Function.SearchAnimalById(_ranch.id).cost * 150;
+            int quolity = _ranch.quality * 100 / maxQuolity;
+            return Function.QualityByValue(quolity);
+        }
+        public void Harvest()
+        {
+            _ranch.growth = 0;
+            _ranch.care = false;
+            _ranch.quality = 0;
+            CareButton.Lock();
         }
 
     }

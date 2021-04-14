@@ -43,7 +43,10 @@ namespace FarmGame.Process
         {
             foreach (var ranch in GameData.PlayerData.ranches)
             {
-                ranch.growth += 100 / Function.SearchAnimalById(ranch.id).cost + Function.GetRandomValue(0, 10);
+                if(ranch.growth <= 100)
+                {
+                    ranch.growth += 100 / Function.SearchAnimalById(ranch.id).cost + Function.GetRandomValue(0, 10);
+                }
                 ranch.care = false;
             }
         }

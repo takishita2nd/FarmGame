@@ -1,7 +1,9 @@
 ﻿using Altseed2;
+using FarmGame.Common;
 using System;
 using System.Collections.Generic;
 using System.Text;
+using static FarmGame.Common.Parameter;
 
 namespace FarmGame.UI.Parts
 {
@@ -165,6 +167,42 @@ namespace FarmGame.UI.Parts
                 }
                 return;
             }
+
+            //収穫処理
+            foreach(var column in ranchColumns)
+            {
+                if(column.Icon.IsClick(position))
+                {
+                    if(column.Valid && column.IsHarvest)
+                    {
+                        //収穫可能
+                        if (GameData.PlayerData.Power == 0)
+                        {
+                            dialog.SetNode("パワーが足りません", _parentNode);
+                            return;
+                        }
+                        int num = 2 + Function.GetRandomValue(0, 3);
+                        Quality q = column.GetQuolity();
+                        dialog.SetNode(
+                            column.HarvestItemName + "を" + num.ToString() + "つ収穫しました\n" +
+                            "(品質" + Function.Quolity2String(q) + ")",
+                            _parentNode);
+                        GameData.PlayerData.Item[Function.SearchAnimalById(column.Id).product, Function.Quolity2Index(q)] += num;
+                        GameData.PlayerData.DairyExperience += column.Exp;
+                        if (GameData.PlayerData.DairyExperience >= GameData.PlayerData.DairyLevel * 25)
+                        {
+                            GameData.PlayerData.DairyExperience -= GameData.PlayerData.DairyLevel * 25;
+                            GameData.PlayerData.DairyLevel++;
+                            _isLevelup = true;
+                        }
+                        GameData.PlayerData.Power--;
+                        column.Harvest();
+                        UpdateDisplay();
+                    }
+                }
+            }
+
+            //ページング処理
             int maxPage = GameData.PlayerData.ranches.Count / Common.Parameter.RanchPageMaxColumn;
 
             if (_nextPageButton.Click(position))
