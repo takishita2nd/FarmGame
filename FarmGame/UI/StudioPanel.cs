@@ -43,6 +43,11 @@ namespace FarmGame.UI
                         keeprecipe = recipe;
                     }
                 }
+
+                if(keeprecipe == null)
+                {
+                    continue;
+                }
                 button[row, col] = new ItemButton(Texture.ItemButton, Texture.ItemButtonValid, item.id, keeprecipe);
                 button[row, col].SetPosition(new Vector2F(xpos + xinterval * row, ypos + yinterval * col));
                 button[row, col].SetZOrder(Common.Parameter.ZOrder.Item);
