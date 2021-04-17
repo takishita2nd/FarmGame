@@ -42,6 +42,27 @@ namespace FarmGame.Common
                     return string.Empty;
             }
         }
+        public static Quality String2Quolity(string quality)
+        {
+            switch (quality)
+            {
+                case "S":
+                    return Quality.S;
+                case "A":
+                    return Quality.A;
+                case "B":
+                    return Quality.B;
+                case "C":
+                    return Quality.C;
+                case "D":
+                    return Quality.D;
+                case "E":
+                    return Quality.E;
+                default:
+                    return Quality.Empty;
+            }
+        }
+
 
         public static int Quolity2Index(Quality quality)
         {

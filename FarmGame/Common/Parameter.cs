@@ -36,7 +36,8 @@ namespace FarmGame.Common
             B,
             C,
             D,
-            E
+            E,
+            Empty
         }
 
         public const int FarmPageMaxColumn = 5;
@@ -45,5 +46,6 @@ namespace FarmGame.Common
         public const int RequestMaxNum = 5;
         public const int QuolityMaxNum = 6;
         public const int SeedIdOffset = 100;
+        public const int ItemIdOffset = 1000;
     }
 }

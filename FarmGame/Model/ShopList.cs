@@ -27,6 +27,7 @@ namespace FarmGame.Model
     {
         public int id { get; set; }
         public int money { get; set; }
+        public string quolity { get; set; }
     }
 
     public class Animal

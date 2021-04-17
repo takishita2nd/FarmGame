@@ -28,12 +28,27 @@ namespace FarmGame.UI
         private const string upString = "▲";
         private const string downString = "▼";
         private Dialog _dialog;
+        private Common.Parameter.Quality _quority;
 
         public NumberInputWindow(Node parent, int id, int money) : base(parent)
         {
             _id = id;
             _money = money;
+            _quority = Common.Parameter.Quality.Empty;
 
+            createWindow(id, money);
+        }
+        public NumberInputWindow(Node parent, int id, int money, Common.Parameter.Quality quality) : base(parent)
+        {
+            _id = id;
+            _money = money;
+            _quority = quality;
+
+            createWindow(id, money);
+        }
+
+        private void createWindow(int id, int money)
+        {
             _node.Src = new RectF(0, 680, 300, 220);
             _node.Position = new Vector2F(150, 170);
             _node.ZOrder = Common.Parameter.ZOrder.NumberInput;
@@ -48,7 +63,14 @@ namespace FarmGame.UI
             _itemName = new TextNode();
             _itemName.Font = Font.LoadDynamicFontStrict("HachiMaruPop-Regular.ttf", 40);
             _itemName.Color = new Color(0, 0, 0);
-            _itemName.Text = Function.SearchItemById(id).name;
+            if(_quority == Common.Parameter.Quality.Empty)
+            {
+                _itemName.Text = Function.SearchItemById(id).name;
+            }
+            else
+            {
+                _itemName.Text = Function.SearchItemById(id).name + "(品質:" + Function.Quolity2String(_quority) + ")";
+            }
             _itemName.Position = new Vector2F(200, 200);
             _itemName.ZOrder = Common.Parameter.ZOrder.NumberInput;
 
@@ -109,7 +131,6 @@ namespace FarmGame.UI
             _cancelButton.SetPosition(new Vector2F(430, 410));
             _cancelButton.SetScale(buttonScale);
             _cancelButton.SetZOrder(Common.Parameter.ZOrder.NumberInput);
-
         }
 
         override public void Show()
@@ -201,8 +222,16 @@ namespace FarmGame.UI
                 _dialog.SetNode(
                     Function.SearchItemById(_id).name + "を" + calcNum().ToString() + "個購入しました",
                     _parentNode);
-                GameData.PlayerData.Seed[_id] += calcNum();
-                GameData.PlayerData.Money -= calcNum() * _money;
+                if(_id >= Common.Parameter.ItemIdOffset)
+                {
+                    GameData.PlayerData.Item[_id, Function.Quolity2Index(_quority)] += calcNum();
+                    GameData.PlayerData.Money -= calcNum() * _money;
+                }
+                else
+                {
+                    GameData.PlayerData.Seed[_id] += calcNum();
+                    GameData.PlayerData.Money -= calcNum() * _money;
+                }
                 return;
             }
             if(_cancelButton.IsClick(position))

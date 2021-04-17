@@ -33,7 +33,16 @@ namespace FarmGame.UI
         {
             foreach (var animal in animals)
             {
-                ShopListButton shopListButton = new ShopListButton(Texture.SeedButton, animal.id, animal.money, ShopListButton.Type.Animal); ;
+                ShopListButton shopListButton = new ShopListButton(Texture.SeedButton, animal.id, animal.money, ShopListButton.Type.Animal);
+                shopListButtons.Add(shopListButton);
+            }
+        }
+
+        public ShopWindow(Food[] foods, Node parentNode) : base(parentNode)
+        {
+            foreach (var food in foods)
+            {
+                ShopListButton shopListButton = new ShopListButton(Texture.SeedButton, food.id, food.money, Function.String2Quolity(food.quolity));
                 shopListButtons.Add(shopListButton);
             }
         }
@@ -113,6 +122,11 @@ namespace FarmGame.UI
                     if(shopListButton.type == ShopListButton.Type.Seed)
                     {
                         _numberInputWindow = new NumberInputWindow(_parentNode, shopListButton.Id, shopListButton.Money);
+                        _numberInputWindow.Show();
+                    }
+                    else if(shopListButton.type == ShopListButton.Type.Food)
+                    {
+                        _numberInputWindow = new NumberInputWindow(_parentNode, shopListButton.Id, shopListButton.Money, shopListButton.Quality);
                         _numberInputWindow.Show();
                     }
                     else if(shopListButton.type == ShopListButton.Type.Animal)

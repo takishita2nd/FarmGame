@@ -12,6 +12,7 @@ namespace FarmGame.UI.Parts
         public enum Type
         {
             Seed,
+            Food,
             Animal
         }
 
@@ -29,6 +30,14 @@ namespace FarmGame.UI.Parts
             get
             {
                 return _money;
+            }
+        }
+        private Common.Parameter.Quality _quolity;
+        public Common.Parameter.Quality Quality
+        {
+            get
+            {
+                return _quolity;
             }
         }
 
@@ -49,15 +58,9 @@ namespace FarmGame.UI.Parts
             _id = id;
             _money = money;
             _type = type;
+            
+            createButton(texture);
 
-            _texture = texture;
-            _node.Texture = texture;
-            _node.ZOrder = Common.Parameter.ZOrder.ShopList;
-
-            _text = new TextNode();
-            _text.Font = Font.LoadDynamicFontStrict("HachiMaruPop-Regular.ttf", 40);
-            _text.Color = new Color(0, 0, 0);
-            _text.ZOrder = Common.Parameter.ZOrder.ShopList;
             switch (type)
             {
                 case Type.Seed:
@@ -69,11 +72,33 @@ namespace FarmGame.UI.Parts
                 default:
                     break;
             }
+        }
 
+        public ShopListButton(Texture2D texture, int id, int money, Common.Parameter.Quality quality) : base()
+        {
+            _id = id;
+            _money = money;
+            _type = Type.Food;
+            _quolity = quality;
+
+            createButton(texture);
+
+            _text.Text = Function.SearchItemById(id).name + "(品質:" + Function.Quolity2String(quality) + ")：" + money.ToString() + "Ｇ";
+        }
+
+        private void createButton(Texture2D texture)
+        {
+            _texture = texture;
+            _node.Texture = texture;
+            _node.ZOrder = Common.Parameter.ZOrder.ShopList;
+
+            _text = new TextNode();
+            _text.Font = Font.LoadDynamicFontStrict("HachiMaruPop-Regular.ttf", 40);
+            _text.Color = new Color(0, 0, 0);
+            _text.ZOrder = Common.Parameter.ZOrder.ShopList;
 
             _width = 300;
             _height = 35;
-
         }
 
         override public void SetPosition(Vector2F position)

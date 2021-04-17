@@ -7,6 +7,9 @@ using System.Text;
 
 namespace FarmGame.Scene
 {
+    /**
+     * <summary>市場画面</summary>
+     **/
     class MarketScene : Node, IScene
     {
         CommonMenu menu = null;
