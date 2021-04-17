@@ -89,6 +89,24 @@ namespace FarmGame.Common
             }
             return shoplist;
         }
-
+        private const string _savefilename = "save.json";
+        public static void GameDataSave(PlayerData data)
+        {
+            using (var stream = new StreamWriter(_savefilename, false))
+            {
+                string json = JsonConvert.SerializeObject(data);
+                stream.Write(json);
+            }
+        }
+        public static PlayerData GameDataLoad()
+        {
+            PlayerData gameData = null;
+            using (var stream = new StreamReader(_savefilename, true))
+            {
+                string json = stream.ReadToEnd();
+                gameData = JsonConvert.DeserializeObject<PlayerData>(json);
+            }
+            return gameData;
+        }
     }
 }

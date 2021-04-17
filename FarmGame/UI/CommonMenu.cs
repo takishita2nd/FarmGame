@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 using Altseed2;
+using FarmGame.Common;
 using FarmGame.Scene;
 using FarmGame.UI.Parts;
 
@@ -152,6 +153,7 @@ namespace FarmGame.UI
             if (nextButton.Click(position))
             {
                 Process.Process.Run(scene);
+                FileAccess.GameDataSave(GameData.PlayerData);
             }
         }
     }

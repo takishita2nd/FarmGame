@@ -1,4 +1,5 @@
 ﻿using Altseed2;
+using FarmGame.Common;
 using FarmGame.Scene;
 using System;
 
@@ -14,7 +15,7 @@ namespace FarmGame
             Engine.AddNode(new MainScene());
 
             //ゲームデータの初期化
-            GameData.Initialize();
+            GameData.Initialize(FileAccess.GameDataLoad());
 
             while (Engine.DoEvents())
             {

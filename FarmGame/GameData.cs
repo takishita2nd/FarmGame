@@ -31,7 +31,6 @@ namespace FarmGame
 
         public static void Initialize()
         {
-            _gameStatus = new GameStatus();
             _playerData = new PlayerData();
             _playerData.Weather = WeatherParameter.Sunny;
             _playerData.Turn = 1;
@@ -72,6 +71,17 @@ namespace FarmGame
                 _playerData.Requests.Add(Function.GetNewRequest());
             }
         }
-
+        public static void Initialize(PlayerData data)
+        {
+            _gameStatus = new GameStatus();
+            if (data == null)
+            {
+                Initialize();
+            }
+            else
+            {
+                _playerData = data;
+            }
+        }
     }
 }
