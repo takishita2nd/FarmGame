@@ -13,16 +13,22 @@
             }
         ],
         "food" :[
+            {
+                "comment" : "砂糖",
+                "id" : 1006,
+                "money" : 10,
+                "quolity" : "C"
+            }
         ],
         "animal" :[
             {
                 "comment" : "ニワトリ",
-                "id" : 0,
+                "id" : 200,
                 "money" : 500
             },
             {
                 "comment" : "ウシ",
-                "id" : 1,
+                "id" : 201,
                 "money" : 1000
             }
         ],
