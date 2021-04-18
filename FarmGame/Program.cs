@@ -17,6 +17,9 @@ namespace FarmGame
             //ゲームデータの初期化
             GameData.Initialize(FileAccess.GameDataLoad());
 
+            //Zipファイルの読み込み
+            Engine.File.AddRootPackage("resource.zip");
+
             while (Engine.DoEvents())
             {
                 // エンジンを更新
