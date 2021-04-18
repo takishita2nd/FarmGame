@@ -17,6 +17,8 @@ namespace FarmGame.Common
                     return FarmIcon.Type.Wheat;
                 case 1:
                     return FarmIcon.Type.Cone;
+                case 2:
+                    return FarmIcon.Type.Carrot;
                 default:
                     return FarmIcon.Type.Empty;
             }

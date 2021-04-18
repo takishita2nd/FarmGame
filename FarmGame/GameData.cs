@@ -51,7 +51,7 @@ namespace FarmGame
             _playerData.farms.Add(new Farm());
             _playerData.farms.Add(new Farm());
             _playerData.farms.Add(new Farm());
-            _playerData.Seed = new int[2];
+            _playerData.Seed = new int[_gameStatus.Plants.Count];
             _playerData.Seed[0] = 3;
             _playerData.Seed[1] = 3;
             _playerData.ranches = new List<Ranch>();

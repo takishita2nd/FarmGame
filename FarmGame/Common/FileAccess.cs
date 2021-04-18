@@ -101,10 +101,13 @@ namespace FarmGame.Common
         public static PlayerData GameDataLoad()
         {
             PlayerData gameData = null;
-            using (var stream = new StreamReader(_savefilename, true))
+            if(File.Exists(_savefilename))
             {
-                string json = stream.ReadToEnd();
-                gameData = JsonConvert.DeserializeObject<PlayerData>(json);
+                using (var stream = new StreamReader(_savefilename, true))
+                {
+                    string json = stream.ReadToEnd();
+                    gameData = JsonConvert.DeserializeObject<PlayerData>(json);
+                }
             }
             return gameData;
         }
