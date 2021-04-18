@@ -10,6 +10,11 @@
                 "comment" : "小麦の種",
                 "id" : 1,
                 "money" : 30
+            },
+            {
+                "comment" : "人参の種",
+                "id" : 2,
+                "money" : 50
             }
         ],
         "food" :[
