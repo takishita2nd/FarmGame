@@ -29,10 +29,10 @@ namespace FarmGame.UI
         private TextNode[] _text = new TextNode[textLine];
         private Dialog _dialog = null;
 
-        public CraftWindow(int itemId, Model.Recipe recipe, Node parentNode): base(parentNode)
+        public CraftWindow(Model.Recipe recipe, Node parentNode): base(parentNode)
         {
             _isCreated = false;
-            _itemId = itemId;
+            _itemId = recipe.id;
             _recipe = recipe;
             for(int line = 0; line < textLine; line++)
             {

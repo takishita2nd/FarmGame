@@ -17,15 +17,13 @@ namespace FarmGame.UI.Parts
                 return _valid;
             }
         }
-        public int ItemId { get; }
 
         private Texture2D _texture = null;
         private Texture2D _textureValid = null;
         private TextNode _text = null;
 
-        public ItemButton(Texture2D texture, Texture2D textureValid, int itemId, Recipe recipe) : base()
+        public ItemButton(Texture2D texture, Texture2D textureValid, Recipe recipe) : base()
         {
-            ItemId = itemId;
             _texture = texture;
             _textureValid = textureValid;
             if (recipe == null)
@@ -49,9 +47,29 @@ namespace FarmGame.UI.Parts
             _height = _texture.Size.Y;
         }
 
+        public void SetRecipe(Recipe recipe)
+        {
+            if (recipe == null)
+            {
+                SetValid(false);
+                _recipe = null;
+            }
+            else
+            {
+                SetValid(true);
+                _recipe = recipe;
+            }
+            TextUpdate();
+        }
+
         public void TextUpdate()
         {
-            var item = Function.SearchItemById(ItemId);
+            if(_recipe == null)
+            {
+                _text.Text = "";
+                return;
+            }
+            var item = Function.SearchItemById(_recipe.id);
             int itemnum = 0;
             if (item != null)
             {

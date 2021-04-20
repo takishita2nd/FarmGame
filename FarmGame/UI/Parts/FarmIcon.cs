@@ -14,7 +14,8 @@ namespace FarmGame.UI.Parts
             Wheat,  //小麦
             Cone,   //とうもろこし
             Carrot, //人参
-            Pumpkin //かぼちゃ
+            Pumpkin,//かぼちゃ
+            Tomato  //トマト
         }
 
         private Type _type = Type.None;
@@ -109,6 +110,25 @@ namespace FarmGame.UI.Parts
                     if (growth >= 130)
                     {
                         _node.Src = new RectF(width * 3, height * 3, width, height);
+                    }
+                    break;
+                case Type.Tomato:
+                    _node.Texture = Texture.FarmTexture2;
+                    if (growth < 30)
+                    {
+                        _node.Src = new RectF(width * 0, height * 0, width, height);
+                    }
+                    if (growth >= 30 && growth < 100)
+                    {
+                        _node.Src = new RectF(width * 1, height * 0, width, height);
+                    }
+                    if (growth >= 100 && growth < 130)
+                    {
+                        _node.Src = new RectF(width * 2, height * 0, width, height);
+                    }
+                    if (growth >= 130)
+                    {
+                        _node.Src = new RectF(width * 5, height * 0, width, height);
                     }
                     break;
                 default:

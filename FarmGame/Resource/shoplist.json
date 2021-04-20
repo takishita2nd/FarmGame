@@ -20,6 +20,11 @@
                 "comment" : "かぼちゃの種",
                 "id" : 3,
                 "money" : 60
+            },
+            {
+                "comment" : "トマトの種",
+                "id" : 4,
+                "money" : 80
             }
         ],
         "food" :[

@@ -1,4 +1,5 @@
 ﻿using Altseed2;
+using FarmGame.Common;
 using FarmGame.Model;
 using FarmGame.UI.Parts;
 using System;
@@ -25,55 +26,50 @@ namespace FarmGame.UI
         public StudioPanel()
         {
             page = 0;
+            int skip = 0;
             int row = 0;
             int col = 0;
-            int skip = 0;
-            foreach(var item in GameData.GameStatus.Items)
+            foreach (var recipe in GameData.GameStatus.Recipes.recipe)
             {
-                if(skip < page * row * Col)
+                int maxSkip = page * Row * Col;
+                if (skip < maxSkip)
                 {
                     skip++;
                     continue;
                 }
-                Recipe keeprecipe = null;
-                foreach(var recipe in GameData.GameStatus.Recipes.recipe)
-                {
-                    if(item.id == recipe.id)
-                    {
-                        keeprecipe = recipe;
-                    }
-                }
-
-                if(keeprecipe == null)
-                {
-                    continue;
-                }
-                button[row, col] = new ItemButton(Texture.ItemButton, Texture.ItemButtonValid, item.id, keeprecipe);
+                button[row, col] = new ItemButton(Texture.ItemButton, Texture.ItemButtonValid, recipe);
                 button[row, col].SetPosition(new Vector2F(xpos + xinterval * row, ypos + yinterval * col));
                 button[row, col].SetZOrder(Common.Parameter.ZOrder.Item);
                 col++;
                 if(col >= Col)
                 {
-                    col = 0;
                     row++;
-                    if(row >= Row)
+                    col = 0;
+                    if (row >= Row)
                     {
                         break;
                     }
                 }
             }
-
-            for (row = 0; row < Row; row++)
+            while (true)
             {
-                for (col = 0; col < Col; col++)
+                if(row >= Row)
                 {
-                    if(button[row, col] == null)
+                    break;
+                }
+                if (col >= Col)
+                {
+                    col = 0;
+                    row++;
+                    if (row >= Row)
                     {
-                        button[row, col] = new ItemButton(Texture.ItemButton, Texture.ItemButtonValid, -1, null);
-                        button[row, col].SetPosition(new Vector2F(xpos + xinterval * row, ypos + yinterval * col));
-                        button[row, col].SetZOrder(Common.Parameter.ZOrder.Item);
+                        break;
                     }
                 }
+                button[row, col] = new ItemButton(Texture.ItemButton, Texture.ItemButtonValid, null);
+                button[row, col].SetPosition(new Vector2F(xpos + xinterval * row, ypos + yinterval * col));
+                button[row, col].SetZOrder(Common.Parameter.ZOrder.Item);
+                col++;
             }
 
             float careButtonScale = 0.6f;
@@ -162,17 +158,95 @@ namespace FarmGame.UI
             }
             else
             {
+                if(_nextPageButton.IsClick(position))
+                {
+                    Function.PlaySoundOK();
+
+                    page++;
+                    updateRecipeList();
+                    DisplayUpdate();
+                    if (page >= 1)
+                    {
+                        _prevPageButton.SetNode(_parentNode);
+                    }
+                    int maxPage = GameData.GameStatus.Recipes.recipe.Length / (Row * Col);
+                    if (page == maxPage)
+                    {
+                        _nextPageButton.RemoveNode(_parentNode);
+                    }
+                    return;
+                }
+                if (_prevPageButton.IsClick(position))
+                {
+                    Function.PlaySoundOK();
+
+                    page--;
+                    updateRecipeList();
+                    DisplayUpdate();
+                    if (page == 0)
+                    {
+                        _prevPageButton.RemoveNode(_parentNode);
+                    }
+                    _nextPageButton.SetNode(_parentNode);
+                    return;
+                }
                 for (int r = 0; r < Row; r++)
                 {
                     for (int c = 0; c < Col; c++)
                     {
                         if (button[r,c].IsValid && button[r, c].IsClick(position))
                         {
-                            _craftWindow = new CraftWindow(button[r, c].ItemId, button[r, c].GetRecipe(), _parentNode);
+                            _craftWindow = new CraftWindow(button[r, c].GetRecipe(), _parentNode);
                             _craftWindow.Show();
                         }
                     }
                 }
+            }
+        }
+
+        private void updateRecipeList()
+        {
+            int skip = 0;
+            int row = 0;
+            int col = 0;
+            foreach (var recipe in GameData.GameStatus.Recipes.recipe)
+            {
+                if (skip < page * Row * Col)
+                {
+                    skip++;
+                    continue;
+                }
+                button[row, col].SetRecipe(recipe);
+                col++;
+                if (col >= Col)
+                {
+                    col = 0;
+                    row++;
+                    if (row >= Row)
+                    {
+                        break;
+                    }
+                }
+
+            }
+            while (true)
+            {
+                if (row >= Row)
+                {
+                    break;
+                }
+
+                if (col >= Col)
+                {
+                    col = 0;
+                    row++;
+                    if (row >= Row)
+                    {
+                        break;
+                    }
+                }
+                button[row, col].SetRecipe(null);
+                col++;
             }
         }
     }
