@@ -110,48 +110,56 @@ namespace FarmGame.UI
         {
             if(farmButton.Click(position))
             {
+                Function.PlaySoundOK();
                 Engine.RemoveNode(node);
                 node = new FarmScene();
                 Engine.AddNode(node);
             }
             if (ranchButton.Click(position))
             {
+                Function.PlaySoundOK();
                 Engine.RemoveNode(node);
                 node = new RanchScene();
                 Engine.AddNode(node);
             }
             if (marketButton.Click(position))
             {
+                Function.PlaySoundOK();
                 Engine.RemoveNode(node);
                 node = new MarketScene();
                 Engine.AddNode(node);
             }
             if (studioButton.Click(position))
             {
+                Function.PlaySoundOK();
                 Engine.RemoveNode(node);
                 node = new StudioScene();
                 Engine.AddNode(node);
             }
             if (shopButton.Click(position))
             {
+                Function.PlaySoundOK();
                 Engine.RemoveNode(node);
                 node = new ShopScene();
                 Engine.AddNode(node);
             }
             if (statusButton.Click(position))
             {
+                Function.PlaySoundOK();
                 Engine.RemoveNode(node);
                 node = new StatusScene();
                 Engine.AddNode(node);
             }
             if (homeButton.Click(position))
             {
+                Function.PlaySoundOK();
                 Engine.RemoveNode(node);
                 node = new MainScene();
                 Engine.AddNode(node);
             }
             if (nextButton.Click(position))
             {
+                Function.PlaySoundOK();
                 Process.Process.Run(scene);
                 FileAccess.GameDataSave(GameData.PlayerData);
             }

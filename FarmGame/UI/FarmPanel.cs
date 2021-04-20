@@ -231,7 +231,9 @@ namespace FarmGame.UI
             {
                 if(farmColumn.Icon.IsClick(position))
                 {
-                    if(!farmColumn.IsValid)
+                    Function.PlaySoundOK();
+
+                    if (!farmColumn.IsValid)
                     {
                         //畑が空
                         if (GameData.PlayerData.Power == 0)

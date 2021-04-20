@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using Altseed2;
 using FarmGame.Model;
 using FarmGame.UI.Parts;
 using static FarmGame.Common.Parameter;
@@ -19,6 +20,8 @@ namespace FarmGame.Common
                     return FarmIcon.Type.Cone;
                 case 2:
                     return FarmIcon.Type.Carrot;
+                case 3:
+                    return FarmIcon.Type.Pumpkin;
                 default:
                     return FarmIcon.Type.Empty;
             }
@@ -237,5 +240,25 @@ namespace FarmGame.Common
             }
             return null;
         }
+
+        private static Sound _soundOK = null;
+        public static void PlaySoundOK()
+        {
+            if(_soundOK == null)
+            {
+                _soundOK = Sound.Load("button.wav", true);
+            }
+            Engine.Sound.Play(_soundOK);
+        }
+        private static Sound _soundCancel = null;
+        public static void PlaySoundCancel()
+        {
+            if (_soundCancel == null)
+            {
+                _soundCancel = Sound.Load("cancel.wav", true);
+            }
+            Engine.Sound.Play(_soundCancel);
+        }
+
     }
 }

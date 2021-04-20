@@ -15,6 +15,11 @@
                 "comment" : "人参の種",
                 "id" : 2,
                 "money" : 50
+            },
+            {
+                "comment" : "かぼちゃの種",
+                "id" : 3,
+                "money" : 60
             }
         ],
         "food" :[

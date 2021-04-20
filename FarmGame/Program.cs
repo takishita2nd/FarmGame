@@ -19,8 +19,6 @@ namespace FarmGame
 
             //Zipファイルの読み込み
             Engine.File.AddRootPackage("resource.zip");
-            var bgm = Sound.Load("button.wav", true);
-            Engine.Sound.Play(bgm);
 
             while (Engine.DoEvents())
             {
