@@ -25,6 +25,11 @@
                 "comment" : "トマトの種",
                 "id" : 4,
                 "money" : 80
+            },
+            {
+                "comment" : "いちごの種",
+                "id" : 5,
+                "money" : 100
             }
         ],
         "food" :[
