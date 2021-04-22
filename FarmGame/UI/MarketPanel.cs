@@ -1,4 +1,5 @@
 ﻿using Altseed2;
+using FarmGame.Model;
 using FarmGame.UI.Parts;
 using System;
 using System.Collections.Generic;
@@ -13,7 +14,8 @@ namespace FarmGame.UI
         private Button _foodButton;
         private Button _animalButton;
         private Button _farmButton;
-        private ShopWindow _shopWindow = null;
+        private WindowBase _shopWindow = null;
+        private Dialog _dialogWindow = null;
         public MarketPanel()
         {
             _seedButton = new Button(Texture.MarketSeedButton, Texture.MarketSeedButtonHover, Texture.MarketSeedButtonClick);
@@ -60,6 +62,11 @@ namespace FarmGame.UI
 
         public void OnClick(Vector2F position)
         {
+            if(_dialogWindow != null && _dialogWindow.IsShow)
+            {
+                _dialogWindow.RemoveNode(_parentNode);
+                return;
+            }
             if (_shopWindow != null && _shopWindow.IsShow())
             {
                 _shopWindow.OnClick(position);
@@ -83,7 +90,26 @@ namespace FarmGame.UI
                 _shopWindow.Show();
                 return;
             }
-            _farmButton.Click(position);
+            if( _farmButton.Click(position))
+            {
+                _shopWindow = new ConfirmWindow(_parentNode,
+                    "畑を5つ購入します。\n" +
+                    "(10000Ｇ)\n" +
+                    "よろしいですか？",
+                    () =>
+                    {
+                        GameData.PlayerData.farms.Add(new Farm());
+                        GameData.PlayerData.farms.Add(new Farm());
+                        GameData.PlayerData.farms.Add(new Farm());
+                        GameData.PlayerData.farms.Add(new Farm());
+                        GameData.PlayerData.farms.Add(new Farm());
+                        _shopWindow.Hide();
+                        _dialogWindow = new Dialog();
+                        _dialogWindow.SetNode("畑を購入しました", _parentNode);
+                    });
+                _shopWindow.Show();
+                return;
+            }
         }
     }
 }

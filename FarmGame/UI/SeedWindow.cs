@@ -1,4 +1,5 @@
 ﻿using Altseed2;
+using FarmGame.Common;
 using FarmGame.UI.Parts;
 using System;
 using System.Collections.Generic;
@@ -57,7 +58,8 @@ namespace FarmGame.UI
             //OKボタン押下
             if (_okButton.Click(position))
             {
-                foreach(var seedButton in seedButtons)
+                Function.PlaySoundOK();
+                foreach (var seedButton in seedButtons)
                 {
                     if (seedButton.GetButtonStatus())
                     {
@@ -70,6 +72,7 @@ namespace FarmGame.UI
             //キャンセルボタン押下
             if (_cancelButton.Click(position))
             {
+                Function.PlaySoundCancel();
                 Hide();
             }
             //種ボタン押下
@@ -85,7 +88,7 @@ namespace FarmGame.UI
             foreach (var seedButton in seedButtons)
             {
                 if(pushedSeedButton != null){
-                    if(seedButton.Equals(pushedSeedButton))
+                    if (seedButton.Equals(pushedSeedButton))
                     {
                         pushedSeedButton.Click(position);
                     }

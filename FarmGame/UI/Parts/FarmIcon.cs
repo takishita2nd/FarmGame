@@ -10,12 +10,13 @@ namespace FarmGame.UI.Parts
         public enum Type
         {
             None,
-            Empty,  //空
-            Wheat,  //小麦
-            Cone,   //とうもろこし
-            Carrot, //人参
-            Pumpkin,//かぼちゃ
-            Tomato  //トマト
+            Empty,      //空
+            Wheat,      //小麦
+            Cone,       //とうもろこし
+            Carrot,     //人参
+            Pumpkin,    //かぼちゃ
+            Tomato,     //トマト
+            Strawberry  //いちご
         }
 
         private Type _type = Type.None;
@@ -129,6 +130,25 @@ namespace FarmGame.UI.Parts
                     if (growth >= 130)
                     {
                         _node.Src = new RectF(width * 5, height * 0, width, height);
+                    }
+                    break;
+                case Type.Strawberry:
+                    _node.Texture = Texture.FarmTexture3;
+                    if (growth < 30)
+                    {
+                        _node.Src = new RectF(width * 9, height * 0, width, height);
+                    }
+                    if (growth >= 30 && growth < 100)
+                    {
+                        _node.Src = new RectF(width * 10, height * 0, width, height);
+                    }
+                    if (growth >= 100 && growth < 130)
+                    {
+                        _node.Src = new RectF(width * 11, height * 0, width, height);
+                    }
+                    if (growth >= 130)
+                    {
+                        _node.Src = new RectF(width * 11, height * 1, width, height);
                     }
                     break;
                 default:

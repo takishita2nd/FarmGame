@@ -137,7 +137,8 @@ namespace FarmGame.UI
             //ダイアログ表示中
             if(dialog.IsShow)
             {
-                if(_isLevelup)
+                Function.PlaySoundOK();
+                if (_isLevelup)
                 {
                     dialog.UpdateText(
                         "農業レベルが上がりました\n(" + GameData.PlayerData.AgricultureLevel.ToString() + ")"
@@ -160,6 +161,7 @@ namespace FarmGame.UI
             {
                 if (column.CareButton.Click(position))
                 {
+                    Function.PlaySoundOK();
                     if (GameData.PlayerData.Power == 0)
                     {
                         dialog.SetNode("パワーが足りません", _parentNode);
@@ -170,6 +172,7 @@ namespace FarmGame.UI
                 }
                 if (column.WaterButton.Click(position))
                 {
+                    Function.PlaySoundOK();
                     if (GameData.PlayerData.Power == 0)
                     {
                         dialog.SetNode("パワーが足りません", _parentNode);
@@ -182,6 +185,7 @@ namespace FarmGame.UI
             //全お手入れボタン押下
             if (_allCareButton.Click(position))
             {
+                Function.PlaySoundOK();
                 int count = 0;
                 foreach (var column in farmColunms)
                 {
@@ -205,6 +209,7 @@ namespace FarmGame.UI
             //全水やりボタン押下
             if (_allWaterButton.Click(position))
             {
+                Function.PlaySoundOK();
                 int count = 0;
                 foreach (var column in farmColunms)
                 {
@@ -231,10 +236,10 @@ namespace FarmGame.UI
             {
                 if(farmColumn.Icon.IsClick(position))
                 {
-                    Function.PlaySoundOK();
 
                     if (!farmColumn.IsValid)
                     {
+                        Function.PlaySoundOK();
                         //畑が空
                         if (GameData.PlayerData.Power == 0)
                         {
@@ -247,6 +252,7 @@ namespace FarmGame.UI
                     }
                     else if(farmColumn.IsHarvest)
                     {
+                        Function.PlaySoundOK();
                         //収穫可能
                         if (GameData.PlayerData.Power == 0)
                         {
@@ -276,6 +282,7 @@ namespace FarmGame.UI
 
             if (_nextPageButton.Click(position))
             {
+                Function.PlaySoundOK();
                 page++;
                 if (page == maxPage - 1)
                 {
@@ -286,6 +293,7 @@ namespace FarmGame.UI
             }
             if (_prevPageButton.Click(position))
             {
+                Function.PlaySoundOK();
                 page--;
                 if(page == 0)
                 {
