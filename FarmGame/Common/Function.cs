@@ -26,6 +26,8 @@ namespace FarmGame.Common
                     return FarmIcon.Type.Tomato;
                 case 5:
                     return FarmIcon.Type.Strawberry;
+                case 6:
+                    return FarmIcon.Type.Potato;
                 default:
                     return FarmIcon.Type.Empty;
             }

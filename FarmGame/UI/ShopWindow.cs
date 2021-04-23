@@ -16,6 +16,8 @@ namespace FarmGame.UI
         Dialog _dialog = null;
 
         private const int seedYInterval = 40;
+        private const int seedXInterval = 320;
+        private const int seedIndex = 5;
 
         public ShopWindow(Seed[] seeds, Node parentNode) : base(parentNode)
         {
@@ -50,13 +52,20 @@ namespace FarmGame.UI
         /**
          * <summary>ウィンドウ表示</summary>
          * */
-        new public void Show()
+        override public void Show()
         {
             base.Show();
             int index = 0;
             foreach (var shopListButton in shopListButtons)
             {
-                shopListButton.SetPosition(new Vector2F(30, 190 + seedYInterval * index));
+                if(index < seedIndex)
+                {
+                    shopListButton.SetPosition(new Vector2F(30, 190 + seedYInterval * index));
+                }
+                else
+                {
+                    shopListButton.SetPosition(new Vector2F(30 + seedXInterval, 190 + seedYInterval * (index - seedIndex)));
+                }
                 shopListButton.SetNode(_parentNode);
                 index++;
             }
@@ -65,7 +74,7 @@ namespace FarmGame.UI
         /**
          * <summary>ウィンドウを閉じる</summary>
          * */
-        new public void Hide()
+        override public void Hide()
         {
             base.Hide();
             foreach (var shopListButton in shopListButtons)

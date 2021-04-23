@@ -14,6 +14,8 @@ namespace FarmGame.UI
         private FarmColunm _farmColunm = null;
 
         private const int seedYInterval = 40;
+        private const int seedXInterval = 320;
+        private const int seedIndex = 5;
         public SeedWindow(Node parentNode, FarmColunm farmColunm) : base(parentNode)
         {
             foreach(var seed in GameData.GameStatus.Plants)
@@ -28,19 +30,26 @@ namespace FarmGame.UI
             _farmColunm = farmColunm;
         }
 
-        new public void Show()
+        override public void Show()
         {
             base.Show();
             int index = 0;
             foreach(var seedButton in seedButtons)
             {
-                seedButton.SetPosition(new Vector2F(30, 190 + seedYInterval * index));
+                if (index < seedIndex)
+                {
+                    seedButton.SetPosition(new Vector2F(30, 190 + seedYInterval * index));
+                }
+                else
+                {
+                    seedButton.SetPosition(new Vector2F(30 + seedXInterval, 190 + seedYInterval * (index - seedIndex)));
+                }
                 seedButton.SetNode(_parentNode);
                 index++;
             }
         }
 
-        new public void Hide()
+        override public void Hide()
         {
             base.Hide();
             foreach (var seedButton in seedButtons)
