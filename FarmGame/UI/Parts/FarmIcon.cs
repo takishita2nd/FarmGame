@@ -17,7 +17,8 @@ namespace FarmGame.UI.Parts
             Pumpkin,    //かぼちゃ
             Tomato,     //トマト
             Strawberry, //いちご
-            Potato      //じゃがいも
+            Potato,     //じゃがいも
+            Pineapple   //パイナップル
         }
 
         private Type _type = Type.None;
@@ -169,6 +170,25 @@ namespace FarmGame.UI.Parts
                     if (growth >= 130)
                     {
                         _node.Src = new RectF(width * 11, height * 4, width, height);
+                    }
+                    break;
+                case Type.Pineapple:
+                    _node.Texture = Texture.FarmTexture1;
+                    if (growth < 30)
+                    {
+                        _node.Src = new RectF(width * 0, height * 1, width, height);
+                    }
+                    if (growth >= 30 && growth < 100)
+                    {
+                        _node.Src = new RectF(width * 1, height * 1, width, height);
+                    }
+                    if (growth >= 100 && growth < 130)
+                    {
+                        _node.Src = new RectF(width * 2, height * 1, width, height);
+                    }
+                    if (growth >= 130)
+                    {
+                        _node.Src = new RectF(width * 5, height * 1, width, height);
                     }
                     break;
                 default:

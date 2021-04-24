@@ -194,9 +194,9 @@ namespace FarmGame.UI
                 {
                     for (int c = 0; c < Col; c++)
                     {
-                        if (button[r,c].IsValid && button[r, c].IsClick(position))
+                        if (button[r, c].IsClick(position))
                         {
-                            _craftWindow = new CraftWindow(button[r, c].GetRecipe(), _parentNode);
+                            _craftWindow = new CraftWindow(button[r, c].GetRecipe(), _parentNode, button[r, c].IsValid);
                             _craftWindow.Show();
                         }
                     }

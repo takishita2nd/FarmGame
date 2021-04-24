@@ -28,9 +28,11 @@ namespace FarmGame.UI
         private Recipe _recipe = null;
         private TextNode[] _text = new TextNode[textLine];
         private Dialog _dialog = null;
+        private bool _vaild;
 
-        public CraftWindow(Model.Recipe recipe, Node parentNode): base(parentNode)
+        public CraftWindow(Recipe recipe, Node parentNode, bool valid): base(parentNode)
         {
+            _vaild = valid;
             _isCreated = false;
             _itemId = recipe.id;
             _recipe = recipe;
@@ -67,9 +69,17 @@ namespace FarmGame.UI
                     + "(" + itemNum.ToString() + ")";
                 _parentNode.AddChildNode(_text[line]);
             }
-            _text[4].Text = "アイテムは品質の高い物から使用されます。";
-            _parentNode.AddChildNode(_text[4]);
-            _okButton.SetNode(_parentNode);
+            if(_vaild)
+            {
+                _text[4].Text = "アイテムは品質の高い物から使用されます。";
+                _parentNode.AddChildNode(_text[4]);
+                _okButton.SetNode(_parentNode);
+            }
+            else
+            {
+                _text[4].Text = "アイテムが足りません。";
+                _parentNode.AddChildNode(_text[4]);
+            }
         }
 
         /**
