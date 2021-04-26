@@ -10,6 +10,13 @@ namespace FarmGame
         [STAThread]
         static void Main(string[] args)
         {
+            if(args.Length >= 2 && args[0] == "enc")
+            {
+                Encrypt.Encode(args[1], args[2]);
+
+                return;
+            }
+
             Engine.Initialize("農場ゲーム(仮)", Common.Parameter.WindowWidth, Common.Parameter.WindowHeight);
 
             Engine.AddNode(new MainScene());

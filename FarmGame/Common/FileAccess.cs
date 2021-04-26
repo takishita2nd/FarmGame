@@ -9,105 +9,118 @@ namespace FarmGame.Common
 {
     class FileAccess
     {
-        private const string _plantfilename = "plant.csv";
+        private const string _plantfilename = "plant.dat";
         public static List<Plant> PlantLoad()
         {
             List<Plant> plants = new List<Plant>();
-            using (var stream = new StreamReader(_plantfilename, true))
+            string csv = Encrypt.Decode(_plantfilename);
+            var lines = csv.Split("\n");
+            bool flg = false;
+            foreach(var line in lines)
             {
                 //1行目はカラム名なので捨てる
-                string? line = stream.ReadLine();
-                line = stream.ReadLine();
-                while (line != null)
+                if(!flg)
+                {
+                    flg = true;
+                }
+                else
                 {
                     var str = line.Split(",");
-                    Plant plant = new Plant() {id = int.Parse(str[0]), name = str[1], cost = int.Parse(str[2])};
-                    plants.Add(plant);
-                    line = stream.ReadLine();
+                    if (str.Length == 3)
+                    {
+                        Plant plant = new Plant() { id = int.Parse(str[0]), name = str[1], cost = int.Parse(str[2]) };
+                        plants.Add(plant);
+                    }
                 }
             }
             return plants;
         }
-        private const string _animalfilename = "animal.csv";
+        private const string _animalfilename = "animal.dat";
         public static List<Livestock> AnimalLoad()
         {
             List<Livestock> animals = new List<Livestock>();
-            using (var stream = new StreamReader(_animalfilename, true))
+            string csv = Encrypt.Decode(_animalfilename);
+            var lines = csv.Split("\n");
+            bool flg = false;
+            foreach (var line in lines)
             {
                 //1行目はカラム名なので捨てる
-                string? line = stream.ReadLine();
-                line = stream.ReadLine();
-                while (line != null)
+                if (!flg)
+                {
+                    flg = true;
+                }
+                else
                 {
                     var str = line.Split(",");
-                    Livestock animal = new Livestock() { id = int.Parse(str[0]), name = str[1], cost = int.Parse(str[2]), product = int.Parse(str[3]) };
-                    animals.Add(animal);
-                    line = stream.ReadLine();
+                    if(str.Length == 3)
+                    {
+                        Livestock animal = new Livestock() { id = int.Parse(str[0]), name = str[1], cost = int.Parse(str[2]), product = int.Parse(str[3]) };
+                        animals.Add(animal);
+                    }
                 }
             }
             return animals;
         }
 
-        private const string _itemfilename = "item.csv";
+        private const string _itemfilename = "item.dat";
         public static List<Item> ItemLoad()
         {
             List<Item> items = new List<Item>();
-            using (var stream = new StreamReader(_itemfilename, true))
+            string csv = Encrypt.Decode(_itemfilename);
+            var lines = csv.Split("\n");
+            bool flg = false;
+            foreach (var line in lines)
             {
                 //1行目はカラム名なので捨てる
-                string? line = stream.ReadLine();
-                line = stream.ReadLine();
-                while (line != null)
+                if (!flg)
+                {
+                    flg = true;
+                }
+                else
                 {
                     var str = line.Split(",");
-                    Item item = new Item() { id = int.Parse(str[0]), name = str[1], level = int.Parse(str[2]) };
-                    items.Add(item);
-                    line = stream.ReadLine();
+                    if (str.Length == 3)
+                    {
+                        Item item = new Item() { id = int.Parse(str[0]), name = str[1], level = int.Parse(str[2]) };
+                        items.Add(item);
+                    }
                 }
             }
             return items;
         }
-        private const string _recipefilename = "recipe.json";
+        private const string _recipefilename = "recipe.dat";
         public static Recipes RecipeLoad()
         {
-            Recipes recipes = null;
-            using (var stream = new StreamReader(_recipefilename, true))
-            {
-                string json = stream.ReadToEnd();
-                recipes = JsonConvert.DeserializeObject<Recipes>(json);
-            }
-            return recipes;
+            string json = Encrypt.Decode(_recipefilename);
+            return JsonConvert.DeserializeObject<Recipes>(json);
         }
-        private const string _shopfilename = "shoplist.json";
+
+        private const string _shopfilename = "shoplist.dat";
         public static ShopListRoot ShopListLoad()
         {
-            ShopListRoot shoplist = null;
-            using (var stream = new StreamReader(_shopfilename, true))
-            {
-                string json = stream.ReadToEnd();
-                shoplist = JsonConvert.DeserializeObject<ShopListRoot>(json);
-            }
-            return shoplist;
+            string json = Encrypt.Decode(_shopfilename);
+            return JsonConvert.DeserializeObject<ShopListRoot>(json);
         }
-        private const string _savefilename = "save.json";
+
+        private const string _savefilename = "save.dat";
         public static void GameDataSave(PlayerData data)
         {
-            using (var stream = new StreamWriter(_savefilename, false))
+            if (File.Exists(_savefilename))
             {
-                string json = JsonConvert.SerializeObject(data);
-                stream.Write(json);
+                File.Delete(_savefilename);
             }
+
+            string json = JsonConvert.SerializeObject(data);
+            Encrypt.Save(json, _savefilename);
         }
+
         public static PlayerData GameDataLoad()
         {
             PlayerData gameData = null;
             if(File.Exists(_savefilename))
             {
-                using (var stream = new StreamReader(_savefilename, true))
-                {
-                    string json = stream.ReadToEnd();
-                    gameData = JsonConvert.DeserializeObject<PlayerData>(json);
-                }
+                string json = Encrypt.Decode(_savefilename);
+                gameData = JsonConvert.DeserializeObject<PlayerData>(json);
             }
             return gameData;
         }
