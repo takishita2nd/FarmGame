@@ -19,7 +19,7 @@ namespace FarmGame.UI.Parts
             Icon = new RanchIcon();
             Window = new RanchLabel();
             CareButton = new Button(Texture.CareButton, Texture.CareButtonHover, Texture.CareButtonClick);
-            CareButton.SetZOrder(Common.Parameter.ZOrder.Ranch);
+            CareButton.SetZOrder(ZOrder.Ranch);
             CareButton.SetScale(0.6f);
             CareButton.Lock();
         }

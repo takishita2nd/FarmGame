@@ -118,6 +118,7 @@ namespace FarmGame.UI.Parts
             //ダイアログ表示中
             if (dialog.IsShow)
             {
+                Function.PlaySoundOK();
                 if (_isLevelup)
                 {
                     dialog.UpdateText(
@@ -135,6 +136,7 @@ namespace FarmGame.UI.Parts
             {
                 if (column.CareButton.Click(position))
                 {
+                    Function.PlaySoundOK();
                     if (GameData.PlayerData.Power == 0)
                     {
                         dialog.SetNode("パワーが足りません", _parentNode);
@@ -147,6 +149,7 @@ namespace FarmGame.UI.Parts
             //全お手入れボタン押下
             if (_allCareButton.Click(position))
             {
+                Function.PlaySoundOK();
                 int count = 0;
                 foreach (var column in ranchColumns)
                 {
@@ -175,6 +178,7 @@ namespace FarmGame.UI.Parts
                 {
                     if(column.Valid && column.IsHarvest)
                     {
+                        Function.PlaySoundOK();
                         //収穫可能
                         if (GameData.PlayerData.Power == 0)
                         {
@@ -207,6 +211,7 @@ namespace FarmGame.UI.Parts
 
             if (_nextPageButton.Click(position))
             {
+                Function.PlaySoundOK();
                 page++;
                 if (page == maxPage - 1)
                 {
@@ -217,6 +222,7 @@ namespace FarmGame.UI.Parts
             }
             if (_prevPageButton.Click(position))
             {
+                Function.PlaySoundOK();
                 page--;
                 if (page == 0)
                 {

@@ -71,6 +71,7 @@ namespace FarmGame.UI
         {
             if( _dialog != null && _dialog.IsShow)
             {
+                Function.PlaySoundOK();
                 if (_isLevelup)
                 {
                     _dialog.UpdateText(
@@ -94,6 +95,7 @@ namespace FarmGame.UI
             {
                 if(column.DeliveryButton.Click(position))
                 {
+                    Function.PlaySoundOK();
                     _confirmWindow = new ConfirmWindow(_parentNode,
                         column.Label.GetText() + "\n" +
                         "納品しますか？\n" +
@@ -146,6 +148,7 @@ namespace FarmGame.UI
                 }
                 if(column.DestructionButton.Click(position))
                 {
+                    Function.PlaySoundOK();
                     _confirmWindow = new ConfirmWindow(_parentNode,
                         column.Label.GetText() +
                         "\n破棄しますか？",

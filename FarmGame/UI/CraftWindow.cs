@@ -102,6 +102,7 @@ namespace FarmGame.UI
             //ダイアログ表示中
             if(_dialog != null && _dialog.IsShow)
             {
+                Function.PlaySoundOK();
                 if (_isLevelup)
                 {
                     _dialog.UpdateText(
@@ -118,6 +119,7 @@ namespace FarmGame.UI
             //決定ボタン押下
             if (_okButton.Click(position))
             {
+                Function.PlaySoundOK();
                 if (GameData.PlayerData.Power < _recipe.cost)
                 {
                     _dialog = new Dialog();
@@ -188,6 +190,7 @@ namespace FarmGame.UI
             //キャンセルボタン押下
             if (_cancelButton.Click(position))
             {
+                Function.PlaySoundCancel();
                 Hide();
                 return;
             }

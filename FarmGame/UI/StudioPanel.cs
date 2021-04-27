@@ -196,6 +196,7 @@ namespace FarmGame.UI
                     {
                         if (button[r, c].IsClick(position))
                         {
+                            Function.PlaySoundOK();
                             _craftWindow = new CraftWindow(button[r, c].GetRecipe(), _parentNode, button[r, c].IsValid);
                             _craftWindow.Show();
                         }
