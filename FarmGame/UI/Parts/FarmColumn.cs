@@ -109,6 +109,11 @@ namespace FarmGame.UI.Parts
             setFarmData(seedId);
             Icon.SetClip(Function.SeedId2Type(seedId), 0);
             Window.SetText(GameData.GameStatus.Plants[seedId].name);
+            if(GameData.PlayerData.Weather == GameStatus.WeatherParameter.Rain)
+            {
+                _farm.water = true;
+                WaterButton.Lock();
+            }
         }
 
         public void Care()

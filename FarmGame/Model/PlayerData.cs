@@ -12,6 +12,9 @@ namespace FarmGame.Model
          * <summary>経過ターン</summary>
          * */
         public int Turn { get; set; }
+        /**
+         * 天候
+         * */
         public WeatherParameter Weather { get; set; }
         /**
          * <summary>農業レベル</summary>

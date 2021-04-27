@@ -13,8 +13,11 @@ namespace FarmGame.Scene
         MoneyPanel _moneyPanel;
         PowerPanel _powerPanel;
         RanchPanel _ranchPanel;
+        WeatherPanel _weatherPanel;
         public void Update()
         {
+            _powerPanel.UpdateValue();
+            _weatherPanel.UpdateValue();
             _ranchPanel.UpdateDisplay();
         }
 
@@ -43,10 +46,10 @@ namespace FarmGame.Scene
             _moneyPanel.SetNode(this);
             _moneyPanel.SetValue(GameData.PlayerData.Money);
 
-            WeatherPanel weatherPanel = new WeatherPanel();
-            weatherPanel.SetPosition(new Vector2F(sign.Texture.Size.X, _powerPanel.GetHeight() + _moneyPanel.GetHeight()));
-            weatherPanel.SetNode(this);
-            weatherPanel.UpdateValue();
+            _weatherPanel = new WeatherPanel();
+            _weatherPanel.SetPosition(new Vector2F(sign.Texture.Size.X, _powerPanel.GetHeight() + _moneyPanel.GetHeight()));
+            _weatherPanel.SetNode(this);
+            _weatherPanel.UpdateValue();
 
             menu = new CommonMenu(this);
             _ranchPanel = new RanchPanel();

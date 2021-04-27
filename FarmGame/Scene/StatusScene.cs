@@ -16,9 +16,11 @@ namespace FarmGame.Scene
         CommonMenu menu = null;
         PowerPanel _powerPanel;
         StatusLabel _turnLabel;
+        WeatherPanel _weatherPanel;
 
         public void Update()
         {
+            _weatherPanel.UpdateValue();
             _turnLabel.SetText("経過ターン:" + GameData.PlayerData.Turn.ToString());
         }
 
@@ -47,10 +49,10 @@ namespace FarmGame.Scene
             moneyPanel.SetNode(this);
             moneyPanel.SetValue(GameData.PlayerData.Money);
 
-            WeatherPanel weatherPanel = new WeatherPanel();
-            weatherPanel.SetPosition(new Vector2F(sign.Texture.Size.X, _powerPanel.GetHeight() + moneyPanel.GetHeight()));
-            weatherPanel.SetNode(this);
-            weatherPanel.UpdateValue();
+            _weatherPanel = new WeatherPanel();
+            _weatherPanel.SetPosition(new Vector2F(sign.Texture.Size.X, _powerPanel.GetHeight() + moneyPanel.GetHeight()));
+            _weatherPanel.SetNode(this);
+            _weatherPanel.UpdateValue();
 
             menu = new CommonMenu(this);
             showStatus();

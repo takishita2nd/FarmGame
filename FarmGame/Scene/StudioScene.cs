@@ -13,9 +13,12 @@ namespace FarmGame.Scene
         StudioPanel panel = null;
         PowerPanel _powerPanel;
         MoneyPanel _moneyPanel;
+        WeatherPanel _weatherPanel;
 
         public void Update()
         {
+            _powerPanel.UpdateValue();
+            _weatherPanel.UpdateValue();
         }
 
         protected override void OnAdded()
@@ -43,10 +46,10 @@ namespace FarmGame.Scene
             _moneyPanel.SetNode(this);
             _moneyPanel.SetValue(GameData.PlayerData.Money);
 
-            WeatherPanel weatherPanel = new WeatherPanel();
-            weatherPanel.SetPosition(new Vector2F(sign.Texture.Size.X, _powerPanel.GetHeight() + _moneyPanel.GetHeight()));
-            weatherPanel.SetNode(this);
-            weatherPanel.UpdateValue();
+            _weatherPanel = new WeatherPanel();
+            _weatherPanel.SetPosition(new Vector2F(sign.Texture.Size.X, _powerPanel.GetHeight() + _moneyPanel.GetHeight()));
+            _weatherPanel.SetNode(this);
+            _weatherPanel.UpdateValue();
 
             menu = new CommonMenu(this);
             panel = new StudioPanel();

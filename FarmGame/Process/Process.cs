@@ -17,7 +17,9 @@ namespace FarmGame.Process
 
             farmProcess();
             ranchProcess();
-            ShopProcess();
+            shopProcess();
+
+            wether();
 
             scene.Update();
         }
@@ -29,6 +31,7 @@ namespace FarmGame.Process
                 if(farm.valid)
                 {
                     farm.growth += 100 / GameData.GameStatus.Plants[farm.id].cost + Function.GetRandomValue(0, 10);
+                    farm.growth = (int)(farm.growth * Function.wetherValue(GameData.PlayerData.Weather));
                     if (!farm.water)
                     {
                         farm.quality /= 2;
@@ -51,7 +54,7 @@ namespace FarmGame.Process
             }
         }
 
-        private static void ShopProcess()
+        private static void shopProcess()
         {
             //削除されているリクエストがあればリクエストを追加する
             for(int index = 0; index < Parameter.RequestPageMaxColumn; index++)
@@ -61,6 +64,30 @@ namespace FarmGame.Process
                     GameData.PlayerData.Requests[index] = Function.GetNewRequest();
                 }
                 index++;
+            }
+        }
+
+        private static void wether()
+        {
+            var r = Common.Function.GetRandomValue(0, 3);
+            switch(r)
+            {
+                case 0:
+                    GameData.PlayerData.Weather = GameStatus.WeatherParameter.Sunny;
+                    break;
+                case 1:
+                    GameData.PlayerData.Weather = GameStatus.WeatherParameter.Cloudy;
+                    break;
+                case 2:
+                    GameData.PlayerData.Weather = GameStatus.WeatherParameter.Rain;
+                    foreach(var f in GameData.PlayerData.farms)
+                    {
+                        f.water = true;
+                    }
+                    break;
+                default:
+                    GameData.PlayerData.Weather = GameStatus.WeatherParameter.Sunny;
+                    break;
             }
         }
     }

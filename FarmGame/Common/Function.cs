@@ -270,5 +270,19 @@ namespace FarmGame.Common
             Engine.Sound.Play(_soundCancel);
         }
 
+        public static float wetherValue(GameStatus.WeatherParameter weather)
+        {
+            switch(weather)
+            {
+                case GameStatus.WeatherParameter.Sunny:
+                    return 1.2f;
+                case GameStatus.WeatherParameter.Cloudy:
+                    return 1.0f;
+                case GameStatus.WeatherParameter.Rain:
+                    return 0.8f;
+                default:
+                    return 1.0f;
+            }
+        }
     }
 }
