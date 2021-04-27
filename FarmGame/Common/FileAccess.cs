@@ -52,7 +52,7 @@ namespace FarmGame.Common
                 else
                 {
                     var str = line.Split(",");
-                    if(str.Length == 3)
+                    if(str.Length == 4)
                     {
                         Livestock animal = new Livestock() { id = int.Parse(str[0]), name = str[1], cost = int.Parse(str[2]), product = int.Parse(str[3]) };
                         animals.Add(animal);

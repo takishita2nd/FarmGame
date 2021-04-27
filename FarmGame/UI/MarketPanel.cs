@@ -1,4 +1,5 @@
 ﻿using Altseed2;
+using FarmGame.Common;
 using FarmGame.Model;
 using FarmGame.UI.Parts;
 using System;
@@ -64,6 +65,7 @@ namespace FarmGame.UI
         {
             if(_dialogWindow != null && _dialogWindow.IsShow)
             {
+                Function.PlaySoundOK();
                 _dialogWindow.RemoveNode(_parentNode);
                 return;
             }
@@ -74,24 +76,28 @@ namespace FarmGame.UI
             }
             if (_seedButton.Click(position))
             {
+                Function.PlaySoundOK();
                 _shopWindow = new ShopWindow(GameData.GameStatus.Shoplist.shopList.seed, _parentNode);
                 _shopWindow.Show();
                 return;
             }
             if(_foodButton.Click(position))
             {
+                Function.PlaySoundOK();
                 _shopWindow = new ShopWindow(GameData.GameStatus.Shoplist.shopList.food, _parentNode);
                 _shopWindow.Show();
                 return;
             }
             if (_animalButton.Click(position))
             {
+                Function.PlaySoundOK();
                 _shopWindow = new ShopWindow(GameData.GameStatus.Shoplist.shopList.animal, _parentNode);
                 _shopWindow.Show();
                 return;
             }
             if( _farmButton.Click(position))
             {
+                Function.PlaySoundOK();
                 _shopWindow = new ConfirmWindow(_parentNode,
                     "畑を5つ購入します。\n" +
                     "(10000Ｇ)\n" +

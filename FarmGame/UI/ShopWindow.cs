@@ -110,6 +110,7 @@ namespace FarmGame.UI
         {
             if (_dialog != null && _dialog.IsShow)
             {
+                Function.PlaySoundOK();
                 _dialog.RemoveNode(_parentNode);
                 return;
             }
@@ -128,7 +129,8 @@ namespace FarmGame.UI
             {
                 if(shopListButton.IsClick(position))
                 {
-                    if(shopListButton.type == ShopListButton.Type.Seed)
+                    Function.PlaySoundOK();
+                    if (shopListButton.type == ShopListButton.Type.Seed)
                     {
                         _numberInputWindow = new NumberInputWindow(_parentNode, shopListButton.Id, shopListButton.Money);
                         _numberInputWindow.Show();
@@ -171,6 +173,7 @@ namespace FarmGame.UI
             //キャンセルボタン押下
             if (_cancelButton.IsClick(position))
             {
+                Function.PlaySoundCancel();
                 Hide();
             }
         }

@@ -175,6 +175,7 @@ namespace FarmGame.UI
         {
             if(_dialog != null && _dialog.IsShow)
             {
+                Function.PlaySoundOK();
                 _dialog.RemoveNode(_parentNode);
                 Hide();
                 return;
@@ -183,6 +184,7 @@ namespace FarmGame.UI
             {
                 if(isClick(position, _upButton[i]))
                 {
+                    Function.PlaySoundOK();
                     _inputValue[i] = (_inputValue[i] + 1) % 10;
                     _number[i].Text = _inputValue[i].ToString();
                     _calcNumber.Text = "個(" + (calcNum() * _money).ToString() + "Ｇ)";
@@ -198,6 +200,7 @@ namespace FarmGame.UI
                 }
                 if (isClick(position, _downButton[i]))
                 {
+                    Function.PlaySoundOK();
                     _inputValue[i] = _inputValue[i] - 1;
                     if(_inputValue[i] < 0)
                     {
@@ -218,6 +221,7 @@ namespace FarmGame.UI
             }
             if (!_okButton.IsLocked && _okButton.IsClick(position))
             {
+                Function.PlaySoundOK();
                 _dialog = new Dialog();
                 _dialog.SetNode(
                     Function.SearchItemById(_id).name + "を" + calcNum().ToString() + "個購入しました",
@@ -236,6 +240,7 @@ namespace FarmGame.UI
             }
             if(_cancelButton.IsClick(position))
             {
+                Function.PlaySoundCancel();
                 Hide();
             }
         }

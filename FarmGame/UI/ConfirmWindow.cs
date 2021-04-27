@@ -94,10 +94,12 @@ namespace FarmGame.UI
         {
             if(_okButton.IsClick(position))
             {
+                Function.PlaySoundOK();
                 _callback();
             }
             if(_cancelButton.IsClick(position))
             {
+                Function.PlaySoundCancel();
                 Hide();
             }
         }
