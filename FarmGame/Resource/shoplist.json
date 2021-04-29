@@ -7,7 +7,7 @@
                 "money" : 10
             },
             {
-                "comment" : "小麦の種",
+                "comment" : "トウモロコシの種",
                 "id" : 1,
                 "money" : 30
             },
@@ -46,13 +46,18 @@
                 "id" : 8,
                 "money" : 200
             }
-
         ],
         "food" :[
             {
                 "comment" : "砂糖",
                 "id" : 1006,
                 "money" : 10,
+                "quolity" : "C"
+            },
+            {
+                "comment" : "豚肉",
+                "id" : 1018,
+                "money" : 40,
                 "quolity" : "C"
             }
         ],

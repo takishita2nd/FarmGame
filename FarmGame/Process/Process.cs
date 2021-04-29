@@ -63,7 +63,6 @@ namespace FarmGame.Process
                 {
                     GameData.PlayerData.Requests[index] = Function.GetNewRequest();
                 }
-                index++;
             }
         }
 
