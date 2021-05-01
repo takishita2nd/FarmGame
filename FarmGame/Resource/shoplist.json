@@ -59,6 +59,24 @@
                 "id" : 1018,
                 "money" : 40,
                 "quolity" : "C"
+            },
+            {
+                "comment" : "魚",
+                "id" : 1022,
+                "money" : 80,
+                "quolity" : "C"
+            },
+            {
+                "comment" : "リンゴ",
+                "id" : 1026,
+                "money" : 20,
+                "quolity" : "C"
+            },
+            {
+                "comment" : "さくらんぼ",
+                "id" : 1029,
+                "money" : 30,
+                "quolity" : "C"
             }
         ],
         "animal" :[
