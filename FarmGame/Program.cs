@@ -1,4 +1,5 @@
 ﻿using Altseed2;
+using FarmGame.Common;
 using FarmGame.Scene;
 using System;
 
@@ -9,9 +10,22 @@ namespace FarmGame
         [STAThread]
         static void Main(string[] args)
         {
-            Engine.Initialize("農場ゲーム(仮)", CommonParameter.WindowWidth, CommonParameter.WindowHeight);
+            if(args.Length >= 2 && args[0] == "enc")
+            {
+                Encrypt.Encode(args[1], args[2]);
 
-            Engine.AddNode(new Main());
+                return;
+            }
+
+            Engine.Initialize("農場ゲーム(仮)", Common.Parameter.WindowWidth, Common.Parameter.WindowHeight);
+
+            Engine.AddNode(new MainScene());
+
+            //ゲームデータの初期化
+            GameData.Initialize(FileAccess.GameDataLoad());
+
+            //Zipファイルの読み込み
+            Engine.File.AddRootPackage("resource.zip");
 
             while (Engine.DoEvents())
             {
